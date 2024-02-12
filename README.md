@@ -52,4 +52,14 @@ A Car-rental Web Application designed to streamline the process of renting vehic
 
 [Include any additional information or notes relevant to the project]
 
+---
 
+## Time Sheet:
+
+[https://docs.google.com/spreadsheets/d/1fd8zX_jWqJSS0oSrJ7zyo4SL-R_e65Qn/edit#gid=960117301]
+
+---
+
+## Task Breakdown:
+
+[https://docs.google.com/spreadsheets/d/1ECiNgExHn8Vs0-0Dh2Ej9bAQoWyZKQoUq7Es1rcfddY/edit#gid=0]
