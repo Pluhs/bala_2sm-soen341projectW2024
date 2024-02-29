@@ -57,21 +57,21 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-    // Vehicle management
+    // Car management
     
-    @GetMapping("/reservations")
+    @GetMapping("/cars")
     public List<Car> getAllCars() {
         return carService.getAllCars();
     }
     
-    @PostMapping("/vehicles")
-    public ResponseEntity<?> createVehicle(@RequestBody Car car) {
+    @PostMapping("/cars")
+    public ResponseEntity<?> createCar(@RequestBody Car car) {
         Car newCar = carService.addCar(car);
         return ResponseEntity.ok(newCar);
     }
 
-    @GetMapping("/vehicles/{id}")
-    public ResponseEntity<?> getVehicle(@PathVariable ObjectId id) {
+    @GetMapping("/cars/{id}")
+    public ResponseEntity<?> getCar(@PathVariable ObjectId id) {
         Car car = carService.getCarById(id).orElse(null);
         if (car == null) {
             return ResponseEntity.notFound().build();
@@ -79,14 +79,14 @@ public class AdminController {
         return ResponseEntity.ok(car);
     }
 
-    @PutMapping("/vehicles/{id}")
-    public ResponseEntity<?> updateVehicle(@PathVariable ObjectId id, @RequestBody Car car) {
+    @PutMapping("/cars/{id}")
+    public ResponseEntity<?> updateCar(@PathVariable ObjectId id, @RequestBody Car car) {
         Car updatedCar = carService.updateCar(id, car);
         return ResponseEntity.ok(updatedCar);
     }
 
-    @DeleteMapping("/vehicles/{id}")
-    public ResponseEntity<?> deleteVehicle(@PathVariable ObjectId id) {
+    @DeleteMapping("/cars/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable ObjectId id) {
         carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
