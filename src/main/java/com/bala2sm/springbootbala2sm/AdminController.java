@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,7 +16,7 @@ public class AdminController {
     private UserService userService;
 
     @Autowired
-    private VehicleService vehicleService;
+    private CarService carService;
 
     @Autowired
     private ReservationService reservationService;
@@ -25,6 +26,12 @@ public class AdminController {
         User newUser = userService.createUser(user);
         return ResponseEntity.ok(newUser);
     }
+    
+    @GetMapping("/users")
+    public List<User> getallUsers() {
+        return userService.getAllUsers();
+    }
+
 
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUser(@PathVariable ObjectId id) {
@@ -51,15 +58,21 @@ public class AdminController {
     }
 
     // Vehicle management
+    
+    @GetMapping("/reservations")
+    public List<Car> getAllCars() {
+        return carService.getAllCars();
+    }
+    
     @PostMapping("/vehicles")
     public ResponseEntity<?> createVehicle(@RequestBody Car car) {
-        Car newCar = vehicleService.addVehicle(car);
+        Car newCar = carService.addCar(car);
         return ResponseEntity.ok(newCar);
     }
 
     @GetMapping("/vehicles/{id}")
     public ResponseEntity<?> getVehicle(@PathVariable ObjectId id) {
-        Car car = vehicleService.getVehicleById(id).orElse(null);
+        Car car = carService.getCarById(id).orElse(null);
         if (car == null) {
             return ResponseEntity.notFound().build();
         }
@@ -68,17 +81,23 @@ public class AdminController {
 
     @PutMapping("/vehicles/{id}")
     public ResponseEntity<?> updateVehicle(@PathVariable ObjectId id, @RequestBody Car car) {
-        Car updatedCar = vehicleService.updateVehicle(id, car);
+        Car updatedCar = carService.updateCar(id, car);
         return ResponseEntity.ok(updatedCar);
     }
 
     @DeleteMapping("/vehicles/{id}")
     public ResponseEntity<?> deleteVehicle(@PathVariable ObjectId id) {
-        vehicleService.deleteVehicle(id);
+        carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
 
     // Reservation management
+    
+    @GetMapping("/reservations")
+    public List<Reservation> getAllReservations() {
+        return reservationService.getAllReservations();
+    }
+    
     @PostMapping("/reservations")
     public ResponseEntity<?> createReservation(@RequestBody Reservation reservation) {
         Reservation newReservation = reservationService.createReservation(reservation);
