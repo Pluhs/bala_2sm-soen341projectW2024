@@ -9,26 +9,30 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class VehicleService {
+public class CarService {
 
     @Autowired
     private CarRepository carRepository;
 
-    public List<Car> getAvailableVehicles() {
+    public List<Car> getAvailableCars() {
         return carRepository.findAll().stream()
                 .filter(Car::isAvailable)
                 .collect(Collectors.toList());
     }
+    
+    public List<Car> getAllCars(){
+    	return carRepository.findAll();
+    }
 
-    public Car addVehicle(Car car) {
+    public Car addCar(Car car) {
         return carRepository.save(car);
     }
 
-    public Optional<Car> getVehicleById(ObjectId id) {
+    public Optional<Car> getCarById(ObjectId id) {
         return carRepository.findById(id);
     }
 
-    public Car updateVehicle(ObjectId id, Car carDetails) {
+    public Car updateCar(ObjectId id, Car carDetails) {
         return carRepository.findById(id)
                 .map(car -> {
                     car.setName(carDetails.getName());
@@ -44,7 +48,7 @@ public class VehicleService {
                 });
     }
 
-    public void deleteVehicle(ObjectId id) {
+    public void deleteCar(ObjectId id) {
         carRepository.deleteById(id);
     }
 }

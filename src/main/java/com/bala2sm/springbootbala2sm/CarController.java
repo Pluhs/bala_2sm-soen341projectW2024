@@ -9,37 +9,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vehicles")
-public class VehicleController {
+public class CarController {
 
     @Autowired
-    private VehicleService vehicleService;
+    private CarService carService;
 
     @GetMapping("/available")
-    public ResponseEntity<List<Car>> getAvailableVehicles() {
-        List<Car> availableVehicles = vehicleService.getAvailableVehicles();
+    public ResponseEntity<List<Car>> getAvailableCars() {
+        List<Car> availableVehicles = carService.getAvailableCars();
         return ResponseEntity.ok(availableVehicles);
     }
     @PostMapping
-    public ResponseEntity<Car> addVehicle(@RequestBody Car car) {
-        Car newCar = vehicleService.addVehicle(car);
+    public ResponseEntity<Car> addCar(@RequestBody Car car) {
+        Car newCar = carService.addCar(car);
         return ResponseEntity.ok(newCar);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Car> getVehicleById(@PathVariable ObjectId id) {
-        return vehicleService.getVehicleById(id)
+    public ResponseEntity<Car> getCarById(@PathVariable ObjectId id) {
+        return carService.getCarById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Car> updateVehicle(@PathVariable ObjectId id, @RequestBody Car car) {
-        Car updatedCar = vehicleService.updateVehicle(id, car);
+    public ResponseEntity<Car> updateCar(@PathVariable ObjectId id, @RequestBody Car car) {
+        Car updatedCar = carService.updateCar(id, car);
         return ResponseEntity.ok(updatedCar);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteVehicle(@PathVariable ObjectId id) {
-        vehicleService.deleteVehicle(id);
+    public ResponseEntity<?> deleteCar(@PathVariable ObjectId id) {
+        carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
 }
