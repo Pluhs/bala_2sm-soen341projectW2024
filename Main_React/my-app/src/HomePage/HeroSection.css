@@ -1,0 +1,19 @@
+.HeroSectionMain {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.HeroSectionMain video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+html, body {
+    overflow: auto;
+}
