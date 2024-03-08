@@ -4,98 +4,77 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection ="cars")
+@Document(collection = "cars")
 public class Car {
-	
+
 	@Id
 	private ObjectId id;
-	
 	private String name;
 	private Double price;
 	private String info;
-	private String img;//url
+	private String imageUrl;
 	private boolean available;
-	
-	
-	
+
 	public Car() {
 		super();
 	}
-	public Car(ObjectId id, String name, Double price, String info, String url) {
+
+	public Car(ObjectId id, String name, Double price, String info, String imageUrl) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.info = info;
-		this.img = url;
+		this.imageUrl = imageUrl; // Renamed parameter to match the field name
 	}
-	/**
-	 * @return the id
-	 */
+
 	public ObjectId getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
-	/**
-	 * @return the name
-	 */
+
 	public String getName() {
 		return name;
 	}
-	/**
-	 * @param name the name to set
-	 */
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return the price
-	 */
+
 	public Double getPrice() {
 		return price;
 	}
-	/**
-	 * @param price the price to set
-	 */
+
 	public void setPrice(Double price) {
-		this.price = price;
+		if (price >= 0) { // Validation for positive price
+			this.price = price;
+		}
 	}
-	/**
-	 * @return the info
-	 */
+
 	public String getInfo() {
 		return info;
 	}
-	/**
-	 * @param info the info to set
-	 */
+
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return img;
+
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.img = url;
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
+
 	public boolean isAvailable() {
 		return available;
 	}
+
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-	
-	
-	
 }

@@ -23,7 +23,7 @@ export const MenuData = [
     },
     {
         title: "My Profile",
-        url: "#",
+        url: "/reserveCar",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
 
