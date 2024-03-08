@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringbootBala2smApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SpringbootBala2smApplication.class, args);
 	}
  }
