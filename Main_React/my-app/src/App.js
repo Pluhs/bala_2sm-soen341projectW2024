@@ -7,6 +7,7 @@ import HomePage from "./HomePage/HomePage.js";
 import RegistrationForm from "./registrationForm/registrationForm.js";
 import ReserveCar from "./ReserveCar/ReserveCar";
 import BrowseVehicle from "./BrowseVehicle/BrowseVehicle";
+import MyProfile from "./MyProfile/MyProfile";
 
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
             <div className="App">
                 <Navbar/>
                 <Routes>
-                    <Route path="/home" exact element={<HomePage />} />
+                    <Route path="/" exact element={<HomePage />} />
                     <Route path="/login" element={<LogInForm/>} />
                     <Route path="/register" element={<RegistrationForm/>} />
                     <Route path="/reserveCar" element={<ReserveCar/>} />
                     <Route path="/browseVehicle" element={<BrowseVehicle/>} />
-
+                    <Route path="/MyProfile" element={<MyProfile/>} />
                 </Routes>
             </div>
         </Router>
