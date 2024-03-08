@@ -64,17 +64,22 @@ public class UserController {
 
     @PostMapping("/{id}/reservations")
     public ResponseEntity<?> addReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
+//        try {
+//            Optional<Car> cardb = carService.getCarById(reservation.getCar().getId());
+//            if (cardb.isEmpty()) {
+//                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
+//            }
+            reservation.getCar().setAvailable(false);
+        User updatedUser = null;
         try {
-            Optional<Car> cardb = carService.getCarById(reservation.getCar().getId());
-            if (cardb.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
-            }
-            cardb.get().setAvailable(false);
-            User updatedUser = userService.addReservation(id, reservation);
-            return ResponseEntity.ok(updatedUser);
+            updatedUser = userService.addReservation(id, reservation);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            throw new RuntimeException(e);
         }
+        return ResponseEntity.ok(updatedUser);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+//        }
     }
 
 //    @DeleteMapping("/{id}/reservations/{reservationId}")
