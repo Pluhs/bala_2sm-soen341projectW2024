@@ -73,22 +73,22 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User deleteReservation(ObjectId userId, ObjectId reservationId) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
-        user.getReservations().removeIf(r -> r.getId().equals(reservationId));
-        return userRepository.save(user);
-    }
+//    public User deleteReservation(ObjectId userId, ObjectId reservationId) throws Exception {
+//        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+//        user.getReservations().removeIf(r -> r.getId().equals(reservationId));
+//        return userRepository.save(user);
+//    }
 
-    public User updateReservation(ObjectId userId, ObjectId reservationId, Reservation updatedReservation) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
-        ArrayList<Reservation> reservations = user.getReservations();
-        for (int i = 0; i < reservations.size(); i++) {
-            if (reservations.get(i).getId().equals(reservationId)) {
-                reservations.set(i, updatedReservation); // Replace the old reservation with the updated one
-                break;
-            }
-        }
-        user.setReservations(reservations);
-        return userRepository.save(user);
-    }
+//    public User updateReservation(ObjectId userId, ObjectId reservationId, Reservation updatedReservation) throws Exception {
+//        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+//        ArrayList<Reservation> reservations = user.getReservations();
+//        for (int i = 0; i < reservations.size(); i++) {
+//            if (reservations.get(i).getId().equals(reservationId)) {
+//                reservations.set(i, updatedReservation); // Replace the old reservation with the updated one
+//                break;
+//            }
+//        }
+//        user.setReservations(reservations);
+//        return userRepository.save(user);
+//    }
 }

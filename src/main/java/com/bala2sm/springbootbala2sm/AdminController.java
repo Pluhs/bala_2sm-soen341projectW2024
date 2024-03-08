@@ -19,9 +19,6 @@ public class AdminController {
     @Autowired
     private CarService carService;
 
-    @Autowired
-    private ReservationService reservationService;
-
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
@@ -102,36 +99,36 @@ public class AdminController {
     }
 
     // Reservation management
-
-    @GetMapping("/reservations")
-    public List<Reservation> getAllReservations() {
-        return reservationService.getAllReservations();
-    }
-
-    @PostMapping("/reservations")
-    public ResponseEntity<?> createReservation(@RequestBody Reservation reservation) {
-        Reservation newReservation = reservationService.createReservation(reservation);
-        return ResponseEntity.ok(newReservation);
-    }
-
-    @GetMapping("/reservations/{id}")
-    public ResponseEntity<?> getReservation(@PathVariable ObjectId id) {
-        Reservation reservation = reservationService.getReservationById(id).orElse(null);
-        if (reservation == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(reservation);
-    }
-
-    @PutMapping("/reservations/{id}")
-    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
-        Reservation updatedReservation = reservationService.updateReservation(id, reservation);
-        return ResponseEntity.ok(updatedReservation);
-    }
-
-    @DeleteMapping("/reservations/{id}")
-    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id) {
-        reservationService.deleteReservation(id);
-        return ResponseEntity.ok().build();
-    }
+//
+//    @GetMapping("/reservations")
+//    public List<Reservation> getAllReservations() {
+//        return reservationService.getAllReservations();
+//    }
+//
+//    @PostMapping("/reservations")
+//    public ResponseEntity<?> createReservation(@RequestBody Reservation reservation) {
+//        Reservation newReservation = reservationService.createReservation(reservation);
+//        return ResponseEntity.ok(newReservation);
+//    }
+//
+//    @GetMapping("/reservations/{id}")
+//    public ResponseEntity<?> getReservation(@PathVariable ObjectId id) {
+//        Reservation reservation = reservationService.getReservationById(id).orElse(null);
+//        if (reservation == null) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(reservation);
+//    }
+//
+//    @PutMapping("/reservations/{id}")
+//    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
+//        Reservation updatedReservation = reservationService.updateReservation(id, reservation);
+//        return ResponseEntity.ok(updatedReservation);
+//    }
+//
+//    @DeleteMapping("/reservations/{id}")
+//    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id) {
+//        reservationService.deleteReservation(id);
+//        return ResponseEntity.ok().build();
+//    }
 }

@@ -15,8 +15,6 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private ReservationService reservationService;
-    @Autowired
     private CarService carService;
 
     @PostMapping
@@ -72,8 +70,6 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
             }
             cardb.get().setAvailable(false);
-            reservation.setCar(cardb.get());
-            reservationService.createReservation(reservation);
             User updatedUser = userService.addReservation(id, reservation);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
@@ -81,24 +77,24 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{id}/reservations/{reservationId}")
-    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
-        try {
-
-            User updatedUser = userService.deleteReservation(id, reservationId);
-            return ResponseEntity.ok(updatedUser);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
-
-    @PutMapping("/{id}/reservations/{reservationId}")
-    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId, @RequestBody Reservation reservation) {
-        try {
-            User updatedUser = userService.updateReservation(id, reservationId, reservation);
-            return ResponseEntity.ok(updatedUser);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }
+//    @DeleteMapping("/{id}/reservations/{reservationId}")
+//    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
+//        try {
+//
+//            User updatedUser = userService.deleteReservation(id, reservationId);
+//            return ResponseEntity.ok(updatedUser);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+//        }
+//    }
+//
+//    @PutMapping("/{id}/reservations/{reservationId}")
+//    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId, @RequestBody Reservation reservation) {
+//        try {
+//            User updatedUser = userService.updateReservation(id, reservationId, reservation);
+//            return ResponseEntity.ok(updatedUser);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+//        }
+//    }
 }
