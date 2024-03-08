@@ -1,76 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./BrowseVehicle.css";
+import "../ReserveCar/ReserveCar";
 
 function BrowseVehicle() {
+    // State to store the car data
+    const [cars, setCars] = useState([]);
+
+    // Simulating fetching data from a database
+    useEffect(() => {
+        // fetch data from your database
+        // temporary array
+        const fetchedCars = [
+            { id: 1, brand: 'Toyota', model: 'Camry', year: 2015, image: '/Images/toyota2015.jpg', description: 'Description of Toyota Camry 2015' },
+            { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
+            { id: 3, brand: 'Peugeot', model: '505', year: 1989, image: '/Images/Peugeot505.jpg', description: 'Description of Peugeot 505 1989' },
+            { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
+            { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
+            { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
+
+
+            // Add more cars as needed
+        ];
+
+        // Update the state with the fetched data
+        setCars(fetchedCars);
+    }, []);
+
     return (
         <div className="vehicle-container">
-            <Link to="/toyota" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/toyota2015.jpg" alt="Vehicle"/>
-                <h3>Toyota Camry 2015</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-            </Link>
-            <Link to="/BMW" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/BMW2020.jpg" alt="Vehicle"/>
-                <h3>BMW i8 2020</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/honda" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/honda2019.jpg" alt="Vehicle"/>
-                <h3>Honda Civic 2019</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/hyundai" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/hyundai2016.jpg" alt="Vehicle"/>
-                <h3>Hyundai Tucson 2016</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/porsche" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/porsche2024.jpg" alt="Vehicle"/>
-                <h3>Porsche Cayenne 2024</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/nissan" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/nissan2001.jpg" alt="Vehicle"/>
-                <h3>Nissan Sentra 2001</h3>
-                <p>Description of Vehicle </p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/hyundai" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/hyundai2016.jpg" alt="Vehicle"/>
-                <h3>Hyundai Tucson 2016</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/porsche" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/porsche2024.jpg" alt="Vehicle"/>
-                <h3>Porsche Cayenne 2024</h3>
-                <p>Description of Vehicle</p>
-                <button>Reserve</button>
-
-            </Link>
-            <Link to="/nissan" className="vehicle" style={{textDecoration: 'none'}}>
-                <img src="/Images/nissan2001.jpg" alt="Vehicle"/>
-                <h3>Nissan Sentra 2001</h3>
-                <p>Description of Vehicle </p>
-                <button>Reserve</button>
-
-            </Link>
-
+            {}
+            {cars.map(car => (
+                <div key={car.id} to={`/${car.brand.toLowerCase()}`} className="vehicle" style={{textDecoration: 'none'}}>
+                    <img src={car.image} alt={`${car.brand} ${car.model} ${car.year}`}/>
+                    <h3>{`${car.brand} ${car.model} ${car.year}`}</h3>
+                    <p>{car.description}</p>
+                    <Link to={`/ReserveCar/`}>
+                        <button>Reserve</button>
+                    </Link>
+                </div>
+            ))}
         </div>
     );
 }
 
 export default BrowseVehicle;
-
