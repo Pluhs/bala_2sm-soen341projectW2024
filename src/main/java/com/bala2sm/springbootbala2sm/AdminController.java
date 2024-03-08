@@ -2,6 +2,7 @@ package com.bala2sm.springbootbala2sm;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +24,14 @@ public class AdminController {
 
     @PostMapping("/users")
     public ResponseEntity<?> createUser(@RequestBody User user) {
-        User newUser = userService.createUser(user);
-        return ResponseEntity.ok(newUser);
+        try {
+            User newUser = userService.createUser(user);
+            return ResponseEntity.ok(newUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
-    
+
     @GetMapping("/users")
     public List<User> getallUsers() {
         return userService.getAllUsers();
@@ -44,7 +49,12 @@ public class AdminController {
 
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable ObjectId id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
+        User updatedUser = null;
+        try {
+            updatedUser = userService.updateUser(id, user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (updatedUser == null) {
             return ResponseEntity.notFound().build();
         }
@@ -58,12 +68,12 @@ public class AdminController {
     }
 
     // Car management
-    
+
     @GetMapping("/cars")
     public List<Car> getAllCars() {
         return carService.getAllCars();
     }
-    
+
     @PostMapping("/cars")
     public ResponseEntity<?> createCar(@RequestBody Car car) {
         Car newCar = carService.addCar(car);
@@ -92,12 +102,12 @@ public class AdminController {
     }
 
     // Reservation management
-    
+
     @GetMapping("/reservations")
     public List<Reservation> getAllReservations() {
         return reservationService.getAllReservations();
     }
-    
+
     @PostMapping("/reservations")
     public ResponseEntity<?> createReservation(@RequestBody Reservation reservation) {
         Reservation newReservation = reservationService.createReservation(reservation);
