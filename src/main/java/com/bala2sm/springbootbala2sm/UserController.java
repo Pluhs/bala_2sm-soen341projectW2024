@@ -64,9 +64,9 @@ public class UserController {
 
     @PostMapping("/{id}/reservations")
     public ResponseEntity<?> addReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
-        if (id == null || reservation.getCar().getId() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or null ID provided");
-        }
+//        if (id == null || reservation.getCar().getId() == null) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or null ID provided");
+//        }
         try {
             Optional<Car> cardb = carService.getCarById(reservation.getCar().getId());
             if (cardb.isEmpty()) {
