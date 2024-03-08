@@ -7,7 +7,7 @@ export const MenuData = [
     },
     {
         title: "Browse Vehicles",
-        url: "#",
+        url: "/browseVehicle",
         cName:"navlinks",
         icon:"fa-solid fa-car",
     }, {
@@ -23,11 +23,12 @@ export const MenuData = [
     },
     {
         title: "My Profile",
-        url: "#",
+        url: "/reserveCar",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
 
     },
+
     {
         title: "Log In",
         url: "/login",
