@@ -286,3 +286,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .datePickerReserve{
     width: 50%;
 }
+
+.locationsDropdownMenu{
+    /*position: absolute; !* Position the arrow relative to the dropdown *!*/
+    top: calc(50% - 4px); /* Center the arrow vertically */
+    right: 10px; /* Position the arrow to the right */
+    width: 100px;
+    height: 45px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #333; /* Set the color of the arrow */
+
+}

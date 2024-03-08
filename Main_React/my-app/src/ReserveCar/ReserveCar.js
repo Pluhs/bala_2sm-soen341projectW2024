@@ -45,17 +45,18 @@ const ReserveCarForm = () => {
                 <form action="" className="formWrapper">
 
                     <h1>Book A Car Now</h1>
-                    <div className="inputBoxReserve">
-                        <input type="text" placeholder='Name' required/>
-                        <i className="fa-solid fa-user"></i>
-                    </div>
-                    {/*<select id="dropdown-menu">*/}
-                    {/*    <option value="">Select an option</option>*/}
-                    {/*    <option value="option1">Option 1</option>*/}
-                    {/*    <option value="option2">Option 2</option>*/}
-                    {/*    <option value="option3">Option 3</option>*/}
-                    {/*</select>*/}
+                    {/*<div className="inputBoxReserve">*/}
+                    {/*    <input type="text" placeholder='Name' required/>*/}
+                    {/*    <i className="fa-solid fa-user"></i>*/}
+                    {/*</div>*/}
+                    <select id="locationsDropdownMenuReserve" className="locationsDropdownMenu">
+                        <option value="">Select an option</option>
+                        <option value="option1">Location 1</option>
+                        <option value="option2">Location 2</option>
+                        <option value="option3">Location 3</option>
+                    </select>
 
+                    <br/>
                     <div className="date-wrapper">
                         <div className="inputBoxReserve date-picker-group" id="pickupDateDiv">
                             <label htmlFor="pickupDateInput" className="dateInputLabel">Pickup Date:</label>
