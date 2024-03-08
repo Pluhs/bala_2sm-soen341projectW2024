@@ -20,7 +20,9 @@ const LogInForm = () => {
                 <button type="submit">Login</button>
 
                 <div className="registerLink">
-                    <p>Don't have an account? <Link to="/register">Register</Link></p>
+                    <p>Don't have an ac
+
+                        count? <Link to="/register">Register</Link></p>
                 </div>
             </form>
         </div>
