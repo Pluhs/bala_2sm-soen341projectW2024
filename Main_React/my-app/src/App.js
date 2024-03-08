@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LogInForm from "./LogInForm/LogInForm.js";
 import HomePage from "./HomePage/HomePage.js";
 import RegistrationForm from "./registrationForm/registrationForm.js";
+import ReserveCar from "./ReserveCar/ReserveCar";
+import BrowseVehicle from "./BrowseVehicle/BrowseVehicle";
 
 
 function App() {
@@ -16,6 +18,9 @@ function App() {
                     <Route path="/home" exact element={<HomePage />} />
                     <Route path="/login" element={<LogInForm/>} />
                     <Route path="/register" element={<RegistrationForm/>} />
+                    <Route path="/reserveCar" element={<ReserveCar/>} />
+                    <Route path="/browseVehicle" element={<BrowseVehicle/>} />
+
                 </Routes>
             </div>
         </Router>
