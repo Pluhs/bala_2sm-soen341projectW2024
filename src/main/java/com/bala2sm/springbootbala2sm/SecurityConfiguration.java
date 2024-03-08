@@ -98,8 +98,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class SecurityConfiguration {
 
-    public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+    public static String hashPassword(String password) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         md.update(password.getBytes());
         byte[] digest = md.digest();
         return bytesToHex(digest);

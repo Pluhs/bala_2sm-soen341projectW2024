@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Document(collection = "users")
 public class User {
@@ -15,12 +15,12 @@ public class User {
     private String email;
     private String password;
     private Role role;
-    private List<Reservation> reservations;
+    private ArrayList<Reservation> reservations = new ArrayList<>();
 
     public User() {
     }
 
-    public User(ObjectId id, String name, String email, String password, Role role, List<Reservation> reservations) {
+    public User(ObjectId id, String name, String email, String password, Role role, ArrayList<Reservation> reservations) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -69,11 +69,11 @@ public class User {
         this.role = role;
     }
 
-    public List<Reservation> getReservations() {
+    public ArrayList<Reservation> getReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservation> reservations) {
+    public void setReservations(ArrayList<Reservation> reservations) {
         this.reservations = reservations;
     }
 

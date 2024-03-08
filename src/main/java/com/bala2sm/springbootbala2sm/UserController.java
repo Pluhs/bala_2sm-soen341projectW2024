@@ -6,22 +6,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private CarService carService;
+
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        try {
+
             User newUser = userService.createUser(user);
-            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-            //return ResponseEntity.ok(newUser);
-        } catch (Exception e) {
+            if(newUser != null){
+                return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+            }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 
-        }
     }
 
     @GetMapping("/{id}")
@@ -61,6 +67,13 @@ public class UserController {
     @PostMapping("/{id}/reservations")
     public ResponseEntity<?> addReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
         try {
+            Optional<Car> cardb = carService.getCarById(reservation.getCar().getId());
+            if (cardb.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
+            }
+            cardb.get().setAvailable(false);
+            reservation.setCar(cardb.get());
+            reservationService.createReservation(reservation);
             User updatedUser = userService.addReservation(id, reservation);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
@@ -71,6 +84,7 @@ public class UserController {
     @DeleteMapping("/{id}/reservations/{reservationId}")
     public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
         try {
+
             User updatedUser = userService.deleteReservation(id, reservationId);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
