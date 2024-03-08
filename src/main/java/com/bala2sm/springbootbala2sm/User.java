@@ -58,7 +58,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = hashPassword(password);
+        this.password = password;
     }
 
     public Role getRole() {
@@ -77,10 +77,5 @@ public class User {
         this.reservations = reservations;
     }
 
-    private String hashPassword(String password) {
-        // Implement password hashing logic here
-        //I think we don't need this, can be implemented another way
-        return password;
-    }
 }
 
