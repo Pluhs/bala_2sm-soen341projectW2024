@@ -1,0 +1,300 @@
+/*.LogInFormMain{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    min-height: 100vh;*/
+/*    width: 100vw;*/
+/*    background-image: url('/public/Images/LogInImg.png');*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    z-index: 1;*/
+/*}*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.wrapper {
+    width: 26rem;
+    height: 35rem;
+    background-color: rgba(5, 32, 56, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px 40px;
+}
+
+
+.carInfoWrapper {
+    width: 90%;
+    height: auto;
+    /*background-color: rgba(5, 32, 56, 0.3);*/
+    /*backdrop-filter: blur(20px);*/
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px 20px;
+    display: inline-block;
+    /*margin-left: 5%;*/
+    margin-right: 5%;
+    margin-top: 50px;
+    text-align: center;
+    flex: auto;
+    /*padding: auto;*/
+
+}
+
+.formWrapperDiv {
+    width: 90%;
+    height: auto;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px 20px;
+    display: inline-block;
+    /*margin-left: 5%;*/
+    margin-right: 5%;
+    margin-top: 50px;
+    text-align: center;
+    flex: auto;
+
+
+}
+
+.formWrapper{
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-color: rgba(5, 32, 56, 0.3);*/
+    /*backdrop-filter: blur(20px);*/
+    /*-webkit-backdrop-filter: blur(20px);*/
+    /*border: 1px solid rgba(255, 255, 255, 0.5);*/
+    color: #000000;
+    /*border-radius: 10px;*/
+    /*padding: 20px 40px;*/
+
+}
+
+
+.wrapper h1 {
+    font-size: 2.25rem;
+    text-align: center;
+}
+
+.formWrapper h1 {
+    font-size: 2.25rem;
+    text-align: center;
+}
+
+
+.wrapper .inputBoxReserve {
+    position: relative;
+    width: 98%;
+    height: 2.5rem;
+    margin: 1.5rem 0;
+
+}
+
+.formWrapper .inputBoxReserve {
+    position: relative;
+    width: 98%;
+    height: 2.5rem;
+    margin: 1.5rem 0;
+
+}
+
+
+.inputBoxReserve input {
+    width: 98%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid #052038;
+    border-bottom-color: #03111e;
+    border-right-color: #051523;
+    border-left-color: #051523;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #000000;
+    padding: 5px 3px 5px 5px ;
+    padding-left: 10px;
+
+}
+.inputBoxReserve input::placeholder {
+    color: #052038;
+
+}
+.inputBoxReserve i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    tranform: translateY(-50%);
+    font-size: 16px;
+}
+.wrapper button {
+    width: 100%;
+    height: 45px;
+    background: #f5f5f5;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #052038;
+    font-weight: 700;
+}
+.formWrapper button {
+    width: 100%;
+    height: 45px;
+    background: #052038;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5f5f5;
+    font-weight: 700;
+}
+
+.wrapper button:hover {
+     background-color: antiquewhite;
+ }
+
+.formWrapper button:hover {
+    background-color: #041728;
+}
+
+/**/
+/**/
+/**/
+
+.reservationForm {
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    min-height: 100%;
+    width: 100%;
+    background-color: #d7c2ad;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    /*margin-top: 50px;*/
+    padding: 50px 2%;
+    justify-items: left;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*.reserveBtn {*/
+/*    background-color: #007bff;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 10px 20px;*/
+/*    font-size: 16px;*/
+/*    border-radius: 4px;*/
+/*    cursor: pointer;*/
+
+/*}*/
+
+.reserveBtn:hover {
+    background-color: #0056b3;
+}
+
+.date-wrapper {
+    display: inline-block;
+    margin: 0px;
+
+}
+#pickupDateDiv {
+    width: 48%;
+    float: left;
+    margin: 0px 0px 50px 0px;
+}
+#returnDateDiv {
+    width: 48%;
+    float: right;
+    margin: 0px 0px 50px 0px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.1);
+    margin: 10px;
+}
+
+.dateInputLabel{
+    padding: 0px 10px 0px 12px;
+    font-size: 16px;
+}
+
+.reserveCarImg{
+    display: block;
+    max-width:100%;
+    max-height:100%;
+    width: auto;
+    height: auto;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+.carModelHeader{
+    text-align: center;
+
+}
+
+
+.carInfoContainer{
+    text-align: left;
+
+}
+
+.datePickerReserve{
+    width: 50%;
+}
+
+.locationsDropdownMenu{
+    /*position: absolute; !* Position the arrow relative to the dropdown *!*/
+    top: calc(50% - 4px); /* Center the arrow vertically */
+    right: 10px; /* Position the arrow to the right */
+    width: 100px;
+    height: 45px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #333; /* Set the color of the arrow */
+
+}
