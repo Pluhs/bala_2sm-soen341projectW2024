@@ -8,21 +8,21 @@ const RegisterForm = () => {
 
     return (
         <div className="RegisterFormMain">
-            <form className="wrapper">
+            <form className="wrapperRegister">
                 <h1>Register Form</h1>
-                <div className="inputBox">
+                <div className="inputBoxRegister">
                     <input type="text" placeholder="Name" required/>
                     <i className="fa-solid fa-user"></i>
                 </div>
-                <div className="inputBox">
+                <div className="inputBoxRegister">
                     <input type="email" placeholder="Email" required/>
                     <i className="fa-solid fa-at"></i>
                 </div>
-                <div className="inputBox">
+                <div className="inputBoxRegister">
                     <input type="password" placeholder="Password" required/>
                     <i className="fa-solid fa-lock"></i>
                 </div>
-                <div className="inputBox">
+                <div className="inputBoxRegister">
                     <input type="password" placeholder="Confirm Password" required/>
                     <i className="fa-solid fa-lock"></i>
                 </div>
