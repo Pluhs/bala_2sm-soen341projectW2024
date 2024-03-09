@@ -2,10 +2,13 @@ package com.bala2sm.springbootbala2sm;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +19,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private CarService carService;
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -62,48 +67,47 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 
-    @PostMapping("/{id}/reservations")
-    public ResponseEntity<?> addReservation(@PathVariable ObjectId id, @RequestBody Reservation reservation) {
-//        if (id == null || reservation.getCar().getId() == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or null ID provided");
-//        }
+    @PostMapping("/{userId}/reservations")
+    public ResponseEntity<?> addReservation(@PathVariable ObjectId userId, @RequestBody Reservation reservation) {
         try {
-            Optional<Car> cardb = carService.getCarById(reservation.getCar().getId());
-            if (cardb.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found");
+            if (userId == null || reservation.getCar().getId() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or null ID provided");
             }
-            Car car = cardb.get();
-            if (!car.isAvailable()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Car is not available");
-            }
-            car.setAvailable(false);
-            carService.updateCar(car.getId(), car); // Save the updated car status
+            Car car = carService.getCarById(reservation.getCar().getId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Car not found"));
 
-            User updatedUser = userService.addReservation(id, reservation);
+            List<Reservation> overlappingReservations = reservationRepository.findByCarAndPickupDateLessThanEqualAndDropDateGreaterThanEqual(
+                    car.getId(), reservation.getPickupDate(), reservation.getDropDate());
+
+            if (!overlappingReservations.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Car is already reserved for the selected dates");
+            }
+            User updatedUser = userService.addReservation(userId, reservation);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-//    @DeleteMapping("/{id}/reservations/{reservationId}")
-//    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
-//        try {
-//
-//            User updatedUser = userService.deleteReservation(id, reservationId);
-//            return ResponseEntity.ok(updatedUser);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-//        }
-//    }
-//
-//    @PutMapping("/{id}/reservations/{reservationId}")
-//    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId, @RequestBody Reservation reservation) {
-//        try {
-//            User updatedUser = userService.updateReservation(id, reservationId, reservation);
-//            return ResponseEntity.ok(updatedUser);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-//        }
-//    }
+
+    @DeleteMapping("/{id}/reservations/{reservationId}")
+    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
+        try {
+
+            User updatedUser = userService.deleteReservation(id, reservationId);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}/reservations/{reservationId}")
+    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId, @RequestBody Reservation reservation) {
+        try {
+            User updatedUser = userService.updateReservation(id, reservationId, reservation);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }
