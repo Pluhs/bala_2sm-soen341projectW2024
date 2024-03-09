@@ -26,7 +26,6 @@ export const MenuData = [
         url: "/MyProfile",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
-
     },
 
     {
