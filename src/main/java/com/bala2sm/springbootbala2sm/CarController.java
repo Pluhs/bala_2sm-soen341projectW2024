@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicles")
+@RequestMapping("/cars")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CarController {
 
     @Autowired
@@ -19,6 +20,13 @@ public class CarController {
         List<Car> availableVehicles = carService.getAvailableCars();
         return ResponseEntity.ok(availableVehicles);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Car>> getAllCars() {
+        List<Car> allCars = carService.getAllCars();
+        return ResponseEntity.ok(allCars);
+    }
+
     @PostMapping
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
         Car newCar = carService.addCar(car);

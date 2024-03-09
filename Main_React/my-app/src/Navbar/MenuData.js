@@ -1,7 +1,7 @@
 export const MenuData = [
     {
         title: "Home",
-        url: "/home",
+        url: "/",
         cName:"navlinks",
         icon:"fa-solid fa-house",
     },
@@ -23,10 +23,9 @@ export const MenuData = [
     },
     {
         title: "My Profile",
-        url: "/reserveCar",
+        url: "/MyProfile",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
-
     },
 
     {
