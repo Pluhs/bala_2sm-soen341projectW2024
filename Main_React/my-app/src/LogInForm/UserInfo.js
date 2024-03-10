@@ -1,6 +1,6 @@
 export const fetchUserById = async (id) => {
     try {
-        const response = await fetch("http://localhost:8080/users/${id}");
+        const response = await fetch(`http://localhost:8080/users/${id}`);
         if (!response.ok) {
             throw new Error('User not found');
         }

@@ -4,7 +4,6 @@ import "./MyProfile.css"
 
 const MyProfile = () => {
 
-
     // const [name, setName] = useState("");
     // const [password,setPassword] = useState('');
     // const [oldPassword] = useState('');
@@ -153,7 +152,6 @@ const MyProfile = () => {
             {/*</section>*/}
         </div>
     );
-
 }
 
 export default MyProfile;

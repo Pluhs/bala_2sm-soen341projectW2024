@@ -15,7 +15,7 @@ class Navbar extends Component {
                 <div className= "menuIcones" onClick={this.handleClick}>
                     <i className= {this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
                 </div>
-                <ul className={this.state.clicked ? "navMenu active" : "navMenu"} >
+                <ul className={this.state.clicked ? "navMenu active" : "navMenu"}>
                     {MenuData.map((item, index) => {
                         return (
                             <li key={index}>
@@ -25,6 +25,14 @@ class Navbar extends Component {
                             </li>
                         )
                     })}
+
+                    <li>
+                        {this.props.isLoggedIn ? (
+                            <Link onClick={this.props.handleLogout} className="navLogIn" to="/">Sign Out</Link>
+                        ) : (
+                            <Link to="/login" className="navLogIn">Log In</Link>
+                        )}
+                    </li>
 
                 </ul>
 

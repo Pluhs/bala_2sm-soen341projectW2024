@@ -3,7 +3,7 @@ import "./LogInForm.css"
 import {Link, useNavigate} from 'react-router-dom';
 
 
-const LogInForm = () => {
+const LogInForm = ({ handleLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ const LogInForm = () => {
             }
             const data = await response.json();
             const id = data.userId;
-            localStorage.setItem("userId", id);
+            handleLogin(id);
             navigate('/');
         } catch (err) {
             setError(err.message);
