@@ -4,7 +4,7 @@
     /*align-items: start;*/
     /*min-height: 100%;*/
     /*width: 100%;*/
-    background-color: #d7c2ad;
+    background-color: #BBDCF2;
     /*background-size: cover;*/
     /*background-position: center;*/
     /*background-repeat: no-repeat;*/
@@ -26,8 +26,8 @@
 .yourReservationContainer{
     width: auto;
     height: 100px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background-color: rgba(225, 221, 221, 0.70);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+    background-color: rgba(225, 221, 221, 0.25);
     border-radius: 8px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -89,7 +89,7 @@
 
 
 
-.locationTxt{
+.price{
     margin-bottom: auto;
 
 }
