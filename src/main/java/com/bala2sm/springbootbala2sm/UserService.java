@@ -1,16 +1,12 @@
 package com.bala2sm.springbootbala2sm;
 
-import com.mongodb.DuplicateKeyException;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.bson.types.ObjectId;
 
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -24,7 +20,7 @@ public class UserService {
     CarService carService = new CarService();
 
     public User createUser(User user) {
-//        try{
+
         System.out.print(userRepository.findByEmail(user.getEmail()));
             if(userRepository.findByEmail(user.getEmail()) != null) {
                 return null;
@@ -32,10 +28,7 @@ public class UserService {
             user.setRole(Role.USER);
             user.setPassword(SecurityConfiguration.hashPassword(user.getPassword()));
             return userRepository.save(user);
-//        }catch (DuplicateKeyException e) {
-//            // Handle the duplicate email exception
-//            throw new Exception("Email already exists", e);
-//        }
+
     }
 
     public User signIn(String email, String password) {

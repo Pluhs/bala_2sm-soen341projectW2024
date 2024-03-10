@@ -2,15 +2,18 @@ package com.bala2sm.springbootbala2sm;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -29,7 +32,7 @@ public class UserController {
 
             User newUser = userService.createUser(user);
             if(newUser != null){
-                return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+                return new ResponseEntity<>(newUser, HttpStatus.OK);
             }
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 
@@ -61,9 +64,26 @@ public class UserController {
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<User> signIn(@RequestParam String email, @RequestParam String password) {
-        if (userService.signIn(email,password) != null){
-            return ResponseEntity.ok().build();
+    public ResponseEntity<Map<String, Object>> signIn(@RequestParam String email, @RequestParam String password) {
+        User user = userService.signIn(email,password);
+        if (user != null){
+            String cookieValue = ResponseCookie.from("userId", user.getId().toString())
+                    .path("/")
+                    .maxAge(7 * 24 * 60 * 60)
+                    .sameSite("Lax")
+                    .build()
+                    .toString();
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.SET_COOKIE, cookieValue);
+
+            // Create a Map or a POJO to include both user details and userId
+            Map<String, Object> responseBody = new HashMap<>();
+            responseBody.put("user", user);
+            responseBody.put("userId", user.getId().toString()); // Ensure this matches your User object
+
+            return ResponseEntity.ok().headers(headers).body(responseBody);
+
         }
         else
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
