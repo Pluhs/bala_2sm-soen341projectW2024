@@ -56,6 +56,7 @@ const MyProfile = () => {
 
 
     return (
+
         <div className="myProfile">
             {/*<h1>Hello NAME</h1>*/}
 
@@ -152,6 +153,10 @@ const MyProfile = () => {
             {/*</section>*/}
         </div>
     );
+
+        <div>
+            <b>HELLO WORLD!!</b>
+        </div>    );
 }
 
 export default MyProfile;
