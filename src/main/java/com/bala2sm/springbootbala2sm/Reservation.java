@@ -15,7 +15,7 @@ public class Reservation {
 	private ObjectId id;
 	private LocalDate pickupDate; // Changed to LocalDate
 	private LocalDate dropDate;   // Changed to LocalDate
-	@DBRef(db="cars")
+	@DocumentReference
 	private Car car;
 
 	public Reservation() {

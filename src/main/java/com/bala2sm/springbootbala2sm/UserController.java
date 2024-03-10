@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,5 +111,9 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+    @GetMapping("/{id}/reservations")
+    public ResponseEntity<ArrayList<Reservation>> getAllReservations(@PathVariable ObjectId id ) {
+    	return ResponseEntity.ok(userService.getUserById(id).get().getReservations());
     }
 }
