@@ -76,6 +76,7 @@ html, body {
     font-size: 16px;
     color: #052038;
     font-weight: 700;
+    font-family: "Times New Roman", sans-serif;
 }
 .wrapperLogin button:hover {
     background-color: antiquewhite;
