@@ -73,6 +73,30 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
+    public boolean deleteUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            userRepository.delete(user);
+            return true; // Successfully deleted
+        }
+        return false; // User not found
+    }
+
+    // Method to update a user's information by email
+    public User updateUserByEmail(String email, User updatedUserDetails) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            // Update user's details here
+            // Example: Updating user's name and password
+            user.setReservations(updatedUserDetails.getReservations());
+            // Add more fields as necessary
+
+            return userRepository.save(user); // Save the updated user
+        }
+        return null; // User not found
+    }
+
     public User deleteReservation(ObjectId userId, ObjectId reservationId) throws Exception {
         User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
         Reservation reservationToDelete = reservationRepository.findById(reservationId)
