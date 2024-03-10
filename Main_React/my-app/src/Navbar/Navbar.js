@@ -28,7 +28,7 @@ class Navbar extends Component {
 
                     <li>
                         {this.props.isLoggedIn ? (
-                            <button onClick={this.props.handleLogout} className="navLogIn">Sign Out</button>
+                            <Link onClick={this.props.handleLogout} className="navLogIn" to="/">Sign Out</Link>
                         ) : (
                             <Link to="/login" className="navLogIn">Log In</Link>
                         )}
