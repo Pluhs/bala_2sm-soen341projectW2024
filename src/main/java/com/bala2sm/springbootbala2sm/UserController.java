@@ -129,7 +129,36 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+    @DeleteMapping("/{id}/reservations/{reservationId}")
+    public ResponseEntity<?> deleteReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId) {
+        try {
+            User updatedUser = userService.deleteReservation(id, reservationId);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+    @DeleteMapping("/reservations/{reservationId}")
+    public ResponseEntity<?> deleteReservationWithoutUserId(@PathVariable ObjectId reservationId) {
+        try {
+            User owner = null;
+            for (User user : userService.getAllUsers()) {
+                if (user.getReservations().stream().anyMatch(r -> r.getId().equals(reservationId))) {
+                    owner = user;
+                    break;
+                }
+            }
 
+            if (owner == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reservation not found");
+            }
+
+            userService.deleteReservation(owner.getId(), reservationId);
+            return ResponseEntity.ok("Reservation deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
 
 }
