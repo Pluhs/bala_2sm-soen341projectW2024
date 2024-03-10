@@ -11,7 +11,7 @@ function Admin() {
 
             <div className="adminLeftContainer">
 
-                <a href="/browseVehicle" className="adminLeftInnerContainer">
+                <a href="/Vehicles" className="adminLeftInnerContainer">
                     <img src="/Images/adminCarsSection.png" className="adminPageBackgroundImgLeft"/>
                     <div className="imageTextDivLeft">
                         <h2>View All Vehicles</h2>
