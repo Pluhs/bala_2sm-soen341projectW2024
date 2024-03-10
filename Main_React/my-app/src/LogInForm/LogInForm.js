@@ -17,7 +17,7 @@ const LogInForm = () => {
 
         const queryParams = new URLSearchParams({ email, password }).toString();
         const signInUrl = `http://localhost:8080/users/sign-in?${queryParams}`;
-
+        
         // console.log("Log-In URL:", signInUrl);
         try {
             const response = await fetch(signInUrl, { method: "POST" });
@@ -26,7 +26,7 @@ const LogInForm = () => {
                 const data = await response.json();
                 throw new Error(data.message || "Username or password is incorrect");
             }
-            // console.log("LogIn successful");
+            console.log("LogIn successful");
             navigate('/');
         } catch (err) {
             setError(err.message);
