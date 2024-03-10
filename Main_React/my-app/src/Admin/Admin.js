@@ -28,7 +28,7 @@ function Admin() {
 
 
             <div className="adminRightContainer">
-                <a href="/" className="adminRightInnerContainer">
+                <a href="/Users" className="adminRightInnerContainer">
                     <img src="/Images/adminUsersSection.png" className="adminPageBackgroundImgRight"/>
                     <div className="imageTextDivRight">
                         <h2>Show All Registered Users</h2>
