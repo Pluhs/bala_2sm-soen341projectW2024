@@ -50,7 +50,6 @@ const ReserveCarForm = () => {
                     {/*    <i className="fa-solid fa-user"></i>*/}
                     {/*</div>*/}
                     <select id="locationsDropdownMenuReserve" className="locationsDropdownMenu">
-                        <option value="">Select an option</option>
                         <option value="option1">Location 1</option>
                         <option value="option2">Location 2</option>
                         <option value="option3">Location 3</option>
