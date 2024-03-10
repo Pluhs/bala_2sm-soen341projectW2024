@@ -7,6 +7,23 @@ function BrowseVehicle() {
     // State to store the car data
     const [cars, setCars] = useState([]);
 
+    // const displayCars = async () => {
+    //     const signInUrl = `http://localhost:8080/cars/getAvailableCars`;
+    //
+    //     try {
+    //         const response = await fetch(signInUrl, { method: "GET" });
+    //
+    //         const carsData = await response.json();
+    //         setCars(carsData);
+    //     } catch (error) {
+    //         console.log(error.message);
+    //     }
+    // }
+    //
+    // useEffect(() => {
+    //     displayCars();
+    // }, []);
+
     // Simulating fetching data from a database
     useEffect(() => {
         // fetch data from your database

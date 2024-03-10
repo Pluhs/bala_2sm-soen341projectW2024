@@ -153,10 +153,6 @@ const MyProfile = () => {
             {/*</section>*/}
         </div>
     );
-
-        <div>
-            <b>HELLO WORLD!!</b>
-        </div>    );
 }
 
 export default MyProfile;
