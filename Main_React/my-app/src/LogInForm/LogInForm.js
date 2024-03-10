@@ -31,11 +31,9 @@ const LogInForm = () => {
             const data = await response.json();
             const id = data.userId;
             if(id) {
-                // Fetch user profile details
                 const userProfileResponse = await fetch(`http://localhost:8080/users/${id}`);
                 if(userProfileResponse.ok) {
                     const userProfile = await userProfileResponse.json();
-                    // Save user profile details to LocalStorage
                     localStorage.setItem("userDetails", JSON.stringify(userProfile));
                     const storedUserDetails = localStorage.getItem("userDetails");
                     // if (storedUserDetails) {

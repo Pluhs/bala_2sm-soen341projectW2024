@@ -17,13 +17,13 @@ export const MenuData = [
         icon:"fa-solid fa-location-dot",
     }, {
         title: "Admin",
-        url: "#",
+        url: "/admin",
         cName:"navlinks",
         icon:"fa-solid fa-circle-info",
     },
     {
         title: "My Profile",
-        url: "/MyProfile",
+        url: "/myProfile",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
     },

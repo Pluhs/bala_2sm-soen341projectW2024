@@ -8,6 +8,7 @@ import RegistrationForm from "./registrationForm/registrationForm.js";
 import ReserveCar from "./ReserveCar/ReserveCar";
 import BrowseVehicle from "./BrowseVehicle/BrowseVehicle";
 import MyProfile from "./MyProfile/MyProfile";
+import Admin from "./Admin/Admin.js";
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
                     <Route path="/register" element={<RegistrationForm/>} />
                     <Route path="/reserveCar" element={<ReserveCar/>} />
                     <Route path="/browseVehicle" element={<BrowseVehicle/>} />
-                    <Route path="/MyProfile" element={<MyProfile/>} />
+                    <Route path="/myProfile" element={<MyProfile/>} />
+                    <Route path="/admin" element={<Admin/>} />
                 </Routes>
             </div>
         </Router>
