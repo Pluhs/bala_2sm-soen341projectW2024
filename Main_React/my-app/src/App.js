@@ -9,6 +9,8 @@ import ReserveCar from "./ReserveCar/ReserveCar";
 import BrowseVehicle from "./BrowseVehicle/BrowseVehicle";
 import MyProfile from "./MyProfile/MyProfile";
 import Admin from "./Admin/Admin.js";
+import Vehicles from "./Admin/Vehicles.js";
+import Users from "./Admin/Users.js";
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
                     <Route path="/browseVehicle" element={<BrowseVehicle/>} />
                     <Route path="/myProfile" element={<MyProfile/>} />
                     <Route path="/admin" element={<Admin/>} />
+                    <Route path="/vehicles" element={<Vehicles/>} />
+                    <Route path="/users" element={<Users/>} />
                 </Routes>
             </div>
         </Router>
