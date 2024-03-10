@@ -12,13 +12,30 @@ import Admin from "./Admin/Admin.js";
 
 
 function App() {
+
+    const [isLoggedIn, setIsLoggedIn] = React.useState(localStorage.getItem('userId') !== null);
+
+    React.useEffect(() => {
+
+    }, [isLoggedIn]);
+
+    const handleLogin = (userId) => {
+        localStorage.setItem("userId", userId);
+        setIsLoggedIn(true);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('userId');
+        setIsLoggedIn(false);
+    };
+
     return (
         <Router>
             <div className="App">
-                <Navbar/>
+                <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
                 <Routes>
                     <Route path="/" exact element={<HomePage />} />
-                    <Route path="/login" element={<LogInForm/>} />
+                    <Route path="/login" element={<LogInForm handleLogin={handleLogin}/>} />
                     <Route path="/register" element={<RegistrationForm/>} />
                     <Route path="/reserveCar" element={<ReserveCar/>} />
                     <Route path="/browseVehicle" element={<BrowseVehicle/>} />

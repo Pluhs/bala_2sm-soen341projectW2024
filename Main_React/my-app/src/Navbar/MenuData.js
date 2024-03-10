@@ -28,9 +28,9 @@ export const MenuData = [
         icon: "fa-solid fa-circle-user",
     },
 
-    {
-        title: "Log In",
-        url: "/login",
-        cName:"navLogIn",
-    },
+    // {
+    //     title: "Log In",
+    //     url: "/login",
+    //     cName:"navLogIn",
+    // },
 ]
