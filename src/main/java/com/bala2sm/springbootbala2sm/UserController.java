@@ -63,6 +63,28 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/delete-by-email")
+    public ResponseEntity<?> deleteUserByEmail(@RequestParam String email) {
+        boolean isDeleted = userService.deleteUserByEmail(email);
+        if (isDeleted) {
+            return ResponseEntity.ok().build(); // Successfully deleted
+        } else {
+            return ResponseEntity.notFound().build(); // User not found
+        }
+    }
+
+    // Endpoint to update user by email
+    @PutMapping("/update-by-email")
+    public ResponseEntity<?> updateUserByEmail(@RequestParam String email, @RequestBody User updatedUser) {
+        User user = userService.updateUserByEmail(email, updatedUser);
+        if (user != null) {
+            return ResponseEntity.ok(user); // Return the updated user
+        } else {
+            return ResponseEntity.notFound().build(); // User not found
+        }
+    }
+
+
     @PostMapping("/sign-in")
     public ResponseEntity<Map<String, Object>> signIn(@RequestParam String email, @RequestParam String password) {
         User user = userService.signIn(email,password);
