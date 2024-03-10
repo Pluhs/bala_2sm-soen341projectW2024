@@ -16,21 +16,21 @@ export const MenuData = [
         cName:"navlinks",
         icon:"fa-solid fa-location-dot",
     }, {
-        title: "About",
-        url: "#",
+        title: "Admin",
+        url: "/admin",
         cName:"navlinks",
         icon:"fa-solid fa-circle-info",
     },
     {
         title: "My Profile",
-        url: "/MyProfile",
+        url: "/myProfile",
         cName:"navlinks",
         icon: "fa-solid fa-circle-user",
     },
 
-    {
-        title: "Log In",
-        url: "/login",
-        cName:"navLogIn",
-    },
+    // {
+    //     title: "Log In",
+    //     url: "/login",
+    //     cName:"navLogIn",
+    // },
 ]

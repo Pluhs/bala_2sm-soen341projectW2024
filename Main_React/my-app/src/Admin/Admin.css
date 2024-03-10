@@ -1,0 +1,102 @@
+
+
+.adminMainContainer{
+    /*padding-top: 100px;*/
+    display: flex;
+    height: 100rem;
+    background-color: #00ffea;
+    /*position: relative;*/
+
+}
+
+.adminLeftContainer, adminRightContainer{
+    flex: 1;
+    height: 100%;
+
+}
+
+.adminLeftContainer{
+    background-color: #0c0e11;
+    width: 50%;
+}
+
+
+.adminRightContainer{
+
+    background-color: #454343;
+    width: 50%;
+
+}
+
+
+.adminPageBackgroundImgLeft{
+    /*max-height: 100%;*/
+    /*max-width: 100%;*/
+    /*min-height: 100rem;*/
+    margin-top: -160px;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+    transition: transform 0.8s ease;
+    /*overflow: hidden;*/
+
+
+}
+
+.adminPageBackgroundImgLeft:hover{
+    transform: scale(1.1) translateX(-4.5%);
+    transition: transform 0.5s ease;
+}
+
+
+
+.adminPageBackgroundImgRight{
+    /*max-height: 100%;*/
+    /*max-width: 100%;*/
+    object-fit: fill;
+    /*min-height: 100rem;*/
+    margin-top: -160px;
+    /*width: auto;*/
+    /*height: auto;*/
+    width: 100%;
+    height: auto;
+    transition: transform 0.8s ease;
+    /*overflow: hidden;*/
+
+
+}
+
+.adminPageBackgroundImgRight:hover{
+    transform: scale(1.1) translateX(4.5%);
+    /*transform: scale(1.1);*/
+    transition: transform 0.5s ease;
+}
+
+
+.imageTextDivLeft {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: white; /* Adjust as needed */
+    font-size: 20px; /* Adjust as needed */
+    text-align: center; /* Adjust as needed */
+
+    text-shadow: 1px 1px 5px #000000,-1px -1px 5px #000000, -1px 1px 5px #000000,1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
+
+}
+
+
+.imageTextDivRight {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: white; /* Adjust as needed */
+    font-size: 20px; /* Adjust as needed */
+    text-align: center; /* Adjust as needed */
+
+    text-shadow: 1px 1px 5px #000000,-1px -1px 5px #000000, -1px 1px 5px #000000,1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
+
+
+}
