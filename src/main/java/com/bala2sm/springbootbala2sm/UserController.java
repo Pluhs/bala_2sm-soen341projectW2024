@@ -159,6 +159,27 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+    @PutMapping("/{id}/reservations/{reservationId}")
+    public ResponseEntity<?> updateReservation(@PathVariable ObjectId id, @PathVariable ObjectId reservationId, @RequestBody Reservation reservation) {
+        try {
+            Reservation updatedReservation = userService.updateReservation(id, reservationId, reservation);
 
+            return ResponseEntity.ok(updatedReservation);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+    @GetMapping("/{userId}/reservations")
+    public ResponseEntity<?> getAllReservations(@PathVariable ObjectId userId) {
+        Optional<User> user = userService.getUserById(userId);
+        if (user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        List<Reservation> reservations = user.get().getReservations();
+        if (reservations.isEmpty()) {
+            return ResponseEntity.ok("No reservations found");
+        }
+        return ResponseEntity.ok(reservations);
+    }
 
 }
