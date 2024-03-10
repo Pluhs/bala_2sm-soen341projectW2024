@@ -26,7 +26,30 @@ const LogInForm = () => {
                 const data = await response.json();
                 throw new Error(data.message || "Username or password is incorrect");
             }
+
+            //console.log("LogIn successful");
+            const data = await response.json();
+            const id = data.userId;
+            if(id) {
+                // Fetch user profile details
+                const userProfileResponse = await fetch(`http://localhost:8080/users/${id}`);
+                if(userProfileResponse.ok) {
+                    const userProfile = await userProfileResponse.json();
+                    // Save user profile details to LocalStorage
+                    localStorage.setItem("userDetails", JSON.stringify(userProfile));
+                    const storedUserDetails = localStorage.getItem("userDetails");
+                    // if (storedUserDetails) {
+                    //     const userDetails = JSON.parse(storedUserDetails);
+                    //     const userName = userDetails.name; // Here's how you access the name
+                    //     alert(userName); // This will now alert just the user's name
+                    // }
+                    navigate('/');
+                } else {
+                    throw new Error("Failed to fetch user profile.");
+                }
+            }
             // console.log("LogIn successful");
+
             navigate('/');
         } catch (err) {
             setError(err.message);
