@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;
 
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -17,6 +19,9 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+
+    CarService carService = new CarService();
 
     public User createUser(User user) {
 //        try{
@@ -42,7 +47,7 @@ public class UserService {
         if (user != null && user.getPassword().equals(hashedPassword)) {
             return user;
         } else {
-            return null; // Authentication failed
+            return null;
         }
 
     }
@@ -61,7 +66,6 @@ public class UserService {
 
         user.setName(userDetails.getName());
         user.setPassword(SecurityConfiguration.hashPassword(userDetails.getPassword()));
-        // Only name and password can be updated
         return userRepository.save(user);
     }
 
@@ -71,27 +75,53 @@ public class UserService {
 
     public User addReservation(ObjectId userId, Reservation reservation) throws Exception {
         User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
-        reservationRepository.save(reservation); // Save the reservation
+        reservationRepository.save(reservation);
         user.getReservations().add(reservation);
-        return userRepository.save(user); // Save the user with the new reservation
+        return userRepository.save(user);
     }
 
-//    public User deleteReservation(ObjectId userId, ObjectId reservationId) throws Exception {
-//        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
-//        user.getReservations().removeIf(r -> r.getId().equals(reservationId));
-//        return userRepository.save(user);
-//    }
+    public User deleteReservation(ObjectId userId, ObjectId reservationId) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        Reservation reservationToDelete = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new Exception("Reservation not found"));
+        Car car = reservationToDelete.getCar();
+        LocalDate pickupDate = reservationToDelete.getPickupDate();
+        LocalDate dropDate = reservationToDelete.getDropDate();
 
-//    public User updateReservation(ObjectId userId, ObjectId reservationId, Reservation updatedReservation) throws Exception {
-//        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
-//        ArrayList<Reservation> reservations = user.getReservations();
-//        for (int i = 0; i < reservations.size(); i++) {
-//            if (reservations.get(i).getId().equals(reservationId)) {
-//                reservations.set(i, updatedReservation); // Replace the old reservation with the updated one
-//                break;
-//            }
-//        }
-//        user.setReservations(reservations);
-//        return userRepository.save(user);
-//    }
+        List<Reservation> overlappingReservations = reservationRepository.findByCarAndPickupDateLessThanEqualAndDropDateGreaterThanEqual(car.getId(), pickupDate, dropDate)
+                .stream()
+                .filter(reservation -> !reservation.getId().equals(reservationId))
+                .toList();
+
+        if (overlappingReservations.isEmpty()) {
+            car.setAvailable(true);
+            carService.updateCar(car.getId(), car);
+        }
+
+        user.getReservations().removeIf(r -> r.getId().equals(reservationId));
+        reservationRepository.deleteById(reservationId);
+        return userRepository.save(user);
+    }
+
+    public User updateReservation(ObjectId userId, ObjectId reservationId, Reservation updatedReservation) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+
+        Reservation existingReservation = user.getReservations().stream()
+                .filter(r -> r.getId().equals(reservationId))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Reservation not found"));
+
+        List<Reservation> overlappingReservations = reservationRepository.findByCarAndPickupDateLessThanEqualAndDropDateGreaterThanEqual(
+                        updatedReservation.getCar().getId(), updatedReservation.getPickupDate(), updatedReservation.getDropDate())
+                .stream()
+                .filter(r -> !r.getId().equals(reservationId))
+                .toList();
+
+        if (!overlappingReservations.isEmpty()) {
+            throw new Exception("Overlapping reservations exist for the selected dates");
+        }
+        user.getReservations().set(user.getReservations().indexOf(existingReservation), updatedReservation);
+        return userRepository.save(user);
+    }
+
 }
