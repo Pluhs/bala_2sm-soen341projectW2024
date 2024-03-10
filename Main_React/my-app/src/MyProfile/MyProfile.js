@@ -28,11 +28,11 @@ const MyProfile = () => {
                     imageUrl: "/Images/toyota2015.jpg"}},
 
             { id: 2, pickupDate: "2024-04-18", dropDate: "2024-04-21", location: "Old Montreal",
-                car: {name: "Peugeot 505 1989", price: 35.75, info: "A great car for road trips",
+                car: {name: "Peugeot 505 1989", price: 30.99, info: "A great car for road trips",
                     imageUrl: "/Images/Peugeot505.jpg"}},
 
             { id: 3, pickupDate: "2024-05-02", dropDate: "2024-05-08", location: "Airport",
-                car: {name: "BMW I8 2020", price: 35.75, info: "A fast fancy car",
+                car: {name: "BMW I8 2020", price: 11.79, info: "A fast fancy car",
                     imageUrl: "/Images/BMW2020.jpg"}}
 
         ]; setReservations(fetchReservationList);
@@ -56,6 +56,7 @@ const MyProfile = () => {
 
 
     return (
+
         <div className="myProfile">
             {/*<h1>Hello NAME</h1>*/}
 
@@ -104,7 +105,7 @@ const MyProfile = () => {
                                 <b className="startDateTxt">Pickup Date: {reservation.pickupDate} </b>
                             </div>
                             <div className="bottomContent">
-                                <b className="locationTxt">Location: {reservation.location} </b>
+                                <b className="price">Price: {reservation.car.price}$/day </b>
                                 <b className="endDateTxt">Return Date: {reservation.dropDate} </b>
                             </div>
                             <div className="deleteReservationBtnContainer">
@@ -152,6 +153,10 @@ const MyProfile = () => {
             {/*</section>*/}
         </div>
     );
+
+        <div>
+            <b>HELLO WORLD!!</b>
+        </div>    );
 }
 
 export default MyProfile;
