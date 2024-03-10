@@ -16,7 +16,7 @@ export const MenuData = [
         cName:"navlinks",
         icon:"fa-solid fa-location-dot",
     }, {
-        title: "About",
+        title: "Admin",
         url: "#",
         cName:"navlinks",
         icon:"fa-solid fa-circle-info",
