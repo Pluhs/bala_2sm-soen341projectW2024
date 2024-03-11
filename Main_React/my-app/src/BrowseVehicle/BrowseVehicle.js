@@ -39,7 +39,7 @@ function BrowseVehicle() {
     //
     //     ];
 
-        // Update the state with the fetched data
+    // Update the state with the fetched data
     //     setCars(fetchedCars);
     // }, []);
 
