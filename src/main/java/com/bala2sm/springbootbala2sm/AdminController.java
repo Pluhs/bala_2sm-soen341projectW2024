@@ -39,11 +39,12 @@ public class AdminController {
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUser(@PathVariable ObjectId id) {
         Optional<User> user = userService.getUserById(id);
-        if (user == null) {
+        if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(user.get());
     }
+
 
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable ObjectId id, @RequestBody User user) {

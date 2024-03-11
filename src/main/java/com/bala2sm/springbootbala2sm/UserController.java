@@ -68,7 +68,6 @@ public class UserController {
         }
     }
 
-    // Endpoint to delete user profile
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserProfile(@PathVariable ObjectId id) {
         userService.deleteUser(id);
