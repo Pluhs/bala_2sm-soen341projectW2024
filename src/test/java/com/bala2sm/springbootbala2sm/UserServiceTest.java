@@ -1,9 +1,6 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
-import com.bala2sm.springbootbala2sm.Car.CarService;
-import com.bala2sm.springbootbala2sm.Reservation.Reservation;
-import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
-import com.bala2sm.springbootbala2sm.SecurityConfiguration;
+import com.bala2sm.springbootbala2sm.*;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -8,8 +8,6 @@ class Navbar extends Component {
     state = {clicked: false};
     handleClick =()=> this.setState({clicked: !this.state.clicked})
 
-    handlePageOpened =()=> this.setState({clicked: false})
-
     render() {
         return (
             <nav className="NavbarItems">
@@ -21,7 +19,7 @@ class Navbar extends Component {
                     {MenuData.map((item, index) => {
                         return (
                             <li key={index}>
-                                <Link to={item.url} className={item.cName} onClick={this.handlePageOpened}>
+                                <Link to={item.url} className={item.cName}>
                                     <i className={item.icon}></i>{item.title}
                                 </Link>
                             </li>
@@ -30,7 +28,7 @@ class Navbar extends Component {
 
                     <li>
                         {this.props.isLoggedIn ? (
-                            <Link onClick={this.props.handleLogout} className="navLogOut" to="/">Sign Out</Link>
+                            <Link onClick={this.props.handleLogout} className="navLogIn" to="/">Sign Out</Link>
                         ) : (
                             <Link to="/login" className="navLogIn">Log In</Link>
                         )}

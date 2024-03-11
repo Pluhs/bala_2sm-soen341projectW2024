@@ -107,3 +107,46 @@
 
 
 }
+
+.sorryContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.sorryMsg {
+    font-size: 40px;
+    color: #052038;
+    margin-bottom: 5px;
+
+}
+
+.sorryText {
+    margin-top: 1px;
+    margin-bottom: 100px;
+    font-size: 20px;
+    color: #052038;
+}
+
+.sorryBtn{
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    background-color: #052038;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #f5f5f5;
+    font-family: "Times New Roman", sans-serif ;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #000000}
+
+.sorryBtn:hover {
+    background-color: #A30021;
+}
+
+.sorryImg{
+    margin-top: 50px;
+    width: 80%;
+}
