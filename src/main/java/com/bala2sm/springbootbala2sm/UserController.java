@@ -27,6 +27,11 @@ public class UserController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
