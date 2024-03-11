@@ -19,10 +19,7 @@ function Admin() {
         };
 
         checkUserRole();
-
-        // Optional: Return a cleanup function if needed
         return () => {
-            // Cleanup actions, if any
         };
     }, []);
 

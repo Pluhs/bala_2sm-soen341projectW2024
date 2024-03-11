@@ -140,7 +140,9 @@
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
     border-radius: 3px;
-    box-shadow: 1px 1px 5px #000000}
+    box-shadow: 1px 1px 5px #000000;
+    cursor: pointer;
+}
 
 .sorryBtn:hover {
     background-color: #A30021;

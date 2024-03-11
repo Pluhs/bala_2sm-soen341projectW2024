@@ -54,24 +54,34 @@ function Users() {
             <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={() => setShowCreateForm(!showCreateForm)}></i></h1>
             {showCreateForm && (
                 <form onSubmit={handleSubmitNewUser} className="createUserForm">
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={newUser.name}
-                        onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={newUser.email}
-                        onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={newUser.password}
-                        onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                    />
+                    <div className="input-icon-container">
+                        <i className="fa-solid fa-user input-icon"></i>
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            value={newUser.name}
+                            onChange={(e) => setNewUser({...newUser, name: e.target.value})}
+                        />
+                    </div>
+                    <div className="input-icon-container">
+                        <i className="fa-solid fa-at input-icon"></i>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={newUser.email}
+                            onChange={(e) => setNewUser({...newUser, email: e.target.value})}
+                        />
+                    </div>
+                    <div className="input-icon-container">
+                        <i className="fa-solid fa-lock input-icon"></i>
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={newUser.password}
+                            onChange={(e) => setNewUser({...newUser, password: e.target.value})}
+                        />
+                    </div>
+
                     <button type="submit">Create User</button>
                 </form>
             )}
