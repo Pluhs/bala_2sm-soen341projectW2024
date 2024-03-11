@@ -1,20 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAllUsers, deleteUser } from '../LogInForm/UserInfo';
+import { fetchAllUsers, deleteUser,createUser } from '../LogInForm/UserInfo';
 import "./Users.css";
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [showCreateForm, setShowCreateForm] = useState(false);
+    const [newUser, setNewUser] = useState({ name: '', email: '', password: '' });
+
+    const loadUsers = async () => {
+        setIsLoading(true);
+        const fetchedUsers = await fetchAllUsers();
+        setUsers(fetchedUsers);
+        setIsLoading(false);
+    };
 
     useEffect(() => {
-        const loadUsers = async () => {
-            setIsLoading(true);
-            const fetchedUsers = await fetchAllUsers();
-            setUsers(fetchedUsers);
-            setIsLoading(false);
-        };
         loadUsers();
     }, []);
+
+    const handleSubmitNewUser = async (e) => {
+        e.preventDefault();
+        const isSuccess = await createUser(newUser);
+        if (isSuccess) {
+            setShowCreateForm(false);
+            setNewUser({ name: '', email: '', password: '' }); // Reset form fields
+            await loadUsers(); // Refresh the users list
+        } else {
+            alert("Failed to create the user.");
+        }
+    };
 
     const handleDeleteUser = async (email) => {
         const isSuccess = await deleteUser(email);
@@ -29,7 +44,30 @@ function Users() {
 
     return (
         <div className="usersContainer">
-            <h1>ALL REGISTERED USERS:</h1>
+            <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={() => setShowCreateForm(!showCreateForm)}></i></h1>
+            {showCreateForm && (
+                <form onSubmit={handleSubmitNewUser} className="createUserForm">
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={newUser.name}
+                        onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={newUser.email}
+                        onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={newUser.password}
+                        onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                    />
+                    <button type="submit">Create User</button>
+                </form>
+            )}
             {users.length > 0 ? (
                 <div>
                     {users.map(user => (
