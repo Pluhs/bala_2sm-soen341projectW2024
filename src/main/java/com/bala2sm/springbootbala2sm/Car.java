@@ -4,10 +4,15 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 @Document(collection = "cars")
 public class Car {
 
 	@Id
+	@JsonSerialize(using= ToStringSerializer.class)
 	private ObjectId id;
 	private String name;
 	private Double price;
@@ -27,7 +32,8 @@ public class Car {
 		this.info = info;
 		this.imageUrl = imageUrl; // Renamed parameter to match the field name
 	}
-
+	
+	
 	public ObjectId getId() {
 		return id;
 	}
