@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { fetchReservationsForUserById } from './ReservationsInfo';
+import{fetchReservationsForUserById} from "./ReservationsInfo";
 import { fetchUserById } from "../LogInForm/UserInfo";
 import "./viewUserInfo.css";
 

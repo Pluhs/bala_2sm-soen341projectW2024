@@ -1,9 +1,5 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
-import com.bala2sm.springbootbala2sm.Car.Car;
-import com.bala2sm.springbootbala2sm.Car.CarService;
-import com.bala2sm.springbootbala2sm.Reservation.Reservation;
-import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,14 +27,19 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
 
-            User newUser = userService.createUser(user);
-            if(newUser != null){
-                return new ResponseEntity<>(newUser, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+        User newUser = userService.createUser(user);
+        if(newUser != null){
+            return new ResponseEntity<>(newUser, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.CONFLICT);
 
     }
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserProfile(@PathVariable ObjectId id) {
@@ -67,6 +68,7 @@ public class UserController {
         }
     }
 
+    // Endpoint to delete user profile
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserProfile(@PathVariable ObjectId id) {
         userService.deleteUser(id);

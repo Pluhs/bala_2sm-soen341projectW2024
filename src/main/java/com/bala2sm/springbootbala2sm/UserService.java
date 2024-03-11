@@ -1,10 +1,5 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
-import com.bala2sm.springbootbala2sm.*;
-import com.bala2sm.springbootbala2sm.Car.Car;
-import com.bala2sm.springbootbala2sm.Car.CarService;
-import com.bala2sm.springbootbala2sm.Reservation.Reservation;
-import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

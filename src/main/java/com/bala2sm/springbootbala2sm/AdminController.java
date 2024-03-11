@@ -1,7 +1,5 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
-import com.bala2sm.springbootbala2sm.Car.Car;
-import com.bala2sm.springbootbala2sm.Car.CarService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,12 +39,11 @@ public class AdminController {
     @GetMapping("/users/{id}")
     public ResponseEntity<?> getUser(@PathVariable ObjectId id) {
         Optional<User> user = userService.getUserById(id);
-        if (user.isEmpty()) {
+        if (user == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(user.get());
+        return ResponseEntity.ok(user);
     }
-
 
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable ObjectId id, @RequestBody User user) {
