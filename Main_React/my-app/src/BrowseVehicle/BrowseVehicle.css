@@ -45,12 +45,20 @@ body {
     color: black;
 }
 
-.vehicle p {
+.browseCarInfo {
     color: #666;
     text-decoration: none;
 }
 
+.browseCarPrice{
+    color: black;
+    font-weight: bolder;
+    font-size: large;
+}
+
+
 .vehicle button {
+    margin-left: 70%;
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -66,5 +74,5 @@ body {
 }
 
 .vehicle button:hover {
-    background-color: #041728;
+    background-color: #A30021;
 }
