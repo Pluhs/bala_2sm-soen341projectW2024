@@ -173,3 +173,37 @@
     right: 13px;
     color: #052038;
 }
+.static-info-container label {
+    display: block;
+    margin: 4px 0;
+    color: #052038;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.cancelBtn {
+    width: 150px;
+    height: 40px;
+    background: #A30021;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 15px;
+    color: #f5f5f5;
+    font-weight: 700;
+    float: right;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.cancelBtn:hover{
+    background: #8f021f;
+}
+.form-buttons-container {
+    display: flex;
+    justify-content: end;
+    gap: 8px;
+    padding: 10px 0;
+}
+
