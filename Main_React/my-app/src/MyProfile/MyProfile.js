@@ -90,10 +90,10 @@ const MyProfile = () => {
             {/*##########################*/}
 
             {/*<section className="reservations-section">*/}
-                <h1>Your Reservations:</h1>
+            <h1>Your Reservations:</h1>
 
 
-                {}
+            {}
             {reservations.length > 0 ? (
                 <div>
                     {reservations.map(reservation => (
@@ -117,38 +117,38 @@ const MyProfile = () => {
                     ))}
                 </div>
             ) : (
-            <p>You don't have any upcoming reservations.</p>
+                <p>You don't have any upcoming reservations.</p>
             )}
 
 
 
             {/*<div className="yourReservationContainer">*/}
-                {/*    <img src="/Images/Peugeot505.jpg" className="yourReservationCarImg"/>*/}
-                {/*    <div className="topContent">*/}
-                {/*        <b className="carInfoTxt">AATESTTESTTEST </b>*/}
-                {/*        <b className="locationTxt">AATESTTESTTEST2 </b>*/}
-                {/*    </div>*/}
-                {/*    <div className="bottomContent">*/}
-                {/*        <b className="startDateTxt">AATESTTESTTEST3 </b>*/}
-                {/*        <b className="endDateTxt">AATESTTESTTEST5 </b>*/}
-                {/*    </div>*/}
-                {/*    <div className="deleteReservationBtnContainer">*/}
-                {/*        <button type="button" className="deleteReservationBtn" formAction="#">Delete Reservation</button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                {/*<div className="yourReservationContainer">*/}
-                {/*    <img src="/Images/BMW2020.jpg" className="yourReservationCarImg"/>*/}
-                {/*    <div className="topContent">*/}
-                {/*        <b className="carInfoTxt">AATESTTESTTEST </b>*/}
-                {/*        <b className="locationTxt">AATESTTESTTEST2 </b>*/}
-                {/*    </div>*/}
-                {/*    <div className="bottomContent">*/}
-                {/*        <b className="startDateTxt">AATESTTESTTEST3 </b>*/}
-                {/*        <b className="endDateTxt">AATESTTESTTEST5 </b>*/}
-                {/*    </div>*/}
+            {/*    <img src="/Images/Peugeot505.jpg" className="yourReservationCarImg"/>*/}
+            {/*    <div className="topContent">*/}
+            {/*        <b className="carInfoTxt">AATESTTESTTEST </b>*/}
+            {/*        <b className="locationTxt">AATESTTESTTEST2 </b>*/}
+            {/*    </div>*/}
+            {/*    <div className="bottomContent">*/}
+            {/*        <b className="startDateTxt">AATESTTESTTEST3 </b>*/}
+            {/*        <b className="endDateTxt">AATESTTESTTEST5 </b>*/}
+            {/*    </div>*/}
+            {/*    <div className="deleteReservationBtnContainer">*/}
+            {/*        <button type="button" className="deleteReservationBtn" formAction="#">Delete Reservation</button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className="yourReservationContainer">*/}
+            {/*    <img src="/Images/BMW2020.jpg" className="yourReservationCarImg"/>*/}
+            {/*    <div className="topContent">*/}
+            {/*        <b className="carInfoTxt">AATESTTESTTEST </b>*/}
+            {/*        <b className="locationTxt">AATESTTESTTEST2 </b>*/}
+            {/*    </div>*/}
+            {/*    <div className="bottomContent">*/}
+            {/*        <b className="startDateTxt">AATESTTESTTEST3 </b>*/}
+            {/*        <b className="endDateTxt">AATESTTESTTEST5 </b>*/}
+            {/*    </div>*/}
 
 
-                {/*</div>*/}
+            {/*</div>*/}
             {/*</section>*/}
         </div>
     );
