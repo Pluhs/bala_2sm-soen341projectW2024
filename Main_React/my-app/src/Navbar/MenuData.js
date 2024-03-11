@@ -19,7 +19,7 @@ export const MenuData = [
         title: "Admin",
         url: "/admin",
         cName:"navlinks",
-        icon:"fa-solid fa-circle-info",
+        icon:"fa-solid fa-user-gear",
     },
     {
         title: "My Profile",
