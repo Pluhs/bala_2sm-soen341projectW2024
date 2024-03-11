@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Car;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -30,7 +30,7 @@ public class Car {
 		this.name = name;
 		this.price = price;
 		this.info = info;
-		this.imageUrl = imageUrl; // Renamed parameter to match the field name
+		this.imageUrl = imageUrl;
 	}
 	
 	
