@@ -11,6 +11,7 @@ import MyProfile from "./MyProfile/MyProfile";
 import Admin from "./Admin/Admin.js";
 import Vehicles from "./Admin/Vehicles.js";
 import Users from "./Admin/Users.js";
+import ViewUserInfo from "./Admin/viewUserInfo";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/myProfile" element={<MyProfile/>} />
                     <Route path="/admin" element={<Admin/>} />
                     <Route path="/vehicles" element={<Vehicles/>} />
+                    <Route path="/viewUser" element={<ViewUserInfo />} />
                     <Route path="/users" element={<Users/>} />
                 </Routes>
             </div>

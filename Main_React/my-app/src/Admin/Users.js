@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllUsers, deleteUser,createUser } from '../LogInForm/UserInfo';
+import { useNavigate } from 'react-router-dom';
 import "./Users.css";
+
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [newUser, setNewUser] = useState({ name: '', email: '', password: '' });
+    let navigate = useNavigate();
+
+    const handleViewUser = (id) => {
+        navigate('/viewUser', { state: { id: id } });
+    };
 
     const loadUsers = async () => {
         setIsLoading(true);
@@ -79,8 +86,13 @@ function Users() {
                                 <b className="startDateTxt">Email: {user.email}</b>
                             </div>
                             <div className="buttonsContainerUsers">
-                                <button type="button" className="viewUserBtn">View User</button>
-                                <button type="button" className="deleteUserBtn" onClick={() => handleDeleteUser(user.email)}>Delete User</button>
+                                <button type="button" className="viewUserBtn"
+                                        onClick={() => handleViewUser(user.id)}>View User
+                                </button>
+
+                                <button type="button" className="deleteUserBtn"
+                                        onClick={() => handleDeleteUser(user.email)}>Delete User
+                                </button>
                             </div>
                         </div>
                     ))}
