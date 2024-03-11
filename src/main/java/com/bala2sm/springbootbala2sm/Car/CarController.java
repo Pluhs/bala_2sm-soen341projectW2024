@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Car;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
