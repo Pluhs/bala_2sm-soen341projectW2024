@@ -6,6 +6,40 @@ import {Link} from "react-router-dom";
 function Vehicles() {
     const [cars, setCars] = useState([]);
 
+    const deleteVehicle = async (id) => {
+        try {
+            const queryParams = new URLSearchParams({ id });
+            const response = await fetch(`http://localhost:8080/cars/${id}?${queryParams}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                console.error('Failed to delete vehicle with response status:', response.status);
+                throw new Error('Error deleting user');
+            }
+            return true;
+        } catch (error) {
+            console.error('Error deleting vehicle:', error);
+            return false;
+        }
+    };
+
+    const handleDeleteVehicle = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this vehicle?");
+
+        if (confirmDelete) {
+            const isSuccess = await deleteVehicle(id);
+            if (isSuccess) {
+                setCars(cars.filter(car => car.id !== id));
+            } else {
+                alert("Failed to delete the vehicle.");
+            }
+        } else {
+            // If the user cancels, do nothing
+            console.log("Deletion cancelled by user.");
+        }
+    };
+
+
     const displayCars = async () => {
         const signInUrl = `http://localhost:8080/cars/available`;
 
@@ -55,20 +89,25 @@ function Vehicles() {
 
                             <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
                             <div className="adminTopContent">
-                                <b className="adminCarInfoTxt">{car.name} </b>
+                                <b className="adminCarName">{car.name} </b>
+
 
                             </div>
+                            <p className="adminVehicleInfo">{car.info}</p>
+
                             <div className="adminBottomContent">
                                 <b className="adminVehiclePrice">Price: {car.price}$/day </b>
+
                             </div>
+
                             <div className="buttonsContainerVehicles">
-                                <button type="button" className="viewVehicleBtn"
-                                        // onClick={() => handleViewUser(user.id)}
+                                <button type="button" className="editVehicleBtn"
                                 >Edit Vehicle
                                 </button>
 
                                 <button type="button" className="deleteVehicleBtn"
-                                        >Delete Vehicle
+                                        onClick={() => handleDeleteVehicle(car.id)}
+                                >Delete Vehicle
                                 </button>
                             </div>
                         </div>
