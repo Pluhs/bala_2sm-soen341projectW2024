@@ -78,33 +78,16 @@
     font-size: 15px;
     color: #f5f5f5;
     font-weight: 700;
-    /*margin-top: 25px;*/
-    /*margin-bottom: 25px;*/
+    margin-top: 25px;
+    margin-bottom: 25px;
     float: right;
-    margin-left: 20px;
-    margin-right: 20px;
 
 }
 
 .deleteReservationBtn:hover{
-    background: #8a031d;
+    background: #8f021f;
 
 }
-
-.deleteReservationBtnContainer{
-    display: flex;
-    /*display: inline-block;*/
-    height: 100px;
-    width: 50%;
-    /*background-color: red;*/
-
-    align-items: center; /* Center vertically */
-    justify-content: end; /* Center horizontally */
-    /*justify-self: end;*/
-
-
-}
-
 
 
 
