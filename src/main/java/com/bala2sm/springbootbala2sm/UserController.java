@@ -40,11 +40,6 @@ public class UserController {
 
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserProfile(@PathVariable ObjectId id) {
