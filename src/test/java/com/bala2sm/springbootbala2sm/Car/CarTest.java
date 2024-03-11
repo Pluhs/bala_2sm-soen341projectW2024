@@ -1,6 +1,6 @@
 package com.bala2sm.springbootbala2sm.Car;
 
-import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

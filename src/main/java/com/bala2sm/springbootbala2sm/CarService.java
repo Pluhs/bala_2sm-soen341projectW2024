@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Car;
+package com.bala2sm.springbootbala2sm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
