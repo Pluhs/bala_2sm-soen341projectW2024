@@ -25,19 +25,19 @@ function Vehicles() {
     }, []);
 
     return (
-        <div className="vehicle">
+        <div className="adminVehicle">
 
             {cars.length > 0 ? (
                 <div>
                     {cars.map(car => (
-                        <div key={car.id} className="vehicleContainer">
-                            <img src={car.car.imageUrl} className="vehicleCarImg" alt={"car"}/>
-                            <div className="topContent">
-                                <b className="carInfoTxt">{car.car.name} </b>
-                                <b className="startDateTxt">Pickup Date: {car.pickupDate} </b>
+                        <div key={car.id} className="adminVehicleContainer">
+                            <img src={car.car.imageUrl} className="adminVehicleImg" alt={"car"}/>
+                            <div className="adminTopContent">
+                                <b className="adminCarInfoTxt">{car.car.name} </b>
+
                             </div>
-                            <div className="bottomContent">
-                                <b className="price">Price: {car.car.price}$/day </b>
+                            <div className="adminBottomContent">
+                                <b className="adminVehiclePrice">Price: {car.car.price}$/day </b>
                                 <b className="endDateTxt">Return Date: {car.dropDate} </b>
                             </div>
                             <div className="deleteVehicleBtnContainer">
