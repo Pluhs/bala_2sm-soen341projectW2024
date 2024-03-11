@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Car;
+package com.bala2sm.springbootbala2sm;
 
 import com.bala2sm.springbootbala2sm.Car;
 import com.bala2sm.springbootbala2sm.CarController;

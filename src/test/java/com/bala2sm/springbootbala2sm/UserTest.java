@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Users;
+package com.bala2sm.springbootbala2sm;
 
 import com.bala2sm.springbootbala2sm.Reservation;
 import com.bala2sm.springbootbala2sm.Role;
