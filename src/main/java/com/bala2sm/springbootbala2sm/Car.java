@@ -30,7 +30,7 @@ public class Car {
 		this.name = name;
 		this.price = price;
 		this.info = info;
-		this.imageUrl = imageUrl; // Renamed parameter to match the field name
+		this.imageUrl = imageUrl;
 	}
 	
 	
