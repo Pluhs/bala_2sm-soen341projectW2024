@@ -4,7 +4,6 @@ import "./MyProfile.css"
 
 const MyProfile = () => {
 
-
     // const [name, setName] = useState("");
     // const [password,setPassword] = useState('');
     // const [oldPassword] = useState('');
@@ -100,16 +99,16 @@ const MyProfile = () => {
                     {reservations.map(reservation => (
                         <div key={reservation.id} className="yourReservationContainer">
                             <img src={reservation.car.imageUrl} className="yourReservationCarImg"/>
-                            <div className="topContent">
+                            <div className="leftContent">
                                 <b className="carInfoTxt">{reservation.car.name} </b>
                                 <b className="startDateTxt">Pickup Date: {reservation.pickupDate} </b>
                             </div>
-                            <div className="bottomContent">
+                            <div className="rightContent">
                                 <b className="price">Price: {reservation.car.price}$/day </b>
                                 <b className="endDateTxt">Return Date: {reservation.dropDate} </b>
                             </div>
                             <div className="deleteReservationBtnContainer">
-                                <button type="button" className="deleteReservationBtn" formAction="#">Delete Reservation
+                                <button type="button" className="deleteReservationBtn" formAction="#">Cancel Reservation
                                 </button>
                             </div>
                         </div>
