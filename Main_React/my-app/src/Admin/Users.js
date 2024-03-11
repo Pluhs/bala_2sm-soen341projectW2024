@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchAllUsers, deleteUser,createUser } from '../LogInForm/UserInfo';
 import { useNavigate } from 'react-router-dom';
 import "./Users.css";
+import alert from "bootstrap/js/src/alert";
 
 
 function Users() {
