@@ -5,12 +5,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.time.LocalDate;
 
 @Document(collection = "reservations")
 public class Reservation {
 
 	@Id
+	@JsonSerialize(using= ToStringSerializer.class)
 	private ObjectId id;
 	private LocalDate pickupDate; // Changed to LocalDate
 	private LocalDate dropDate;   // Changed to LocalDate
