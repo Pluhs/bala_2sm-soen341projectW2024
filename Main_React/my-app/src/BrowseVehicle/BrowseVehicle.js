@@ -50,7 +50,8 @@ function BrowseVehicle() {
                 <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
                     <img src={car.imageUrl} alt={`${car.name}`}/>
                     <h3>{`${car.name} `}</h3>
-                    <p>{car.info}</p>
+                    <p className="browseCarInfo">{car.info}</p>
+                    <p className="browseCarPrice">${car.price} /day</p>
                     <Link to={`/ReserveCar/`}>
                         <button>Reserve</button>
                     </Link>
