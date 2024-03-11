@@ -40,6 +40,12 @@ public class UserController {
 
     }
 
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserProfile(@PathVariable ObjectId id) {
         return userService.getUserById(id)
@@ -47,6 +53,15 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/email")
+    public ResponseEntity<?> getUserByEmail(@RequestParam String email) {
+        User user = userService.getUserByEmail(email);
+        if (user != null) {
+            return ResponseEntity.ok().body(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUserProfile(@PathVariable ObjectId id, @RequestBody User user) {
