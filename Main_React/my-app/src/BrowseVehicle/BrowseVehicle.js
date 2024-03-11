@@ -48,7 +48,7 @@ function BrowseVehicle() {
             {}
             {cars.map(car => (
                 <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
-                    <img src={car.image} alt={`${car.name}`}/>
+                    <img src={car.imageUrl} alt={`${car.name}`}/>
                     <h3>{`${car.name} `}</h3>
                     <p className="browseCarInfo">{car.info}</p>
                     <p className="browseCarPrice">${car.price} /day</p>
