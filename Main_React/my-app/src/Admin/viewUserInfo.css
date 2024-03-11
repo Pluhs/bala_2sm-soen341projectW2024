@@ -1,0 +1,398 @@
+.viewReservationInfoContainerAdmin {
+    background-color: #BBDCF2;
+    padding: 100px 20px;
+    height: 100rem;
+}
+
+.reservationInfoContainersAdmin {
+    width: auto;
+    height: 60px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+    background-color: rgba(225, 221, 221, 0.25);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.buttonContainerAdmin {
+    display: flex;
+    height: 60px;
+    width: 50%;
+
+    .ReservationAdmin {
+    background-color: #BBDCF2;
+    padding: 100px 20px;
+    height: 100rem;
+
+
+}
+
+    .yourReservationContainerAdmin{
+        width: auto;
+        height: 100px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+        background-color: rgba(225, 221, 221, 0.25);
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+
+    }
+
+    .leftContentAdmin,
+    .rightContentAdmin {
+        padding: 10px;
+        background-color: transparent;
+    }
+
+    .leftContentAdmin {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25%;
+        gap: 31px;
+    }
+
+    .rightContentAdmin {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25%;
+        gap: 40px;
+    }
+
+    .deleteReservationBtnAdmin{
+        width: 180px;
+        height: 50px;
+        background: #A30021;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        cursor: pointer;
+        font-size: 15px;
+        color: #f5f5f5;
+        font-weight: 700;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        float: right;
+
+    }
+
+    .deleteReservationBtnAdmin:hover{
+        background: #8f021f;
+
+    }
+
+
+
+    .priceAdmin{
+        margin-bottom: auto;
+
+    }
+
+    .startDateTxtAdmin{
+
+    }
+
+    .endDateTxtAdmin{
+
+    }
+
+    .carInfoTxtAdmin{
+        font-size: 25px;
+        font-weight: 1000;
+    }
+
+
+    .yourReservationCarImgAdmin{
+        display: block;
+        max-width:20%;
+        max-height:90%;
+        width: auto;
+        height: auto;
+        position: relative;.myProfile {
+        background-color: #BBDCF2;
+        padding: 100px 20px;
+        height: 100rem;
+
+
+    }
+
+        .yourReservationContainer{
+            width: auto;
+            height: 100px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+            background-color: rgba(225, 221, 221, 0.25);
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+
+            align-items: flex-start;
+
+        }
+
+        .leftContent,
+        .rightContent {
+            padding: 10px;
+            background-color: transparent;
+        }
+
+        .leftContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25%;
+            gap: 31px;
+        }
+
+        .rightContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25%;
+            gap: 40px;
+        }
+
+        .deleteReservationBtn{
+            width: 180px;
+            height: 50px;
+            background: #A30021;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 15px;
+            color: #f5f5f5;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            float: right;
+
+        }
+
+        .deleteReservationBtn:hover{
+            background: #8f021f;
+
+        }
+
+
+
+        .price{
+            margin-bottom: auto;
+
+        }
+
+        .startDateTxt{
+
+        }
+
+        .endDateTxt{
+
+        }
+
+        .carInfoTxt{
+            font-size: 25px;
+            font-weight: 1000;
+        }
+
+
+        .yourReservationCarImg{
+            display: block;
+            max-width:20%;
+            max-height:90%;
+            width: auto;
+            height: auto;
+            position: relative;
+            float: left;
+            border-radius: 8px;
+            margin: 5px;
+
+            flex: 0 0 auto;
+            margin-right: 10px;
+
+        }
+        .myProfile {
+            background-color: #BBDCF2;
+            padding: 100px 20px;
+            height: 100rem;
+
+
+        }
+
+        .yourReservationContainer{
+            width: auto;
+            height: 100px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+            background-color: rgba(225, 221, 221, 0.25);
+            border-radius: 8px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            /*flex-wrap: wrap;*/
+            flex-direction: row;
+
+            align-items: flex-start;
+            /*max-width: 400px; !* Adjust as needed *!*/
+            /*margin: 0 auto;*/
+
+        }
+
+        .leftContent,
+        .rightContent {
+            padding: 10px;
+            background-color: transparent;
+        }
+
+        .leftContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25%;
+            gap: 31px;
+        }
+
+        .rightContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25%;
+            gap: 40px;
+        }
+
+        .deleteReservationBtn{
+            width: 180px;
+            height: 50px;
+            background: #A30021;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 15px;
+            color: #f5f5f5;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            float: right;
+
+        }
+
+        .deleteReservationBtn:hover{
+            background: #8f021f;
+
+        }
+
+
+
+        .price{
+            margin-bottom: auto;
+
+        }
+
+        .startDateTxt{
+
+        }
+
+        .endDateTxt{
+
+        }
+
+        .carInfoTxt{
+            font-size: 25px;
+            font-weight: 1000;
+        }
+
+
+        .yourReservationCarImg{
+            display: block;
+            max-width:20%;
+            max-height:90%;
+            width: auto;
+            height: auto;
+            position: relative;
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+            float: left;
+            border-radius: 8px;
+            margin: 5px;
+
+            flex: 0 0 auto;
+            margin-right: 10px;
+
+        }
+        float: left;
+        border-radius: 8px;
+        margin: 5px;
+        flex: 0 0 auto;
+        margin-right: 10px;
+
+    }
+    align-items: center;
+    justify-content: end;
+}
+
+.viewReservationBtnAdmin,
+.deleteReservationBtnAdmin {
+    width: 150px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 15px;
+    color: #f5f5f5;
+    font-weight: 700;
+    margin-left: 20px;
+    float: right;
+}
+
+.viewReservationBtnAdmin {
+    background: #052039;
+}
+
+.viewReservationBtnAdmin:hover {
+    background: #03172a;
+}
+
+.deleteReservationBtnAdmin {
+    background: #A30021;
+    margin-right: 20px;
+}
+
+.deleteReservationBtnAdmin:hover {
+    background: #8f021f;
+}
+
+.leftContentReservationsAdmin,
+.rightContentReservationsAdmin {
+    background-color: transparent;
+    height: 60px;
+    padding-left: 20px;
+}
+
+.leftContentReservationsAdmin {
+    display: flex;
+    width: 25%;
+    gap: 31px;
+    align-items: center;
+    justify-content: left;
+}
+
+.rightContentReservationsAdmin {
+    display: flex;
+    width: 25%;
+    gap: 40px;
+    align-items: center;
+    justify-content: left;
+}
