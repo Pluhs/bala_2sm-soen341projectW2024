@@ -1,5 +1,9 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Users;
 
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car.CarService;
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
+import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -63,7 +67,6 @@ public class UserController {
         }
     }
 
-    // Endpoint to delete user profile
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserProfile(@PathVariable ObjectId id) {
         userService.deleteUser(id);
