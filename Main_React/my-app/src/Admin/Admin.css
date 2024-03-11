@@ -9,6 +9,13 @@
 
 }
 
+.warningMsgAdmin{
+
+    padding-top: 100px;
+    padding-left: 25px;
+
+}
+
 .adminLeftContainer, adminRightContainer{
     flex: 1;
     height: 100%;

@@ -29,7 +29,7 @@ function Admin() {
 
 
     if (userRole !== 'ADMIN') {
-        return <div>Access Denied</div>;
+        return <div className="warningMsgAdmin">Access Denied. Please log in as an admin to view this page</div>;
 
     } else {
 
