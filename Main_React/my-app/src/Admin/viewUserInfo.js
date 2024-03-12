@@ -24,6 +24,22 @@ function ViewUserInfo() {
         fetchUserAndReservations();
     }, [userId]);
 
+    // Function to delete a reservation
+    const deleteReservation = async (reservationId) => {
+        try {
+            const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error('Failed to delete reservation');
+            }
+            // Filter out the deleted reservation from the local state
+            setReservations(reservations.filter(reservation => reservation.id !== reservationId));
+        } catch (error) {
+            console.error('Error deleting reservation:', error);
+        }
+    };
+
     if (!user || !reservations) return <div className="centered-container">Loading...</div>;
 
     return (
@@ -41,7 +57,10 @@ function ViewUserInfo() {
                             <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
                         </div>
                         <div className="deleteReservationBtnContainer">
-                            <button type="button" className="deleteReservationBtn">Cancel Reservation</button>
+                            <button
+                                type="button"
+                                className="deleteReservationBtn"
+                                onClick={() => deleteReservation(reservation.id)}>Cancel Reservation</button>
                         </div>
                     </div>
                 ))

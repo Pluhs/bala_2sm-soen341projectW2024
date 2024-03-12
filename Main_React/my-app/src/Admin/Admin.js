@@ -19,10 +19,7 @@ function Admin() {
         };
 
         checkUserRole();
-
-        // Optional: Return a cleanup function if needed
         return () => {
-            // Cleanup actions, if any
         };
     }, []);
 
@@ -30,9 +27,17 @@ function Admin() {
 
     if (userRole !== 'ADMIN') {
 
-        return <div>Access Denied</div>;
+        return <div className="sorryContainer">
+            <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized"/>
+            <h3 className="sorryMsg">We are Sorry...</h3>
+            <p className="sorryText">Access denied due to invalid credentials</p>
+            <Link to={`/`}>
+                <button className="sorryBtn">Go Back To Home Page</button>
+            </Link>
 
-        return <div className="warningMsgAdmin">Access Denied. Please log in as an admin to view this page</div>;
+        </div>;
+
+        // return <div className="warningMsgAdmin">Access Denied. Please log in as an admin to view this page</div>;
 
 
     } else {
