@@ -1,9 +1,8 @@
 // import React from 'react';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./ReserveCar.css"
+import {useLocation} from "react-router-dom";
 // import { Link } from 'react-router-dom';
-
-
 
 
 const ReserveCarForm = () => {
@@ -12,7 +11,30 @@ const ReserveCarForm = () => {
     const [phone, setPhone] = useState('');
     const [pickupDate, setPickupDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
+    const [carInfo, setCarInfo] = useState('');
 
+    const location = useLocation();
+
+    const carId = location.state?.id;
+
+    const displayCarInfo = async () => {
+        const signInUrl = `http://localhost:8080/cars/${carId}`;
+
+        try {
+            const response = await fetch(signInUrl, { method: "GET" });
+
+            const carsData = await response.json();
+            setCarInfo(carsData);
+        } catch (error) {
+            console.log(error.info.toString());
+        }
+    }
+
+    useEffect(() => {
+        displayCarInfo();
+    }, []);
+
+    // alert(carInfo.price)
 
     return (
         <div className="reservationForm">
@@ -20,12 +42,12 @@ const ReserveCarForm = () => {
 
             <div action="" className="carInfoWrapper">
 
-                <h1 className="carModelHeader">CAR MODEL HERE</h1>
+                <h1 className="carModelHeader">{carInfo.name}</h1>
 
-                <img src="/Images/ReserveCarImg.jpg" className="reserveCarImg"/>
+                <img src={carInfo.imageUrl} className="reserveCarImg"/>
 
                 <div className='carInfoContainer'>
-                    <h2>xxx$/day </h2>
+                    <h2>{carInfo.price}$/day </h2>
                     {/*<br/>*/}
                     {/*<b>MORE INFO ABOUT THE VEHICLE</b>*/}
 
@@ -37,14 +59,13 @@ const ReserveCarForm = () => {
 
                 <div>
 
-                    <b>Car Info</b>
+                    <h3>{carInfo.info}</h3>
 
                 </div>
 
-
                 <form action="" className="formWrapper">
 
-                    <h1>Book A Car Now</h1>
+                    <h1>Reserve This Car Now</h1>
                     {/*<div className="inputBoxReserve">*/}
                     {/*    <input type="text" placeholder='Name' required/>*/}
                     {/*    <i className="fa-solid fa-user"></i>*/}
