@@ -5,8 +5,6 @@ import {useLocation} from "react-router-dom";
 // import { Link } from 'react-router-dom';
 
 
-
-
 const ReserveCarForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -65,10 +63,9 @@ const ReserveCarForm = () => {
 
                 </div>
 
-
                 <form action="" className="formWrapper">
 
-                    <h1>Book This Car Now</h1>
+                    <h1>Reserve This Car Now</h1>
                     {/*<div className="inputBoxReserve">*/}
                     {/*    <input type="text" placeholder='Name' required/>*/}
                     {/*    <i className="fa-solid fa-user"></i>*/}
