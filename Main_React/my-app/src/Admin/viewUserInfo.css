@@ -10,6 +10,8 @@
     background-color: #BBDCF2;
     padding: 100px 20px;
     height: 100rem;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 
 
 }
@@ -49,9 +51,9 @@
     gap: 40px;
 }
 
-.deleteReservationBtnAdmin{
-    width: 180px;
-    height: 50px;
+.deleteReservation{
+    width: 150px;
+    height: 40px;
     background: #A30021;
     border: none;
     outline: none;
@@ -61,16 +63,15 @@
     font-size: 15px;
     color: #f5f5f5;
     font-weight: 700;
-    margin-top: 25px;
-    margin-bottom: 25px;
     float: right;
-
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.deleteReservationBtnAdmin:hover{
+.deleteReservation:hover{
     background: #8f021f;
-
 }
+
 
 
 
@@ -106,5 +107,89 @@
     flex: 0 0 auto;
     margin-right: 10px;
 }
+.editBtn{
+    width: 150px;
+    height: 40px;
+    background: #052039;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 15px;
+    color: #f5f5f5;
+    font-weight: 700;
+    float: right;
+    margin-left: 20px;
+}
+
+.editBtn:hover{
+    background: #03172a;
+}
+.buttonsContainerReservation{
+    display: flex;
+    height: 60px;
+    width: 50%;
+    align-items: center;
+    justify-content: end;
+}
+
+.editReservationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: rgba(225, 221, 221, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-top: 20px;
+}
 
 
+.editReservationForm label,
+.editReservationForm input[type="date"] {
+    margin-bottom: 5px;
+    color: #052038;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+
+.editReservationForm .editBtn,
+.editReservationForm .cancelBtn {
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    color: #f5f5f5;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
+.editBtn {
+    background: #052039;
+}
+
+.editBtn:hover {
+    background: #03172a;
+}
+
+
+.cancelBtn {
+    background: #A30021;
+}
+
+.cancelBtn:hover {
+    background: #8f021f;
+}
+
+.formButtonsContainerReservation {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-direction: row;
+}

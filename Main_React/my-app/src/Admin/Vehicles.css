@@ -168,3 +168,54 @@
     margin-right: 10px;
 
 }
+
+.createVehicleForm {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(225, 221, 221, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.createVehicleForm input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #052038;
+    border-radius: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    display: flex;
+
+}
+.createVehicleForm input[type="text"]:focus {
+    border-color: #03172a;
+    box-shadow: 0 0 0 3px #052038;
+    outline: none;
+}
+.createVehicleForm input[type="text"]::placeholder {
+    color: #052038;
+    opacity: 1;
+    font-style: normal;
+}
+
+.createVehicleForm button[type="submit"] {
+    padding: 10px;
+    background-color: #03172a;
+    color: #f5f5f5;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    justify-self: end;
+
+}
+
+.createVehicleForm button[type="submit"]:hover {
+    background: #03172a;
+    opacity: 0.9;
+}

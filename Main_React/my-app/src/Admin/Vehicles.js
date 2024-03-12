@@ -7,6 +7,8 @@ function Vehicles() {
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [newVehicle, setNewVehicle] = useState({ name: '', email: '', info: '', imageUrl: '' });
     const [isLoading, setIsLoading] = useState(true);
+    const [editingVehicle, setEditingVehicle] = useState(null);
+
 
 
     const loadVehiclesList = async () => {
@@ -16,14 +18,14 @@ function Vehicles() {
         setIsLoading(false);
     };
 
-    const createVehicle = async (carData) => {
+    const createVehicle = async (vehicleData) => {
         try {
             const response = await fetch(`http://localhost:8080/cars`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(carData),
+                body: JSON.stringify(vehicleData),
             });
             if (!response.ok) {
                 throw new Error('Error creating vehicle');
@@ -79,9 +81,33 @@ function Vehicles() {
         }
     };
 
+    const handleSaveEdit = async (e) => {
+        e.preventDefault();
+        await updateVehicle(editingVehicle.id, editingVehicle);
+        await loadVehiclesList();
+        setEditingVehicle(null);
+    };
+    const updateVehicle = async (id, vehicleData) => {
+        try {
+            const response = await fetch(`http://localhost:8080/cars/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(vehicleData),
+            });
+            if (!response.ok) {
+                throw new Error('Error updating vehicle');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error updating vehicle:', error);
+            return null;
+        }
+    };
+
 
     const displayCars = async () => {
-        // const signInUrl = `http://localhost:8080/cars`;
          const response = await fetch(`http://localhost:8080/cars`);
 
         try {
@@ -169,6 +195,34 @@ function Vehicles() {
                     <button type="submit">Create Vehicle</button>
                 </form>
             )}
+            {editingVehicle && (
+                <form onSubmit={handleSaveEdit} className="createUserForm">
+                    <div className="static-info-container">
+                        <label>Car: {editingVehicle.name}</label>
+                    </div>
+                    <div className="input-icon-container">
+                        <p className="static-info-container">Price:</p>
+                        <input
+                            type="text"
+                            placeholder="Price"
+                            value={editingVehicle.price}
+                            onChange={(e) => setEditingVehicle({...editingVehicle, price: e.target.value})}
+                        />
+                        <p className="static-info-container">    Info:</p>
+                        <input
+                            type="text"
+                            placeholder="Info"
+                            value={editingVehicle.info}
+                            onChange={(e) => setEditingVehicle({...editingVehicle, info: e.target.value})}
+                        />
+                    </div>
+                    <div className="form-buttons-container">
+                        <button type="submit" className="viewUserBtn">Save Changes</button>
+                        <button type="button" onClick={() => setEditingVehicle(null)} className="cancelBtn">Cancel
+                        </button>
+                    </div>
+                </form>
+            )}
             {cars.length > 0 ?
                 (
                 <div>
@@ -176,7 +230,7 @@ function Vehicles() {
                         <div key={car.id} to={`/${car.name}`} className="adminVehicleContainer"
                              style={{textDecoration: 'none'}}>
 
-                        <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
+                            <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
                             <div className="adminTopContent">
                                 <b className="adminCarName">{car.name} </b>
 
@@ -184,15 +238,20 @@ function Vehicles() {
                             </div>
                             <p className="adminVehicleInfo">{car.info}</p>
 
+
+
                             <div className="adminBottomContent">
                                 <b className="adminVehiclePrice">Price: {car.price}$/day </b>
 
                             </div>
 
                             <div className="buttonsContainerVehicles">
-                                <button type="button" className="editVehicleBtn"
-                                >Edit Vehicle
-                                </button>
+
+                                {/*<button type="button" className="editVehicleBtn"*/}
+                                {/*>Edit Vehicle*/}
+                                {/*</button>*/}
+
+                                <i className="fas fa-edit"  onClick={() => setEditingVehicle(car)}></i>
 
                                 <button type="button" className="deleteVehicleBtn"
                                         onClick={() => handleDeleteVehicle(car.id)}
@@ -204,8 +263,8 @@ function Vehicles() {
 
                     ))}
                 </div>
-            ) : (
-                <p>No cars to display</p>
+                ) : (
+                    <p>No cars to display</p>
             )}
         </div>
 

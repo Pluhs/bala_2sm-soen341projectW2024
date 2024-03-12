@@ -122,10 +122,13 @@ public class UserService {
     }
     @Transactional
     public Reservation updateReservation(ObjectId userId, ObjectId reservationId, Reservation updatedReservation) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found"));
+
 
         Reservation existingReservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new Exception("Reservation not found"));
+
 
         Car newCar = carService.getCarById(updatedReservation.getCar().getId())
                 .orElseThrow(() -> new Exception("Car not found"));
@@ -147,8 +150,20 @@ public class UserService {
         existingReservation.setPickupDate(updatedReservation.getPickupDate());
         existingReservation.setDropDate(updatedReservation.getDropDate());
 
-        return reservationRepository.save(existingReservation);
+        Reservation savedReservation = reservationRepository.save(existingReservation);
+
+        List<Reservation> userReservations = user.getReservations();
+        for (int i = 0; i < userReservations.size(); i++) {
+            if (userReservations.get(i).getId().equals(reservationId)) {
+                userReservations.set(i, savedReservation);
+                break;
+            }
+        }
+        userRepository.save(user);
+
+        return savedReservation;
     }
+
 
 
 
