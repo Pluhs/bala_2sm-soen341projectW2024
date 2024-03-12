@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import "./ReserveCar.css"
 import {useLocation} from "react-router-dom";
 // import { Link } from 'react-router-dom';
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 
 const ReserveCarForm = () => {
@@ -11,11 +12,49 @@ const ReserveCarForm = () => {
     const [phone, setPhone] = useState('');
     const [pickupDate, setPickupDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [carInfo, setCarInfo] = useState('');
 
     const location = useLocation();
 
     const carId = location.state?.id;
+
+    const userId = localStorage.getItem("userId");
+
+    // alert(carId)
+
+
+    const handleSubmitReserveCar = async (e) => {
+        e.preventDefault();
+
+        const reservationData = {
+            pickupDate,
+            returnDate,
+            car: { id: carId }
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8080/users/${userId}/reservations`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(reservationData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to reserve the car');
+            }
+
+            // Optionally, handle successful reservation
+            console.log('Car reserved successfully');
+        } catch (err) {
+            alert("Failed to reserve the car");
+        }
+    };
+
+
 
     const displayCarInfo = async () => {
         const signInUrl = `http://localhost:8080/cars/${carId}`;
@@ -63,7 +102,7 @@ const ReserveCarForm = () => {
 
                 </div>
 
-                <form action="" className="formWrapper">
+                <form onSubmit={handleSubmitReserveCar} className="formWrapper">
 
                     <h1>Reserve This Car Now</h1>
                     {/*<div className="inputBoxReserve">*/}
