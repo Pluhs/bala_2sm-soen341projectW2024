@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { fetchReservationsForUserById } from './ReservationsInfo';
-import { fetchUserById } from "../LogInForm/UserInfo";
+import { fetchReservationsForUserById, deleteReservationById } from './ReservationsInfo'; // Assume deleteReservationById is exported
+import {fetchUserById} from '../LogInForm/UserInfo'
 import "./viewUserInfo.css";
 
 function ViewUserInfo() {
@@ -10,6 +10,7 @@ function ViewUserInfo() {
 
     const [user, setUser] = useState(null);
     const [reservations, setReservations] = useState([]);
+
 
     useEffect(() => {
         const fetchUserAndReservations = async () => {
@@ -24,19 +25,12 @@ function ViewUserInfo() {
         fetchUserAndReservations();
     }, [userId]);
 
-    // Function to delete a reservation
-    const deleteReservation = async (reservationId) => {
-        try {
-            const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`, {
-                method: 'DELETE',
-            });
-            if (!response.ok) {
-                throw new Error('Failed to delete reservation');
-            }
-            // Filter out the deleted reservation from the local state
+    const cancelReservation = async (reservationId) => {
+        const isSuccess = await deleteReservationById(userId, reservationId); // This function needs to be implemented
+        if (isSuccess) {
             setReservations(reservations.filter(reservation => reservation.id !== reservationId));
-        } catch (error) {
-            console.error('Error deleting reservation:', error);
+        } else {
+            alert("Failed to cancel the reservation.");
         }
     };
 
@@ -57,10 +51,7 @@ function ViewUserInfo() {
                             <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
                         </div>
                         <div className="deleteReservationBtnContainer">
-                            <button
-                                type="button"
-                                className="deleteReservationBtn"
-                                onClick={() => deleteReservation(reservation.id)}>Cancel Reservation</button>
+                            <button type="button" className="deleteReservationBtn" onClick={() => cancelReservation(reservation.id)}>Cancel Reservation</button>
                         </div>
                     </div>
                 ))
