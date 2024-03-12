@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "./MyProfile.css"
-
+import {fetchUserById} from "../LogInForm/UserInfo";
 
 const MyProfile = () => {
 
@@ -10,6 +10,24 @@ const MyProfile = () => {
     // const [newPassword] = useState('');
     // const [confirmNewPassword] = useState('');
     const [reservations, setReservations] = useState([]);
+    const [info, setInfo] = useState([]);
+    const [userReservations, setUserReservations] = useState([]);//THIS IS AN ARRAY
+
+    const userId = localStorage.getItem("userId");
+    // const userInfo = await fetchUserById(userId);
+    //
+    // alert(userInfo.name)
+
+    useEffect(() => {
+        fetchUserById(userId).then(result => {
+            setInfo(result);
+            setUserReservations(result.reservations)
+        });
+    }, []);
+
+    // alert(info.name)
+    // alert(userReservations.userReservations)
+    // console.log(userReservations[0].pickupDate)
 
 
     // Simulate fetching reservations from a database (replace with actual API call)
@@ -19,23 +37,36 @@ const MyProfile = () => {
     //     setReservations(data);
     // };
 
-    useEffect(() => {
-        // fetchReservations(); // Fetch reservations on component mount
-        const fetchReservationList = [
-            { id: 1, pickupDate: "2024-04-10", dropDate: "2024-04-15", location: "Saint-Laurent",
-                car: {name: "Toyota Camry 2015", price: 80.00, info: "A sedan, excellent for city drives",
-                    imageUrl: "/Images/toyota2015.jpg"}},
-
-            { id: 2, pickupDate: "2024-04-18", dropDate: "2024-04-21", location: "Old Montreal",
-                car: {name: "Peugeot 505 1989", price: 30.99, info: "A great car for road trips",
-                    imageUrl: "/Images/Peugeot505.jpg"}},
-
-            { id: 3, pickupDate: "2024-05-02", dropDate: "2024-05-08", location: "Airport",
-                car: {name: "BMW I8 2020", price: 11.79, info: "A fast fancy car",
-                    imageUrl: "/Images/BMW2020.jpg"}}
-
-        ]; setReservations(fetchReservationList);
-    }, []);
+    // useEffect(() => {
+    //     // fetchReservations(); // Fetch reservations on component mount
+    //     const fetchReservationList = [
+    //         {
+    //             id: 1, pickupDate: "2024-04-10", dropDate: "2024-04-15", location: "Saint-Laurent",
+    //             car: {
+    //                 name: "Toyota Camry 2015", price: 80.00, info: "A sedan, excellent for city drives",
+    //                 imageUrl: "/Images/toyota2015.jpg"
+    //             }
+    //         },
+    //
+    //         {
+    //             id: 2, pickupDate: "2024-04-18", dropDate: "2024-04-21", location: "Old Montreal",
+    //             car: {
+    //                 name: "Peugeot 505 1989", price: 30.99, info: "A great car for road trips",
+    //                 imageUrl: "/Images/Peugeot505.jpg"
+    //             }
+    //         },
+    //
+    //         {
+    //             id: 3, pickupDate: "2024-05-02", dropDate: "2024-05-08", location: "Airport",
+    //             car: {
+    //                 name: "BMW I8 2020", price: 11.79, info: "A fast fancy car",
+    //                 imageUrl: "/Images/BMW2020.jpg"
+    //             }
+    //         }
+    //
+    //     ];
+    //     setReservations(fetchReservationList);
+    // }, []);
 
     // const handleNameChange = (event) => {
     //     setName(event.target.value);
@@ -94,9 +125,9 @@ const MyProfile = () => {
 
 
             {}
-            {reservations.length > 0 ? (
+            {userReservations.length > 0 ? (
                 <div>
-                    {reservations.map(reservation => (
+                    {userReservations.map(reservation => (
                         <div key={reservation.id} className="yourReservationContainer">
                             <img src={reservation.car.imageUrl} className="yourReservationCarImg"/>
                             <div className="leftContent">
@@ -119,7 +150,6 @@ const MyProfile = () => {
             ) : (
                 <p>You don't have any upcoming reservations.</p>
             )}
-
 
 
             {/*<div className="yourReservationContainer">*/}

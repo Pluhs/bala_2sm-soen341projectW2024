@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchAllUsers, deleteUser,createUser } from '../LogInForm/UserInfo';
+import { fetchAllUsers, deleteUser,createUser,updateUser } from '../LogInForm/UserInfo';
 import { useNavigate } from 'react-router-dom';
 import "./Users.css";
 
@@ -10,6 +10,8 @@ function Users() {
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [newUser, setNewUser] = useState({ name: '', email: '', password: '' });
     let navigate = useNavigate();
+    const [editingUser, setEditingUser] = useState(null);
+
 
     const handleViewUser = (id) => {
         navigate('/viewUser', { state: { id: id } });
@@ -46,6 +48,13 @@ function Users() {
             alert("Failed to delete the user.");
         }
     };
+    const handleSaveEdit = async (e) => {
+        e.preventDefault();
+        await updateUser(editingUser.id, editingUser);
+        await loadUsers();
+        setEditingUser(null); // Hide the edit form after saving
+    };
+
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -75,6 +84,29 @@ function Users() {
                     <button type="submit">Create User</button>
                 </form>
             )}
+            {editingUser && (
+                <form onSubmit={handleSaveEdit} className="createUserForm">
+                    <div className="static-info-container">
+                        <label>Old Username: {editingUser.name}</label>
+                    </div>
+                    <div className="static-info-container"><label>Email: {editingUser.email}</label></div>
+                    <div className="input-icon-container">
+                        <i className="fa-solid fa-user input-icon"></i>
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            value={editingUser.name}
+                            onChange={(e) => setEditingUser({...editingUser, name: e.target.value})}
+                        />
+                    </div>
+                    <div className="form-buttons-container">
+                        <button type="submit" className="viewUserBtn">Save Changes</button>
+                        <button type="button" onClick={() => setEditingUser(null)} className="cancelBtn">Cancel</button>
+                    </div>
+                </form>
+            )}
+
+
             {users.length > 0 ? (
                 <div>
                     {users.map(user => (
@@ -83,9 +115,10 @@ function Users() {
                                 <b className="carInfoTxt">{user.name}</b>
                             </div>
                             <div className="rightContentUsers">
-                                <b className="startDateTxt">Email: {user.email}</b>
+                            <b className="startDateTxt">Email: {user.email}</b>
                             </div>
                             <div className="buttonsContainerUsers">
+                                <i className="fas fa-edit" onClick={() => setEditingUser(user)}></i>
                                 <button type="button" className="viewUserBtn"
                                         onClick={() => handleViewUser(user.id)}>View User
                                 </button>
