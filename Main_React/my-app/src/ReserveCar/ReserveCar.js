@@ -10,8 +10,11 @@ const ReserveCarForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    // const [pickupDate, setPickupDate] = useState(new Date());
+    // const [returnDate, setReturnDate] = useState(new Date());
     const [pickupDate, setPickupDate] = useState('');
-    const [returnDate, setReturnDate] = useState('');
+    const [dropDate, setReturnDate] = useState('');
+
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [carInfo, setCarInfo] = useState('');
@@ -24,15 +27,28 @@ const ReserveCarForm = () => {
 
     // alert(carId)
 
+    const handleDateChangeStart = (event) => {
+        setPickupDate(event.target.value);
+        // console.log(pickupDate)
+    };
+
+    const handleDateChangeEnd = (event) => {
+        setReturnDate(event.target.value);
+        // console.log(returnDate)
+    };
+
+
+
 
     const handleSubmitReserveCar = async (e) => {
         e.preventDefault();
 
-        const reservationData = {
-            pickupDate,
-            returnDate,
-            car: { id: carId }
-        };
+        // const reservationData = {
+        //     pickupDate,
+        //     returnDate,
+        //     car: { id: carId }
+        // };
+        // alert(reservationData)
 
         try {
             const response = await fetch(`http://localhost:8080/users/${userId}/reservations`, {
@@ -40,7 +56,7 @@ const ReserveCarForm = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(reservationData),
+                body: JSON.stringify({pickupDate, dropDate, car: {id: carId}}),
             });
 
             if (!response.ok) {
@@ -119,11 +135,11 @@ const ReserveCarForm = () => {
                     <div className="date-wrapper">
                         <div className="inputBoxReserve date-picker-group" id="pickupDateDiv">
                             <label htmlFor="pickupDateInput" className="dateInputLabel">Pickup Date:</label>
-                            <input type="date" id="pickupDateInput" className="datePickerReserve" required/>
+                            <input type="date" id="pickupDateInput" className="datePickerReserve" value={pickupDate} onChange={handleDateChangeStart} required/>
                         </div>
                         <div className="inputBoxReserve date-picker-group" id="returnDateDiv">
                             <label htmlFor="returnDateInput" className="dateInputLabel">Return Date:</label>
-                            <input type="date" id="returnDateInput" className="datePickerReserve" required/>
+                            <input type="date" id="returnDateInput" className="datePickerReserve" value={dropDate} onChange={handleDateChangeEnd} required/>
                         </div>
                     </div>
                     <br/>
