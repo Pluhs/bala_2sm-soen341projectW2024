@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import "./BrowseVehicle.css";
 import "../ReserveCar/ReserveCar";
 
 function BrowseVehicle() {
     // State to store the car data
     const [cars, setCars] = useState([]);
+    let navigate = useNavigate()
+
+
+    const handleGetCarIdOnReserve = (id) => {
+
+        navigate('/reserveCar',{state:{id: id} } )
+    }
 
     const displayCars = async () => {
         const signInUrl = `http://localhost:8080/cars/available`;
@@ -39,7 +46,7 @@ function BrowseVehicle() {
     //
     //     ];
 
-        // Update the state with the fetched data
+    // Update the state with the fetched data
     //     setCars(fetchedCars);
     // }, []);
 
@@ -48,13 +55,12 @@ function BrowseVehicle() {
             {}
             {cars.map(car => (
                 <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
-                    <img src={car.image} alt={`${car.name}`}/>
+                    <img src={car.imageUrl} alt={`${car.name}`}/>
                     <h3>{`${car.name} `}</h3>
                     <p className="browseCarInfo">{car.info}</p>
                     <p className="browseCarPrice">${car.price} /day</p>
-                    <Link to={`/ReserveCar/`}>
-                        <button>Reserve</button>
-                    </Link>
+                        <button onClick={() => handleGetCarIdOnReserve(car.id)}>
+                            Reserve</button>
 
                 </div>
             ))}
