@@ -43,3 +43,22 @@ export const updateReservationById = async (userId, reservationId, updatedReserv
         return null;
     }
 };
+export const createReservation = async (userId, reservationData) => {
+    try {
+        const response = await fetch(`http://localhost:8080/users/${userId}/reservations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reservationData),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create reservation');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error creating reservation:', error);
+        return null;
+    }
+};
+
