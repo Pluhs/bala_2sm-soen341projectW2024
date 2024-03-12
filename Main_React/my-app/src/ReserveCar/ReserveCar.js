@@ -1,7 +1,7 @@
 // import React from 'react';
 import React, {useEffect, useState} from 'react';
 import "./ReserveCar.css"
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 // import { Link } from 'react-router-dom';
 import axios from 'axios'; // Import Axios for making HTTP requests
 
@@ -10,14 +10,13 @@ const ReserveCarForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    // const [pickupDate, setPickupDate] = useState(new Date());
-    // const [returnDate, setReturnDate] = useState(new Date());
     const [pickupDate, setPickupDate] = useState('');
     const [dropDate, setReturnDate] = useState('');
 
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [carInfo, setCarInfo] = useState('');
+    const navigate = useNavigate();
 
     const location = useLocation();
 
@@ -25,19 +24,13 @@ const ReserveCarForm = () => {
 
     const userId = localStorage.getItem("userId");
 
-    // alert(carId)
-
     const handleDateChangeStart = (event) => {
         setPickupDate(event.target.value);
-        // console.log(pickupDate)
     };
 
     const handleDateChangeEnd = (event) => {
         setReturnDate(event.target.value);
-        // console.log(returnDate)
     };
-
-
 
 
     const handleSubmitReserveCar = async (e) => {
@@ -56,6 +49,8 @@ const ReserveCarForm = () => {
             if (!response.ok) {
                 throw new Error('Failed to reserve the car');
             }
+            const data = await response.json();
+            navigate('/myProfile');
 
             // Optionally, handle successful reservation
             console.log('Car reserved successfully');
@@ -136,7 +131,6 @@ const ReserveCarForm = () => {
                 </form>
             </div>
         </div>
-
 
     )
         ;
