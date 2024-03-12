@@ -46,12 +46,46 @@ The Car-rental Web Application is designed to simplify the vehicle rental proces
 ## How to Run the Project:
 
 To run the project locally, follow these steps:
-1. Clone the repository from [https://github.com/Pluhs/bala_2sm-soen341projectW2024](https://github.com/Pluhs/bala_2sm-soen341projectW2024)
-2. Navigate to the project directory.
-3. Install dependencies using `npm install` (for Node.js projects) or your respective package manager.
-4. Set up your database according to the provided schema.
-5. Configure environment variables if necessary.
-6. Run the application using `npm start` or the appropriate command.
+
+### Prerequisites
+Before running the project, ensure you have the following installed:
+- **Java JDK 17**: Required for Spring Boot. Download and install from [Oracle JDK](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or [OpenJDK](https://adoptopenjdk.net/).
+- **Maven**: Necessary for building and running Spring Boot applications. Download and install Maven from [Apache Maven Project](https://maven.apache.org/download.cgi).
+- **Node.js**: For running the Node.js parts of the project. Download and install Node.js from [Node.js official website](https://nodejs.org/).
+- **MongoDB**: Follow the installation guide on [MongoDB's official website](https://www.mongodb.com/try/download/community) for database setup.
+
+### Steps to Run
+1. **Clone the Repository**: 
+```
+git clone https://github.com/Pluhs/bala_2sm-soen341projectW2024
+```
+2. **Navigate to the Project Directory**: 
+ ```
+cd bala_2sm-soen341projectW2024
+ ```
+3. **Install Node.js Dependencies**: Run this in the directory where `package.json` is located: 
+ ```
+npm install
+ ```
+4. **Run Maven Build**: This step is crucial for Spring Boot projects. In the root directory of the Spring Boot application (where the `pom.xml` file is located), execute: 
+ ```
+mvn clean install
+ ```
+If Maven is installed correctly, this command will download all the required dependencies specified in your `pom.xml` file and build your project.
+
+5. **Set Up Your Database**: Ensure MongoDB is running and set up according to the provided schema. 
+
+6. **Configure Environment Variables**: Set necessary environment variables, such as database connection strings.
+
+7. **Run the Application**:
+- For Spring Boot (Backend), execute:
+  ```
+  mvn spring-boot:run
+  ```
+- For Node.js (Frontend), in the directory containing the frontend code (this will also launch the website), execute:
+  ```
+  npm start
+  ```
 
 ---
 
