@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -93,7 +94,7 @@ public class AdminControllerTest {
         ObjectId id = new ObjectId();
         when(userService.getUserById(id)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/admin/users/" + id.toHexString())
+        mockMvc.perform(MockMvcRequestBuilders.get("/admin/users/" + id.toHexString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
         verify(userService, times(1)).getUserById(id);
