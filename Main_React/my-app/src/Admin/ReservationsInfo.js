@@ -25,3 +25,21 @@ export const deleteReservationById = async (userId, reservationId) => {
         return false;
     }
 };
+export const updateReservationById = async (userId, reservationId, updatedReservationData) => {
+    try {
+        const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedReservationData),
+        });
+        if (!response.ok) {
+            throw new Error('Error updating reservation');
+        }
+        return await response.json(); // Assuming your server responds with the updated reservation data
+    } catch (error) {
+        console.error('Error updating reservation:', error);
+        return null;
+    }
+};
