@@ -43,12 +43,6 @@ const ReserveCarForm = () => {
     const handleSubmitReserveCar = async (e) => {
         e.preventDefault();
 
-        // const reservationData = {
-        //     pickupDate,
-        //     returnDate,
-        //     car: { id: carId }
-        // };
-        // alert(reservationData)
 
         try {
             const response = await fetch(`http://localhost:8080/users/${userId}/reservations`, {
@@ -89,11 +83,9 @@ const ReserveCarForm = () => {
         displayCarInfo();
     }, []);
 
-    // alert(carInfo.price)
 
     return (
         <div className="reservationForm">
-            {/*<h2>Reserve a Car</h2>*/}
 
             <div action="" className="carInfoWrapper">
 
@@ -121,10 +113,6 @@ const ReserveCarForm = () => {
                 <form onSubmit={handleSubmitReserveCar} className="formWrapper">
 
                     <h1>Reserve This Car Now</h1>
-                    {/*<div className="inputBoxReserve">*/}
-                    {/*    <input type="text" placeholder='Name' required/>*/}
-                    {/*    <i className="fa-solid fa-user"></i>*/}
-                    {/*</div>*/}
                     <select id="locationsDropdownMenuReserve" className="locationsDropdownMenu">
                         <option value="option1">Location 1</option>
                         <option value="option2">Location 2</option>
