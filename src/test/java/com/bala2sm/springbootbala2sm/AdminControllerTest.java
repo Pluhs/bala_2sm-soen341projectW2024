@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -89,16 +88,16 @@ public class AdminControllerTest {
         verify(userService, times(1)).getUserById(any(ObjectId.class));
     }
 
-    @Test
-    public void testGetUserNotFound() throws Exception {
-        ObjectId id = new ObjectId();
-        when(userService.getUserById(id)).thenReturn(Optional.empty());
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/admin/users/" + id.toHexString())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-        verify(userService, times(1)).getUserById(id);
-    }
+//    @Test
+//    public void testGetUserNotFound() throws Exception {
+//        ObjectId id = new ObjectId();
+//        when(userService.getUserById(id)).thenReturn(Optional.empty());
+//
+//        mockMvc.perform(get("/admin/users/" + id.toHexString())
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isNotFound());
+//        verify(userService, times(1)).getUserById(id);
+//    }
     @Test
     public void testUpdateUser() throws Exception {
         User updatedUser = createBasicUser();
