@@ -88,6 +88,10 @@ If Maven is installed correctly, this command will download all the required dep
   ```
 
 ---
+demo video link for sprint 2:
+
+https://drive.google.com/file/d/1AFjW-U4HNFzqbH6ykzYOARBt_YSvvV1M/view?usp=sharing
+---
 
 ## Additional Notes:
 
