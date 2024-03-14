@@ -6,7 +6,8 @@
     height: 100vh;
     text-align: center;
 }
-.ReservationAdmin{
+
+.ReservationAdmin {
     background-color: #BBDCF2;
     padding: 100px 20px;
     height: 100rem;
@@ -16,7 +17,7 @@
 
 }
 
-.yourReservationContainerAdmin{
+.yourReservationContainerAdmin {
     width: auto;
     height: 100px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
@@ -51,14 +52,14 @@
     gap: 40px;
 }
 
-.deleteReservation{
+.deleteReservation {
     width: 150px;
     height: 40px;
     background: #A30021;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
     color: #f5f5f5;
@@ -68,36 +69,34 @@
     margin-right: 20px;
 }
 
-.deleteReservation:hover{
+.deleteReservation:hover {
     background: #8f021f;
 }
 
 
-
-
-.priceAdmin{
+.priceAdmin {
     margin-bottom: auto;
 
 }
 
-.startDateTxtAdmin{
+.startDateTxtAdmin {
 
 }
 
-.endDateTxtAdmin{
+.endDateTxtAdmin {
 
 }
 
-.carInfoTxtAdmin{
+.carInfoTxtAdmin {
     font-size: 25px;
     font-weight: 1000;
 }
 
 
-.yourReservationCarImg{
+.yourReservationCarImg {
     display: block;
-    max-width:20%;
-    max-height:90%;
+    max-width: 20%;
+    max-height: 90%;
     width: auto;
     height: auto;
     position: relative;
@@ -107,14 +106,15 @@
     flex: 0 0 auto;
     margin-right: 10px;
 }
-.editBtn{
+
+.editBtn {
     width: 150px;
     height: 40px;
     background: #052039;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
     color: #f5f5f5;
@@ -123,10 +123,11 @@
     margin-left: 20px;
 }
 
-.editBtn:hover{
+.editBtn:hover {
     background: #03172a;
 }
-.buttonsContainerReservation{
+
+.buttonsContainerReservation {
     display: flex;
     height: 60px;
     width: 50%;
@@ -166,7 +167,7 @@
     font-size: 15px;
     color: #f5f5f5;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 

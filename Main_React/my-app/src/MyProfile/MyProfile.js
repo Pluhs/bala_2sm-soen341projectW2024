@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./MyProfile.css"
 import {fetchUserById} from "../LogInForm/UserInfo";
 import { deleteReservationById,fetchReservationsForUserById } from '../Admin/ReservationsInfo';
+import {Link} from "react-router-dom";
 
 
 const MyProfile = () => {
@@ -10,10 +11,20 @@ const MyProfile = () => {
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
-        fetchUserById(userId).then(result => {
-            setUserReservations(result.reservations);
-        });
+        if (userId) {
+            fetchUserById(userId).then(result => {
+                if (result && result.reservations) {
+                    setUserReservations(result.reservations);
+                } else {
+                    setUserReservations([]);
+                }
+            }).catch(error => {
+                console.error('Error fetching user data:', error);
+                setUserReservations([]);
+            });
+        }
     }, [userId]);
+
 
     const cancelReservation = async (reservationId) => {
         const isSuccess = await deleteReservationById(userId, reservationId);
@@ -29,6 +40,18 @@ const MyProfile = () => {
             alert("Failed to cancel the reservation.");
         }
     };
+    if (!userId) {
+        return (
+            <div className="sorryContainer">
+                <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized" />
+                <h3 className="sorryMsg">We are Sorry...</h3>
+                <p className="sorryText">Access is denied due to the absence of a valid login session.</p>
+                <Link to={`/login`}>
+                    <button className="sorryBtn">Go Back To Login Page</button>
+                </Link>
+            </div>
+        );
+    }
 
 
     return (
