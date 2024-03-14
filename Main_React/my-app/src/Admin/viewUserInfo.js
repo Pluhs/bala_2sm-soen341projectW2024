@@ -6,7 +6,7 @@ import {
     updateReservationById,
     createReservation,
     fetchCars
-} from './ReservationsInfo'; // Assume deleteReservationById is exported
+} from './ReservationsInfo';
 import {fetchUserById} from '../LogInForm/UserInfo'
 import "./viewUserInfo.css";
 
@@ -22,13 +22,13 @@ function ViewUserInfo() {
     const [newReservation, setNewReservation] = useState({
         pickupDate: '',
         dropDate: '',
-        car: '', // Store the selected car's ID
+        car: '',
     });
 
 
     useEffect(() => {
         const fetchAvailableCars = async () => {
-            const fetchedCars = await fetchCars(); // Implement this function based on your API
+            const fetchedCars = await fetchCars();
             setCars(fetchedCars);
         };
 
@@ -44,12 +44,12 @@ function ViewUserInfo() {
         const reservationData = {
             pickupDate: new Date(newReservation.pickupDate).toISOString(),
             dropDate: new Date(newReservation.dropDate).toISOString(),
-            car: newReservation.car,
+            car: {id: newReservation.car},
         };
         try {
             const createdReservation = await createReservation(userId, reservationData);
             if (createdReservation && createdReservation.id) {
-                setReservations([...reservations, createdReservation]);
+                await fetchAndSetReservations();
                 setShowCreateReservationForm(false);
                 setNewReservation({pickupDate: '', dropDate: '', car: ''});
             } else {
@@ -72,7 +72,6 @@ function ViewUserInfo() {
 
         const isSuccess = await updateReservationById(userId, reservation.id, updatedReservation);
         if (isSuccess) {
-            // This assumes the isSuccess variable actually reflects the successfully updated reservation data from the backend
             const updatedReservations = reservations.map(res =>
                 res.id === reservation.id ? {...res, ...isSuccess} : res
             );
@@ -98,13 +97,22 @@ function ViewUserInfo() {
     }, [userId]);
 
     const cancelReservation = async (reservationId) => {
-        const isSuccess = await deleteReservationById(userId, reservationId); // This function needs to be implemented
+        const isSuccess = await deleteReservationById(userId, reservationId);
         if (isSuccess) {
             setReservations(reservations.filter(reservation => reservation.id !== reservationId));
         } else {
             alert("Failed to cancel the reservation.");
         }
     };
+    const fetchAndSetReservations = async () => {
+        if (!userId) return;
+        const fetchedReservations = await fetchReservationsForUserById(userId);
+        setReservations(fetchedReservations);
+    };
+    useEffect(() => {
+        fetchAndSetReservations();
+    }, [userId]); // This will run when the component mounts and anytime userId changes
+
 
     if (!user || !reservations) return <div className="centered-container">Loading...</div>;
 
@@ -123,10 +131,13 @@ function ViewUserInfo() {
                             onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
                         />
                     </div>
+                    <p className="carSelectText">Available Cars:</p>
                     <select
+                        className="carSelect"
                         value={newReservation.car}
                         onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
                     >
+                        <option value="">-- Select --</option>
                         {cars.map(car => (
                             <option key={car.id} value={car.id}>{car.name}</option>
                         ))}
