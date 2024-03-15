@@ -11,7 +11,7 @@ function Admin() {
 
     useEffect(() => {
         const checkUserRole = async () => {
-            const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
+            const userId = localStorage.getItem('userId');
             if (userId) {
                 const user = await fetchUserById(userId);
                 setUserRole(user.role);
@@ -22,7 +22,6 @@ function Admin() {
         return () => {
         };
     }, []);
-
 
 
     if (userRole !== 'ADMIN') {
@@ -37,11 +36,7 @@ function Admin() {
 
         </div>;
 
-        // return <div className="warningMsgAdmin">Access Denied. Please log in as an admin to view this page</div>;
-
-
     } else {
-
 
         return (
             <div className="adminMainContainer">
@@ -56,11 +51,6 @@ function Admin() {
 
                     </a>
 
-                    {/*<div className="imageTextDivLeft">*/}
-                    {/*    <h2>Your text content here</h2>*/}
-                    {/*</div>*/}
-
-
                 </div>
 
 
@@ -70,16 +60,8 @@ function Admin() {
                         <div className="imageTextDivRight">
                             <h2>Show All Registered Users</h2>
                         </div>
-
                     </a>
-
-                    {/*<div className="imageTextDivRight">*/}
-                    {/*    <h2>KJshgHGLHSGLHSGDOHSGh</h2>*/}
-                    {/*</div>*/}
-
-
                 </div>
-
             </div>
         );
     }
