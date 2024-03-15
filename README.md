@@ -52,7 +52,7 @@ Before running the project, ensure you have the following installed:
 - **Java JDK 17**: Required for Spring Boot. Download and install from [Oracle JDK](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or [OpenJDK](https://adoptopenjdk.net/).
 - **Maven**: Necessary for building and running Spring Boot applications. Download and install Maven from [Apache Maven Project](https://maven.apache.org/download.cgi).
 - **Node.js**: For running the Node.js parts of the project. Download and install Node.js from [Node.js official website](https://nodejs.org/).
-- **MongoDB**: Follow the installation guide on [MongoDB's official website](https://www.mongodb.com/try/download/community) for database setup.
+- **MongoDB**: Download MongoDB Compass GUI from [MongoDB's official website](https://www.mongodb.com/try/download/compass) for database setup. Please Enter the following URL to access the database: `mongodb+srv://domat:MGHT1fguDhkjV3ru@cluster0.orye76q.mongodb.net/`.
 
 ### Steps to Run
 1. **Clone the Repository**: 
@@ -87,6 +87,10 @@ If Maven is installed correctly, this command will download all the required dep
   npm start
   ```
 
+---
+demo video link for sprint 2:
+
+https://drive.google.com/file/d/1AFjW-U4HNFzqbH6ykzYOARBt_YSvvV1M/view?usp=sharing
 ---
 
 ## Additional Notes:
