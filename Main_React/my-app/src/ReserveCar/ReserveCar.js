@@ -1,9 +1,6 @@
-// import React from 'react';
 import React, {useEffect, useState} from 'react';
 import "./ReserveCar.css"
 import {useLocation, useNavigate} from "react-router-dom";
-// import { Link } from 'react-router-dom';
-import axios from 'axios'; // Import Axios for making HTTP requests
 
 
 const ReserveCarForm = () => {
@@ -52,7 +49,6 @@ const ReserveCarForm = () => {
             const data = await response.json();
             navigate('/myProfile');
 
-            // Optionally, handle successful reservation
             console.log('Car reserved successfully');
         } catch (err) {
             alert("Failed to reserve the car");
@@ -60,12 +56,11 @@ const ReserveCarForm = () => {
     };
 
 
-
     const displayCarInfo = async () => {
         const signInUrl = `http://localhost:8080/cars/${carId}`;
 
         try {
-            const response = await fetch(signInUrl, { method: "GET" });
+            const response = await fetch(signInUrl, {method: "GET"});
 
             const carsData = await response.json();
             setCarInfo(carsData);
@@ -90,8 +85,6 @@ const ReserveCarForm = () => {
 
                 <div className='carInfoContainer'>
                     <h2>{carInfo.price}$/day </h2>
-                    {/*<br/>*/}
-                    {/*<b>MORE INFO ABOUT THE VEHICLE</b>*/}
 
                 </div>
 
@@ -118,11 +111,13 @@ const ReserveCarForm = () => {
                     <div className="date-wrapper">
                         <div className="inputBoxReserve date-picker-group" id="pickupDateDiv">
                             <label htmlFor="pickupDateInput" className="dateInputLabel">Pickup Date:</label>
-                            <input type="date" id="pickupDateInput" className="datePickerReserve" value={pickupDate} onChange={handleDateChangeStart} required/>
+                            <input type="date" id="pickupDateInput" className="datePickerReserve" value={pickupDate}
+                                   onChange={handleDateChangeStart} required/>
                         </div>
                         <div className="inputBoxReserve date-picker-group" id="returnDateDiv">
                             <label htmlFor="returnDateInput" className="dateInputLabel">Return Date:</label>
-                            <input type="date" id="returnDateInput" className="datePickerReserve" value={dropDate} onChange={handleDateChangeEnd} required/>
+                            <input type="date" id="returnDateInput" className="datePickerReserve" value={dropDate}
+                                   onChange={handleDateChangeEnd} required/>
                         </div>
                     </div>
                     <br/>

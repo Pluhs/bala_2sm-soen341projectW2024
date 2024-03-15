@@ -6,7 +6,8 @@
     height: 100vh;
     text-align: center;
 }
-.ReservationAdmin{
+
+.ReservationAdmin {
     background-color: #BBDCF2;
     padding: 100px 20px;
     height: 100rem;
@@ -16,7 +17,7 @@
 
 }
 
-.yourReservationContainerAdmin{
+.yourReservationContainerAdmin {
     width: auto;
     height: 100px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
@@ -51,14 +52,14 @@
     gap: 40px;
 }
 
-.deleteReservation{
+.deleteReservation {
     width: 150px;
     height: 40px;
     background: #A30021;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
     color: #f5f5f5;
@@ -68,36 +69,34 @@
     margin-right: 20px;
 }
 
-.deleteReservation:hover{
+.deleteReservation:hover {
     background: #8f021f;
 }
 
 
-
-
-.priceAdmin{
+.priceAdmin {
     margin-bottom: auto;
 
 }
 
-.startDateTxtAdmin{
+.startDateTxtAdmin {
 
 }
 
-.endDateTxtAdmin{
+.endDateTxtAdmin {
 
 }
 
-.carInfoTxtAdmin{
+.carInfoTxtAdmin {
     font-size: 25px;
     font-weight: 1000;
 }
 
 
-.yourReservationCarImg{
+.yourReservationCarImg {
     display: block;
-    max-width:20%;
-    max-height:90%;
+    max-width: 20%;
+    max-height: 90%;
     width: auto;
     height: auto;
     position: relative;
@@ -107,14 +106,15 @@
     flex: 0 0 auto;
     margin-right: 10px;
 }
-.editBtn{
+
+.editBtn {
     width: 150px;
     height: 40px;
     background: #052039;
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 15px;
     color: #f5f5f5;
@@ -123,10 +123,11 @@
     margin-left: 20px;
 }
 
-.editBtn:hover{
+.editBtn:hover {
     background: #03172a;
 }
-.buttonsContainerReservation{
+
+.buttonsContainerReservation {
     display: flex;
     height: 60px;
     width: 50%;
@@ -136,13 +137,15 @@
 
 .editReservationForm {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
     background-color: rgba(225, 221, 221, 0.25);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
     margin-top: 20px;
+
 }
 
 
@@ -161,12 +164,12 @@
     padding: 10px;
     margin-top: 10px;
     font-weight: bold;
-    width: 150px;
-    height: 40px;
+    width: 160px;
+    height: 50px;
     font-size: 15px;
     color: #f5f5f5;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -189,7 +192,29 @@
 
 .formButtonsContainerReservation {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    padding-right: 7px;
+}
+
+.editReservationForm .carSelect {
+    width: auto;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 2px solid #052038;
+    margin-bottom: 5px;
+    background-color: white;
+    color: #052038;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.editReservationForm .carSelect:focus {
+    border-color: #052039;
+}
+
+.carSelectText {
+    font-weight: bold;
 }

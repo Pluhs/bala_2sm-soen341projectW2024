@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { fetchReservationsForUserById, deleteReservationById, updateReservationById,createReservation} from './ReservationsInfo'; // Assume deleteReservationById is exported
+import React, {useEffect, useState} from 'react';
+import {useLocation} from 'react-router-dom';
+import {
+    fetchReservationsForUserById,
+    deleteReservationById,
+    updateReservationById,
+    createReservation,
+    fetchCars
+} from './ReservationsInfo';
 import {fetchUserById} from '../LogInForm/UserInfo'
 import "./viewUserInfo.css";
-
 
 function ViewUserInfo() {
     const location = useLocation();
@@ -17,26 +22,13 @@ function ViewUserInfo() {
     const [newReservation, setNewReservation] = useState({
         pickupDate: '',
         dropDate: '',
-        car: '', // Store the selected car's ID
+        car: '',
     });
 
-    const fetchCars = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/cars');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const cars = await response.json();
-            return cars;
-        } catch (error) {
-            console.error('There has been a problem with your fetch operation:', error);
-            return [];
-        }
-    };
 
     useEffect(() => {
         const fetchAvailableCars = async () => {
-            const fetchedCars = await fetchCars(); // Implement this function based on your API
+            const fetchedCars = await fetchCars();
             setCars(fetchedCars);
         };
 
@@ -52,14 +44,14 @@ function ViewUserInfo() {
         const reservationData = {
             pickupDate: new Date(newReservation.pickupDate).toISOString(),
             dropDate: new Date(newReservation.dropDate).toISOString(),
-            car: newReservation.car,
+            car: {id: newReservation.car},
         };
         try {
             const createdReservation = await createReservation(userId, reservationData);
             if (createdReservation && createdReservation.id) {
-                setReservations([...reservations, createdReservation]);
+                await fetchAndSetReservations();
                 setShowCreateReservationForm(false);
-                setNewReservation({ pickupDate: '', dropDate: '', car: '' });
+                setNewReservation({pickupDate: '', dropDate: '', car: ''});
             } else {
                 alert("Failed to create the reservation.");
             }
@@ -80,7 +72,6 @@ function ViewUserInfo() {
 
         const isSuccess = await updateReservationById(userId, reservation.id, updatedReservation);
         if (isSuccess) {
-            // This assumes the isSuccess variable actually reflects the successfully updated reservation data from the backend
             const updatedReservations = reservations.map(res =>
                 res.id === reservation.id ? {...res, ...isSuccess} : res
             );
@@ -106,19 +97,30 @@ function ViewUserInfo() {
     }, [userId]);
 
     const cancelReservation = async (reservationId) => {
-        const isSuccess = await deleteReservationById(userId, reservationId); // This function needs to be implemented
+        const isSuccess = await deleteReservationById(userId, reservationId);
         if (isSuccess) {
             setReservations(reservations.filter(reservation => reservation.id !== reservationId));
         } else {
             alert("Failed to cancel the reservation.");
         }
     };
+    const fetchAndSetReservations = async () => {
+        if (!userId) return;
+        const fetchedReservations = await fetchReservationsForUserById(userId);
+        setReservations(fetchedReservations);
+    };
+    useEffect(() => {
+        fetchAndSetReservations();
+    }, [userId]); // This will run when the component mounts and anytime userId changes
+
 
     if (!user || !reservations) return <div className="centered-container">Loading...</div>;
 
     return (
         <div className="ReservationAdmin">
-            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus" onClick={() => setShowCreateReservationForm(!showCreateReservationForm)}></i></h1>
+            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus"
+                                                               onClick={() => setShowCreateReservationForm(!showCreateReservationForm)}></i>
+            </h1>
             {showCreateReservationForm && (
                 <form onSubmit={handleSubmitNewReservation} className="editReservationForm">
                     <div className="formInputContainer">
@@ -129,10 +131,13 @@ function ViewUserInfo() {
                             onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
                         />
                     </div>
+                    <p className="carSelectText">Available Cars:</p>
                     <select
+                        className="carSelect"
                         value={newReservation.car}
                         onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
                     >
+                        <option value="">-- Select --</option>
                         {cars.map(car => (
                             <option key={car.id} value={car.id}>{car.name}</option>
                         ))}
@@ -158,27 +163,28 @@ function ViewUserInfo() {
                 editingReservation && (
                     <form onSubmit={(e) => handleSaveEdit(e, editingReservation)} className="editReservationForm">
                         <div className="static-info-container">
-                        <label>Pickup Date:</label>
-                        <input
-                            type="date"
-                            value={editingReservation.pickupDate.split('T')[0]} // Assuming the date comes in ISO format
-                            onChange={(e) => setEditingReservation({...editingReservation, pickupDate: e.target.value})}
-                        />
-                    </div>
-                    <div className="static-info-container">
-                        <label>Drop Date:</label>
-                        <input
-                            type="date"
-                            value={editingReservation.dropDate.split('T')[0]} // Assuming the date comes in ISO format
-                            onChange={(e) => setEditingReservation({...editingReservation, dropDate: e.target.value})}
-                        />
-                    </div>
-                    <div className="formButtonsContainerReservation">
-                        <button type="submit" className="editBtn">Save Changes</button>
-                        <button type="button" onClick={() => setEditingReservation(null)} className="cancelBtn">Cancel</button>
-                    </div>
-                </form>
-            )}
+                            <label>Pickup Date:</label>
+                            <input
+                                type="date"
+                                value={editingReservation.pickupDate.split('T')[0]} // Assuming the date comes in ISO format
+                                onChange={(e) => setEditingReservation({...editingReservation, pickupDate: e.target.value})}
+                            />
+                        </div>
+                        <div className="static-info-container">
+                            <label>Drop Date:</label>
+                            <input
+                                type="date"
+                                value={editingReservation.dropDate.split('T')[0]} // Assuming the date comes in ISO format
+                                onChange={(e) => setEditingReservation({...editingReservation, dropDate: e.target.value})}
+                            />
+                        </div>
+                        <div className="formButtonsContainerReservation">
+                            <button type="submit" className="editBtn">Save Changes</button>
+                            <button type="button" onClick={() => setEditingReservation(null)} className="cancelBtn">Cancel
+                            </button>
+                        </div>
+                    </form>
+                )}
 
 
             {reservations.length > 0 ? (
