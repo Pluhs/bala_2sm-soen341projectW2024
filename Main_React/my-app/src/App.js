@@ -12,6 +12,7 @@ import Admin from "./Admin/Admin.js";
 import Vehicles from "./Admin/Vehicles.js";
 import Users from "./Admin/Users.js";
 import ViewUserInfo from "./Admin/viewUserInfo";
+import Branch from "./FindBranch/FindBranch";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                     <Route path="/vehicles" element={<Vehicles/>} />
                     <Route path="/viewUser" element={<ViewUserInfo />} />
                     <Route path="/users" element={<Users/>} />
+                    <Route path="/branch" element={<Branch/>} />
                 </Routes>
             </div>
         </Router>

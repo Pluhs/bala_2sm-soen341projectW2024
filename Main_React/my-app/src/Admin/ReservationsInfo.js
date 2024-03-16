@@ -61,4 +61,17 @@ export const createReservation = async (userId, reservationData) => {
         return null;
     }
 };
+export const fetchCars = async () => {
+    try {
+        const response = await fetch('http://localhost:8080/cars');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const cars = await response.json();
+        return cars;
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+        return [];
+    }
+};
 

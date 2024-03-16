@@ -34,7 +34,7 @@ function Users() {
         const isSuccess = await createUser(newUser);
         if (isSuccess) {
             setShowCreateForm(false);
-            setNewUser({ name: '', email: '', password: '' }); // Reset form fields
+            setNewUser({ name: '', email: '', password: '' });
             await loadUsers(); // Refresh the users list
         } else {
             alert("Failed to create the user.");
@@ -53,7 +53,7 @@ function Users() {
         e.preventDefault();
         await updateUser(editingUser.id, editingUser);
         await loadUsers();
-        setEditingUser(null); // Hide the edit form after saving
+        setEditingUser(null);
     };
 
 
