@@ -17,7 +17,6 @@ public class UserService {
     @Autowired
     private ReservationRepository reservationRepository;
     @Autowired
-
     CarService carService = new CarService();
 
     public User createUser(User user) {
@@ -159,8 +158,5 @@ public class UserService {
 
         return savedReservation;
     }
-
-
-
 
 }

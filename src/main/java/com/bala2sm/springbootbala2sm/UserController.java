@@ -22,6 +22,8 @@ public class UserController {
     @Autowired
     private CarService carService;
     @Autowired
+    private MockBankService mockBankService;
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @GetMapping
@@ -184,6 +186,24 @@ public class UserController {
             return ResponseEntity.ok("No reservations found");
         }
         return ResponseEntity.ok(reservations);
+    }
+    @PostMapping("/{userId}/pay")
+    public ResponseEntity<?> makePayment(@PathVariable ObjectId userId, @RequestBody PaymentDetails paymentDetails) {
+        boolean paymentAuthorized = mockBankService.authorizePayment(paymentDetails.getCreditCardNumber(), paymentDetails.getAmount());
+        if (paymentAuthorized) {
+            return ResponseEntity.ok("Payment successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Payment authorization failed");
+        }
+    }
+    @PostMapping("/{userId}/refund")
+    public ResponseEntity<?> processRefund(@PathVariable ObjectId userId, @RequestBody PaymentDetails paymentDetails) {
+        boolean refundProcessed = mockBankService.processRefund(paymentDetails.getCreditCardNumber(), paymentDetails.getAmount());
+        if (refundProcessed) {
+            return ResponseEntity.ok("Refund processed successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Refund processing failed");
+        }
     }
 
 }
