@@ -9,7 +9,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,7 +36,8 @@ public class UserControllerTest {
 
     @Mock
     private CarService carService;
-
+    @Mock
+    private MockBankService mockBankService;
     @Mock
     private ReservationRepository reservationRepository;
 
@@ -122,6 +126,29 @@ public class UserControllerTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    @Test
+    void testMakePayment() {
+        ObjectId userId = new ObjectId();
+        PaymentDetails paymentDetails = new PaymentDetails("1234567890123456", 100.0);
+
+        when(mockBankService.authorizePayment(anyString(), anyDouble())).thenReturn(true);
+
+        ResponseEntity<?> response = userController.makePayment(userId, paymentDetails);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode(), "Payment should be successful");
+    }
+
+    @Test
+    void testProcessRefund() {
+        ObjectId userId = new ObjectId();
+        PaymentDetails paymentDetails = new PaymentDetails("1234567890123456", 100.0);
+
+        when(mockBankService.processRefund(anyString(), anyDouble())).thenReturn(true);
+
+        ResponseEntity<?> response = userController.processRefund(userId, paymentDetails);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode(), "Refund should be processed successfully");
     }
 }
 

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -49,5 +50,11 @@ public class CarController {
     public ResponseEntity<?> deleteCar(@PathVariable ObjectId id) {
         carService.deleteCar(id);
         return ResponseEntity.ok().build();
+    }
+    @PutMapping("/{id}/inspect")
+    public ResponseEntity<Car> inspectCar(@PathVariable ObjectId id, @RequestBody ArrayList<String> damages) {
+        return carService.inspectCar(id, damages)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

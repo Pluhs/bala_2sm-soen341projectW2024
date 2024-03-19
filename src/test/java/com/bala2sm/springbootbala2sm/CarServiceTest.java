@@ -8,6 +8,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +31,17 @@ public class CarServiceTest {
         String info = "A standard test car";
         String imageUrl = "http://example.com/car.jpg";
         boolean available = true;
+        ArrayList<String> damages = new ArrayList<>();
 
-        Car car = new Car(id, name, price, info, imageUrl);
+        Car car = new Car();
+        car.setId(id);
+        car.setName(name);
+        car.setPrice(price);
+        car.setInfo(info);
+        car.setImageUrl(imageUrl);
         car.setAvailable(available);
+        car.setDamages(damages);
+
         return car;
     }
 
