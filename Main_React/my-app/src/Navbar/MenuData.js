@@ -12,7 +12,7 @@ export const MenuData = [
         icon:"fa-solid fa-car",
     }, {
         title: "Find a Branch",
-        url: "#",
+        url: "/branch",
         cName:"navlinks",
         icon:"fa-solid fa-location-dot",
     }, {
