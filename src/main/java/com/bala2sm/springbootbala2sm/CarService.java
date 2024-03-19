@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,6 +41,7 @@ public class CarService {
                     car.setInfo(carDetails.getInfo());
                     car.setImageUrl(carDetails.getImageUrl());
                     car.setAvailable(carDetails.isAvailable());
+                    car.setDamages(carDetails.getDamages());
                     return carRepository.save(car);
                 })
                 .orElseGet(() -> {
@@ -49,5 +51,12 @@ public class CarService {
     }
     public void deleteCar(ObjectId id) {
         carRepository.deleteById(id);
+    }
+    public Optional<Car> inspectCar(ObjectId id, ArrayList<String> damages) {
+        return carRepository.findById(id)
+                .map(car -> {
+                    car.setDamages(damages);
+                    return carRepository.save(car);
+                });
     }
 }

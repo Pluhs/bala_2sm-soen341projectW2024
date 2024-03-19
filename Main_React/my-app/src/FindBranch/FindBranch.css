@@ -1,0 +1,101 @@
+.branchFinder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.searchForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.searchForm input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #052038;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.searchForm button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #052039;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchForm button:hover {
+    background-color: #03172a;
+}
+
+.branchResults ul {
+    list-style: none;
+    padding: 0;
+}
+
+.branchResults li {
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.searchInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+}
+.searchInputWrapper .searchInput:focus {
+    border-color: #03172a;
+    box-shadow: 0 0 0 3px #052038;
+    outline: none;
+}
+
+.searchInput{
+    width: 100%;
+    padding: 12px 40px 12px 35px;
+    border: 3px solid #052038 !important;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.searchIcon {
+    position: absolute;
+    right: 10px;
+    color: #052038;
+}
+
+.searchButton {
+    padding: 10px 20px;
+    background-color: #052039;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.searchButton:hover {
+    background-color: #03172a;
+}
+
+.branchList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.branchItem {
+    margin-bottom: 10px;
+}
