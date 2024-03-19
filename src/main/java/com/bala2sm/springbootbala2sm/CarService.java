@@ -59,4 +59,25 @@ public class CarService {
                     return carRepository.save(car);
                 });
     }
+
+    public List<Car> getCarsByName(String name) {
+        return carRepository.findByName(name);
+    }
+
+    public List<Car> getCarsByYear(int year) {
+        return carRepository.findByYear(year);
+    }
+
+    public List<Car> getCarsByType(String type) {
+        return carRepository.findByType(type);
+    }
+
+    public List<Car> getCarsByColor(String color) {
+        return carRepository.findByColor(color);
+    }
+
+    public List<Car> getCarsByPriceRange(Double minPrice, Double maxPrice) {
+        return carRepository.findByPriceBetween(minPrice, maxPrice);
+    }
+
 }
