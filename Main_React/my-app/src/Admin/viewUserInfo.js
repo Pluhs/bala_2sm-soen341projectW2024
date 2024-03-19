@@ -191,7 +191,7 @@ function ViewUserInfo() {
                 reservations.map(reservation => (
                     <div key={reservation.id} className="yourReservationContainerAdmin">
                         <div className="leftContentAdmin">
-                            <b className="carInfoTxtAdmin">{reservation.car?.name}</b>
+                            <b className="carInfoTxtAdmin">{reservation.car?.name} {reservation.car?.model} {reservation.car?.year}</b>
                             <b className="startDateTxtAdmin">Pickup Date: {reservation.pickupDate}</b>
                         </div>
                         <div className="rightContent">

@@ -232,12 +232,12 @@ function Vehicles() {
 
                             <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
                             <div className="adminTopContent">
-                                <b className="adminCarName">{car.name} </b>
+                                <b className="adminCarName">{car.name} {car.model} {car.year} </b>
 
 
                             </div>
-                            <p className="adminVehicleInfo">{car.info}</p>
-
+                            {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
+                            <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
 
 
                             <div className="adminBottomContent">
