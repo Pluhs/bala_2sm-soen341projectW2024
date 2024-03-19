@@ -20,9 +20,5 @@ public class BranchService {
         return branchRepository.findById(id).orElse(null);
     }
 
-    public List<Branch> findByAddressContaining(String address) {
-        return branchRepository.findByAddressContaining(address);
-    }
-
 }
 
