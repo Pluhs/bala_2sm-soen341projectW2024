@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
+import java.util.ArrayList;
+
 @Document(collection = "cars")
 public class Car {
 
@@ -19,18 +21,19 @@ public class Car {
 	private String info;
 	private String imageUrl;
 	private boolean available;
-
+	private ArrayList<String> damages;
 	public Car() {
 		super();
 	}
 
-	public Car(ObjectId id, String name, Double price, String info, String imageUrl) {
+	public Car(ObjectId id, String name, Double price, String info, String imageUrl, ArrayList<String> damages) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.info = info;
 		this.imageUrl = imageUrl;
+		this.damages = damages;
 	}
 	
 	
@@ -55,7 +58,7 @@ public class Car {
 	}
 
 	public void setPrice(Double price) {
-		if (price >= 0) { // Validation for positive price
+		if (price >= 0) {
 			this.price = price;
 		}
 	}
@@ -82,5 +85,12 @@ public class Car {
 
 	public void setAvailable(boolean available) {
 		this.available = available;
+	}
+	public ArrayList<String> getDamages() {
+		return damages;
+	}
+
+	public void setDamages(ArrayList<String> damages) {
+		this.damages = damages;
 	}
 }

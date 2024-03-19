@@ -11,15 +11,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -126,5 +130,21 @@ public class CarControllerTest {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    @Test
+    void testInspectCar() {
+        ObjectId id = new ObjectId();
+        ArrayList<String> damages = new ArrayList<>();
+        damages.add("Scratch on door");
+        Car expectedCar = new Car();
+        expectedCar.setId(id);
+        expectedCar.setDamages(damages);
+
+        when(carService.inspectCar(any(ObjectId.class), any(ArrayList.class))).thenReturn(Optional.of(expectedCar));
+        ResponseEntity<Car> response = carController.inspectCar(id, damages);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode(), "Status code should be OK");
+        assertEquals(expectedCar, response.getBody(), "Response body should match expected car");
+        verify(carService).inspectCar(eq(id), eq(damages));
     }
 }
