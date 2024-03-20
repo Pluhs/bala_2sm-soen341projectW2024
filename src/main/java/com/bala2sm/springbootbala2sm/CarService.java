@@ -48,6 +48,7 @@ public class CarService {
                     car.setImageUrl(carDetails.getImageUrl());
                     car.setAvailable(carDetails.isAvailable());
                     car.setDamages(carDetails.getDamages());
+                    car.setMilage(carDetails.getMilage());
                     return carRepository.save(car);
                 })
                 .orElseGet(() -> {
