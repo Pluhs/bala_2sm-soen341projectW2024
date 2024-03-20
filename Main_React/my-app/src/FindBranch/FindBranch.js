@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import "./FindBranch.css";
-import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
-import { fetchAllBranches } from "./BranchInfo";
+import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';import {fetchAllBranches} from "./BranchInfo";
+import {Link} from 'react-router-dom';
+
 
 function Branch(props) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,20 +15,15 @@ function Branch(props) {
             const fetchedBranches = await fetchAllBranches();
             console.log("Fetched Branches: ", fetchedBranches);
             setAllBranches(fetchedBranches);
+            // setBranches(fetchedBranches);
         };
         fetchBranches();
     }, []);
 
-    const mapStyles = {
-        width: '65%',
-        height: '100%',
-    };
-
     const handleSearch = (e) => {
         e.preventDefault();
-        setSearchPerformed(true); // Update search performed state
+        setSearchPerformed(true);
         if (!searchTerm.trim()) {
-            // If search term is empty or only contains whitespace, show all branches
             setBranches(allBranches);
         } else {
             const filteredBranches = allBranches.filter(branch =>
@@ -36,6 +32,7 @@ function Branch(props) {
             setBranches(filteredBranches);
         }
     };
+
     return (
         <div className="container">
             <div className="sidebar">
@@ -45,10 +42,7 @@ function Branch(props) {
                             type="text"
                             className="searchInput"
                             value={searchTerm}
-                            onChange={(e) => {
-                                console.log("Input Changed: ", e.target.value); // Debugging
-                                setSearchTerm(e.target.value);
-                            }}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Enter your address..."
                         />
                         <button type="submit" className="searchButton">
@@ -56,12 +50,23 @@ function Branch(props) {
                         </button>
                     </div>
                 </form>
-                {branches.length > 0 && (
+                {(searchPerformed && branches.length > 0) && (
                     <div className="branchResults">
                         <ul className="branchList">
                             {branches.map(branch => (
                                 <li key={branch.id} className="branchItem">
-                                    {branch.name} - {branch.address}
+                                    <div className="branchListContainer">
+                                        <div>
+                                            <Link to={`/branch/${branch.id}`} className="branchIconLink">
+                                                <button type="submit" className="searchButton">
+                                                    <i className="fa-solid fa-info"></i>
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            {branch.name} - {branch.address}
+                                        </div>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -75,7 +80,7 @@ function Branch(props) {
                     style={{width: '100%', height: '100%'}}
                     initialCenter={{lat: 45.5019, lng: -73.5674}}
                 >
-                    {branches.map(branch => (
+                    {allBranches.map(branch => (
                         <Marker key={branch.id} position={{lat: branch.lat, lng: branch.lng}}/>
                     ))}
                 </Map>
@@ -83,6 +88,7 @@ function Branch(props) {
         </div>
     );
 }
+
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyB-6hJsNEB1YOAfsE8CaTqUJvxGE57wYjM'
 })(Branch);
