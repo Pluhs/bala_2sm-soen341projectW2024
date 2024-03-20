@@ -87,4 +87,15 @@ public class CarController {
         List<Car> cars = carService.getCarsByPriceRange(minPrice, maxPrice);
         return ResponseEntity.ok(cars);
     }
+    @GetMapping("/branch/{branchId}")
+    public ResponseEntity<List<Car>> getCarsByBranchId(@PathVariable String branchId) {
+        try {
+            ObjectId id = new ObjectId(branchId);
+            List<Car> cars = carService.getCarsByBranchId(id);
+            return ResponseEntity.ok(cars);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
