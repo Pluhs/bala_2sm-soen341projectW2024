@@ -219,14 +219,19 @@ public class UserController {
         }
     }
     
-    @PostMapping( "/{userId}/mailConfirmation")
-    public ResponseEntity<?> sendConfirmationMail(@PathVariable ObjectId userId) throws Exception
+    @PostMapping( "/{userId}/mailConfirmation/{reservationId}")
+    public ResponseEntity<?> sendConfirmationMail(@PathVariable ObjectId userId,@PathVariable ObjectId reservationId) throws Exception
     {
     	Optional<User> user = userService.getUserById(userId);
         if (user.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
-        
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new Exception("Reservation not found"));
+    	
+    	Car car = carService.getCarById(reservation.getCar().getId())
+                .orElseThrow(() -> new Exception("Car not found"));
+    	
     	try {
     		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", "This email is sent to confirm that you reserved a car with Bala2sm");//change body
     		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
@@ -235,24 +240,37 @@ public class UserController {
     		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     	}
     }
-    @PostMapping( "/mailContract/{reservationId}")
-    public ResponseEntity<?> sendMail(@PathVariable ObjectId reservationId, @RequestBody Renter renter) throws Exception {
+    @PostMapping( "/{userId}/mailContract/{reservationId}")
+    public ResponseEntity<?> sendMail(@PathVariable ObjectId userId, @PathVariable ObjectId reservationId) throws Exception {
     	
     	
     	Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new Exception("Reservation not found"));
+    	Car car = carService.getCarById(reservation.getCar().getId())
+                .orElseThrow(() -> new Exception("Car not found"));
+    	Optional<User> user = userService.getUserById(userId);
+        if (user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        
+        
+    	String renter="Name: " + user.get().getName() + "\n" +
+		           "Address: " + reservation.getUserAddress()+ "\n" +
+		           "Contact Number: " + reservation.getPhoneNumber() + "\n" +
+		           "Email Address: " +user.get().getEmail()+ "\n" +
+		           "Driver's License Number: " + reservation.getDriverLicense() + "\n";
+    	
     	String rental=
     			"Rental Start Date: "+ reservation.getPickupDate()+"\n"
 				+ "Rental End Date: "+reservation.getDropDate()+"\n"
-				+ "Pick-up Location: "+"\n"
-				+ "Drop-off Location: "+"\n"
-				+ "Rental Period: "+"\n"
-				+ "Mileage Limit (if applicable): \n"
-				+ "Rental Rate: 500$ \n"
-				+ "Additional Services (if any): \n";
+				+ "Pick-up Location: "+car.getBranch().getAddress()+"\n"
+				+ "Drop-off Location: "+car.getBranch().getAddress()+"\n"
+				+ "Rental Period: "+reservation.getPickupDate().until(reservation.getDropDate())+"\n"
+				+ "Mileage Limit (if applicable): "+car.getMilage()+" \n"
+				+ "Rental Rate: "+car.getPrice()+" \n"
+				+ "Additional Services (if any): cleaning (price : "+reservation.getCleaningPrice()+") and insurance (price: "+reservation.getInsurancePrice()+")+\n";
     	
-    	Car car = carService.getCarById(reservation.getCar().getId())
-                .orElseThrow(() -> new Exception("Car not found"));
+    	
     	String carInfo= 
     			"Make: "+car.getName()+"\n"
 				+ "Model: "+car.getModel()+"\n"
@@ -262,13 +280,13 @@ public class UserController {
 				+ "Color: "+car.getColor()+"\n";
     	String mail="Car Rental Agreement\n"
 				+ "\n"
-				+ "Rental Agreement Number: [Unique Rental Agreement Number]\n"
+				+ "Rental Agreement Number: "+reservation.getId()+"\n"
 				+ "\n"
-				+ "This Rental Agreement (\"Agreement\") is entered into between bala2sm, located at [Address], hereinafter referred to as the \"Rental Company,\" and the individual or entity identified below, hereinafter referred to as the \"Renter\":\n"
+				+ "This Rental Agreement (\"Agreement\") is entered into between bala2sm, located at "+car.getBranch().getAddress()+", hereinafter referred to as the \"Rental Company,\" and the individual or entity identified below, hereinafter referred to as the \"Renter\":\n"
 				+ "\n"
 				+ "1. Renter's Information:\n"
 				+ "\n"
-				+ renter.toString()
+				+ renter
 				+ "\n"
 				+ "2. Vehicle Information:\n"
 				+carInfo
@@ -329,7 +347,7 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-    		emailSender.sendMail(renter.getEmailAddress(), "Car Rental Agreement", mail);//change email
+    		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", mail);
     		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
     	}
     	catch (Exception e){
