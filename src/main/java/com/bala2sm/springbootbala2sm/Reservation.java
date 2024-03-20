@@ -24,17 +24,17 @@ public class Reservation {
 	private String phoneNumber;
 	private String driverLicense;
 	private boolean insurance;
-	private final double insurancePrice = 70;
+	private double insurancePrice = 70;
 	private boolean cleaning;
-	private final double cleaningPrice = 35;
-	private boolean pickedUp = false;
-	private boolean returned = false;
+	private double cleaningPrice = 35;
+	private boolean pickedUp;
+	private boolean returned;
 
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(ObjectId id, LocalDate pickupDate, LocalDate dropDate, Car car, String userAddress, String phoneNumber, String driverLicense, boolean insurance, boolean cleaning) {
+	public Reservation(ObjectId id, LocalDate pickupDate, LocalDate dropDate, Car car, String userAddress, String phoneNumber, String driverLicense, boolean insurance, boolean cleaning, boolean pickedUp, boolean returned) {
 		this.id = id;
 		this.pickupDate = pickupDate;
 		this.dropDate = dropDate;
@@ -44,6 +44,8 @@ public class Reservation {
 		this.driverLicense = driverLicense;
 		this.insurance = insurance;
 		this.cleaning = cleaning;
+		this.pickedUp = pickedUp;
+		this.returned = returned;
 	}
 
 	public LocalDate getPickupDate() {
@@ -140,22 +142,12 @@ public class Reservation {
 		this.returned = returned;
 	}
 
-	@Override
-	public String toString() {
-		return "Reservation{" +
-				"id=" + id +
-				", pickupDate=" + pickupDate +
-				", dropDate=" + dropDate +
-				", car=" + car +
-				", userAddress='" + userAddress + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", driverLicense='" + driverLicense + '\'' +
-				", insurance=" + insurance +
-				", insurancePrice=" + insurancePrice +
-				", cleaning=" + cleaning +
-				", cleaningPrice=" + cleaningPrice +
-				", pickedUp=" + pickedUp +
-				", returned=" + returned +
-				'}';
+	public void setInsurancePrice(double insurancePrice) {
+		this.insurancePrice = insurancePrice;
 	}
+
+	public void setCleaningPrice(double cleaningPrice) {
+		this.cleaningPrice = cleaningPrice;
+	}
+
 }
