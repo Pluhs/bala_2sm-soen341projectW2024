@@ -236,13 +236,8 @@ public class UserController {
     	}
     }
     @PostMapping( "/mailContract/{reservationId}")
-    public ResponseEntity<?> sendMail(@PathVariable ObjectId reservationId) throws Exception {
+    public ResponseEntity<?> sendMail(@PathVariable ObjectId reservationId, @RequestBody Renter renter) throws Exception {
     	
-    	String renter="Name: \n"
-				+ "Address: \n"
-				+ "Contact Number: \n"
-				+ "Email Address: \n"
-				+ "Driver's License Number: \n";
     	
     	Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new Exception("Reservation not found"));
@@ -273,7 +268,7 @@ public class UserController {
 				+ "\n"
 				+ "1. Renter's Information:\n"
 				+ "\n"
-				+ renter
+				+ renter.toString()
 				+ "\n"
 				+ "2. Vehicle Information:\n"
 				+carInfo
@@ -334,7 +329,7 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-    		emailSender.sendMail("bala2sm@outlook.com", "Car Rental Agreement", mail);//change email
+    		emailSender.sendMail(renter.getEmailAddress(), "Car Rental Agreement", mail);//change email
     		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
     	}
     	catch (Exception e){
