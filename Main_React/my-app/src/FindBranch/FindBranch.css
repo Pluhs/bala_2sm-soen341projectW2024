@@ -14,7 +14,7 @@
     position: absolute;
     top: 15%;
     left: 20px;
-    width: 300px;
+    width: 400px;
     max-height: 70%;
     background-color: rgba(225, 221, 221, 0.25);
     backdrop-filter: blur(10px);
@@ -45,8 +45,8 @@
 }
 
 .searchInput {
-    width: 70%;
-    padding: 10px 10px 10px 10px;
+    width: 80%;
+    padding: 5px;
     background-color: #f5f5f5;
     border: 2px solid #d3d3d3;
     color: #333;
@@ -54,17 +54,12 @@
     border-radius: 10px;
     box-shadow: none;
     outline: none;
+    margin-right: 2%;
+    height: 30px;
 }
 .searchInput::placeholder {
     text-align: left;
     /*color: #a9a9a9; */
-}
-
-.searchButton {
-    padding: 10px 15px;
-    background-color: #4a90e2;
-    border-radius: 10px;
-    box-shadow: none;
 }
 
 .searchButton:hover {
@@ -81,7 +76,7 @@
     background-color: #ffffff;
     border: 2px solid #d3d3d3;
     border-radius: 10px;
-    margin: 8px 0;
+    margin: 6px 0;
     padding: 12px;
     color: #333;
 }
@@ -90,4 +85,38 @@
     background-color: #f5f5f5;
     border-color: #c0c0c0;
     cursor: pointer;
+}
+.branchListContainer {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between;
+}
+.searchButton {
+    margin-left: auto;
+    border: none;
+    cursor: pointer;
+    background-color: #052038; /* Makes background transparent */
+    color: inherit; /* Inherits text color from parent */
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: none;
+    height: 40px;
+}
+
+.branchIconLink {
+    display: inline-flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: center; /* Centers items horizontally */
+    padding: 0; /* Removes padding */
+    background-color: transparent; /* Ensures background is transparent */
+    border: none; /* Removes any border */
+}
+
+/* Adjusts the layout of the branch name and address */
+.branchListContainer > div:last-child {
+    flex-grow: 1; /* Allows the branch text to take up remaining space */
+    padding-left: 10px; /* Adds some space between the icon and the text */
+}
+.fa-info, .fa-magnifying-glass {
+    color: #f5f5f5;
 }
