@@ -57,4 +57,34 @@ public class CarController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Car>> getCarsByName(@PathVariable String name) {
+        List<Car> cars = carService.getCarsByName(name);
+        return ResponseEntity.ok(cars);
+    }
+
+    @GetMapping("/year/{year}")
+    public ResponseEntity<List<Car>> getCarsByYear(@PathVariable int year) {
+        List<Car> cars = carService.getCarsByYear(year);
+        return ResponseEntity.ok(cars);
+    }
+
+    @GetMapping("/type/{type}")
+    public ResponseEntity<List<Car>> getCarsByType(@PathVariable String type) {
+        List<Car> cars = carService.getCarsByType(type);
+        return ResponseEntity.ok(cars);
+    }
+
+    @GetMapping("/color/{color}")
+    public ResponseEntity<List<Car>> getCarsByColor(@PathVariable String color) {
+        List<Car> cars = carService.getCarsByColor(color);
+        return ResponseEntity.ok(cars);
+    }
+
+    @GetMapping("/price")
+    public ResponseEntity<List<Car>> getCarsByPriceRange(@RequestParam Double minPrice, @RequestParam Double maxPrice) {
+        List<Car> cars = carService.getCarsByPriceRange(minPrice, maxPrice);
+        return ResponseEntity.ok(cars);
+    }
 }

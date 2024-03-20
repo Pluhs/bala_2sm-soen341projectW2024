@@ -1,6 +1,7 @@
 package com.bala2sm.springbootbala2sm;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -16,18 +17,14 @@ public class BranchController {
     }
 
     @GetMapping
-    public List<Branch> getAllBranches() {
-        return branchService.findAll();
+    public ResponseEntity<List<Branch>> getAllBranches() {
+        List<Branch> branches = branchService.findAll();
+        return ResponseEntity.ok(branches);
     }
 
     @GetMapping("/{id}")
     public Branch getBranchById(@PathVariable String id) {
         return branchService.findById(id);
-    }
-
-    @GetMapping("/search")
-    public List<Branch> searchBranchesByAddress(@RequestParam String address) {
-        return branchService.findByAddressContaining(address);
     }
 
 }

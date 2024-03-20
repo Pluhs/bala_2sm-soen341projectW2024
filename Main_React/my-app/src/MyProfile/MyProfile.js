@@ -63,7 +63,7 @@ const MyProfile = () => {
                         <div key={reservation.id} className="yourReservationContainer">
                             <img src={reservation.car.imageUrl} alt="Car" className="yourReservationCarImg"/>
                             <div className="leftContent">
-                                <b className="carInfoTxt">{reservation.car.name}</b>
+                                <b className="carInfoTxt">{reservation.car.name} {reservation.car.model} {reservation.car.year}</b>
                                 <b className="startDateTxt">Pickup Date: {reservation.pickupDate}</b>
                             </div>
                             <div className="rightContent">

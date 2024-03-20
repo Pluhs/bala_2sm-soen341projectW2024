@@ -6,5 +6,5 @@ import java.util.List;
 
 @Repository
 public interface BranchRepository extends MongoRepository<Branch, String> {
-    List<Branch> findByAddressContaining(String address);
+
 }
