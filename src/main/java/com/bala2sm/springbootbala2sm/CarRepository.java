@@ -14,4 +14,6 @@ public interface CarRepository extends MongoRepository<Car, ObjectId> {
     List<Car> findByYear(int year);
     List<Car> findByType(String type);
     List<Car> findByColor(String color);
+    List<Car> findByBranch_Id(ObjectId branchId);
+
 }

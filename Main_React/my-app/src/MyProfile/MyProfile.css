@@ -2,6 +2,8 @@
     background-color: #BBDCF2;
     padding: 100px 20px;
     height: 100rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
 
 }
 
