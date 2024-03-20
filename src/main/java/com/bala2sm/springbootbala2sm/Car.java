@@ -29,6 +29,7 @@ public class Car {
 	private String imageUrl;
 	private boolean available;
 	private ArrayList<String> damages;
+	private int milage;
 	@DocumentReference
 	private Branch branch;
 
@@ -36,7 +37,7 @@ public class Car {
 		super();
 	}
 
-	public Car(ObjectId id, String name, String model, int year, String type, String plateNum, String vin, String color, Double price, String info, String imageUrl, boolean available, ArrayList<String> damages) {
+	public Car(ObjectId id, String name, String model, int year, String type, String plateNum, String vin, String color, Double price, String info, String imageUrl, boolean available, ArrayList<String> damages, int milage, Branch branch) {
 		this.id = id;
 		this.name = name;
 		this.model = model;
@@ -50,6 +51,8 @@ public class Car {
 		this.imageUrl = imageUrl;
 		this.available = available;
 		this.damages = damages;
+		this.milage = milage;
+		this.branch = branch;
 	}
 
 	public ObjectId getId() {
@@ -163,5 +166,13 @@ public class Car {
 
 	public void setBranch(Branch branch) {
 		this.branch = branch;
+	}
+
+	public int getMilage() {
+		return milage;
+	}
+
+	public void setMilage(int milage) {
+		this.milage = milage;
 	}
 }
