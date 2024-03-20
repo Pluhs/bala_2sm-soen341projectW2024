@@ -31,29 +31,54 @@ function BrowseVehicle() {
         displayCars();
     }, []);
 
-    // Simulating fetching data from a database
-    // useEffect(() => {
-    //     // fetch data from your database
-    //     // temporary array
-    //     const fetchedCars = [
-    //         { id: 1, brand: 'Toyota', model: 'Camry', year: 2015, image: '/Images/toyota2015.jpg', description: 'Description of Toyota Camry 2015' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 3, brand: 'Peugeot', model: '505', year: 1989, image: '/Images/Peugeot505.jpg', description: 'Description of Peugeot 505 1989' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //
-    //
-    //     ];
-
-    // Update the state with the fetched data
-    //     setCars(fetchedCars);
-    // }, []);
 
     return (
         <div className="browseVehiclesContainer">
+            <div className="filterHeader">
+                <h1>Filter by:</h1>
+            </div>
             <div className="filterOptionsContainer">
-                <b>test</b>
+                <div>
+                    <label htmlFor="makeFilterOption">Make: </label>
+                    <select id="makeFilterOption" className="filterInputGeneral">
+                        <option value="option1">Default</option>
+                        <option value="option2">Location 2</option>
+                        <option value="option3">Location 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="colorFilterOption">Color: </label>
+                    <select id="colorFilterOption" className="filterInputGeneral">
+                        <option value="Default">Default</option>
+                        <option value="White">White</option>
+                        <option value="Silver">Silver</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Orange">Orange</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="typeFilterOption">Type: </label>
+                    <select id="typeFilterOption" className="filterInputGeneral">
+                        <option value="option1">Default</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="SportsCar">Sports Car</option>
+                        {/*<option value="Truck">Truck</option>*/}
+                    </select>
+                </div>
+                <div>
+                <label htmlFor="yearFilterOption">Year: </label>
+                    <input type="text" id="yearFilterOption" className="filterInputGeneral" />
+
+                </div>
+                <div>
+                    <label>Price range: </label>
+                    <input type="number" id="minPriceFilterOption" className="filterInputGeneral"/>
+                    <label> to </label>
+                    <input type="number" id="maxPriceFilterOption" className="filterInputGeneral"/>
+                </div>
+
             </div>
 
             <div className="vehicle-container">
