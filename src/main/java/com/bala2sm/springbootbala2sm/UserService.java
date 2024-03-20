@@ -148,6 +148,8 @@ public class UserService {
         existingReservation.setCar(newCar);
         existingReservation.setPickupDate(updatedReservation.getPickupDate());
         existingReservation.setDropDate(updatedReservation.getDropDate());
+        existingReservation.setPickedUp(updatedReservation.pickedUp());
+        existingReservation.setReturned(updatedReservation.returned());
 
         Reservation savedReservation = reservationRepository.save(existingReservation);
 
