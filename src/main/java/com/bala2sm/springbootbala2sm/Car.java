@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,9 @@ public class Car {
 	private String imageUrl;
 	private boolean available;
 	private ArrayList<String> damages;
+	@DocumentReference
+	private Branch branch;
+
 	public Car() {
 		super();
 	}
@@ -151,5 +155,13 @@ public class Car {
 
 	public String getColor() {
 		return color;
+	}
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 }
