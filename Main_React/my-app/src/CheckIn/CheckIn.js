@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import "./MyProfile.css"
+import "./CheckIn.css"
 import {fetchUserById} from "../LogInForm/UserInfo";
 import { deleteReservationById,fetchReservationsForUserById } from '../Admin/ReservationsInfo';
 import {Link} from "react-router-dom";
 
 
-const MyProfile = () => {
+const CheckIn = () => {
     const [userReservations, setUserReservations] = useState([]);
 
     const userId = localStorage.getItem("userId");
@@ -56,7 +56,7 @@ const MyProfile = () => {
 
     return (
         <div className="myProfile">
-            <h1>Your Reservations:</h1>
+            <h1>PAGE UNDER CONSTRUCTION: CHECKIN PAGE:</h1>
             {userReservations.length > 0 ? (
                 <div>
                     {userReservations.map(reservation => (
@@ -88,4 +88,4 @@ const MyProfile = () => {
     );
 }
 
-export default MyProfile;
+export default CheckIn;

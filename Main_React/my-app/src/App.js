@@ -13,6 +13,9 @@ import Vehicles from "./Admin/Vehicles.js";
 import Users from "./Admin/Users.js";
 import ViewUserInfo from "./Admin/viewUserInfo";
 import Branch from "./FindBranch/FindBranch";
+import BranchDetails from './FindBranch/BranchDetails';
+import CheckIn from "./CheckIn/CheckIn";
+
 
 
 function App() {
@@ -49,6 +52,8 @@ function App() {
                     <Route path="/viewUser" element={<ViewUserInfo />} />
                     <Route path="/users" element={<Users/>} />
                     <Route path="/branch" element={<Branch/>} />
+                    <Route path="/CheckIn" element={<CheckIn/>} />
+                    <Route path="/branch/:id" component={BranchDetails} />
                 </Routes>
             </div>
         </Router>

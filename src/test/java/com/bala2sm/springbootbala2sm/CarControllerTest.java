@@ -147,4 +147,80 @@ public class CarControllerTest {
         assertEquals(expectedCar, response.getBody(), "Response body should match expected car");
         verify(carService).inspectCar(eq(id), eq(damages));
     }
+
+    @Test
+    public void testGetCarsByName() throws Exception {
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByName("Test")).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/name/Test")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByName("Test");
+    }
+
+    @Test
+    public void testGetCarsByYear() throws Exception {
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByYear(2020)).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/year/2020")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByYear(2020);
+    }
+
+    @Test
+    public void testGetCarsByType() throws Exception {
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByType("SUV")).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/type/SUV")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByType("SUV");
+    }
+
+    @Test
+    public void testGetCarsByColor() throws Exception {
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByColor("Red")).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/color/Red")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByColor("Red");
+    }
+
+    @Test
+    public void testGetCarsByPriceRange() throws Exception {
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByPriceRange(10000.0, 50000.0)).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/price")
+                        .param("minPrice", "10000")
+                        .param("maxPrice", "50000")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByPriceRange(10000.0, 50000.0);
+    }
+    @Test
+    public void testGetCarsByBranchId() throws Exception {
+        ObjectId branchId = new ObjectId();
+        List<Car> mockCars = Arrays.asList(new Car(), new Car());
+        when(carService.getCarsByBranchId(branchId)).thenReturn(mockCars);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cars/branch/" + branchId.toHexString())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getCarsByBranchId(branchId);
+    }
+
+
 }
