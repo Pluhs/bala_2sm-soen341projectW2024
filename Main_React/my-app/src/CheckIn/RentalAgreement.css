@@ -1,44 +1,90 @@
-.rentalAgreement {
+.rental-agreement-container {
+    padding-top: 100px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.rental-agreement-form {
     max-width: 800px;
     margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.rentalForm {
-    display: flex;
-    flex-direction: column;
-}
-
-.rentalForm h1, .rentalForm h2 {
-    color: #333;
-}
-
-.rentalForm label {
-    margin-top: 10px;
-    color: #666;
-}
-
-.rentalForm input, .rentalForm textarea {
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    background: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 
-.rentalForm button {
-    padding: 10px 15px;
-    color: white;
-    background-color: #052038;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.agreement-title {
+    text-align: center;
+    color: #052038;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: #052038;
+    border-bottom: 1px solid #052038;
+    padding-bottom: 5px;
     margin-top: 20px;
 }
 
-.rentalForm button:hover {
-    background-color: #A30021;
+
+.renter-detail,
+.vehicle-detail,
+.rental-detail {
+    color: #052038;
+    margin-left: 20px;
+}
+
+.input-group {
+    margin: 20px 0;
+}
+
+
+.input-label {
+    display: block;
+    color: #052038;
+    margin-bottom: 5px;
+}
+
+
+.input-field {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+.signature-input {
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Submit button styles */
+.submit-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 97%;
+    font-size: 16px;
+}
+
+.submit-button:disabled {
+    background-color: #052038;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .rental-agreement-form {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .input-field {
+        padding: 6px;
+    }
+
+    .submit-button {
+        padding: 8px 10px;
+    }
 }
