@@ -126,7 +126,7 @@
 .createUserForm input[type="email"]:focus,
 .createUserForm input[type="password"]:focus {
     border-color: #03172a;
-    box-shadow: 0 0 0 3px #052038;
+    box-shadow: 0 0 0 1px #052038;
     outline: none;
 }
 .createUserForm input[type="text"]::placeholder,

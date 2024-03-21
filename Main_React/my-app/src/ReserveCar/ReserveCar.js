@@ -107,8 +107,38 @@ const ReserveCarForm = () => {
                         <option value="option3">Location 3</option>
                     </select>
 
+                    <div className="inputBoxReserve date-picker-group" id="#">
+                        <label htmlFor="#" className="#">Your Address:</label>
+                        <input type="text" id="#" className="#"/>
+                    </div>
                     <br/>
+
+                    <div className="inputBoxReserve date-picker-group" id="#">
+                        <label htmlFor="#" className="#">Phone Number:</label>
+                        <input type="text" id="#" className="#"/>
+                    </div>
+
+
+                    <br/>
+
+                    <div className="inputBoxReserve date-picker-group" id="#">
+                        <label htmlFor="#" className="#">Driver License Number:</label>
+                        <input type="text" id="#" className="#"/>
+                    </div>
+
+
+                    <br/>
+
+                    {/*<div className="inputBoxReserve date-picker-group" id="#">*/}
+                    {/*    <label htmlFor="#" className="#">Phone Number:</label>*/}
+                    {/*    <input type="text" id="#" className="#"/>*/}
+                    {/*</div>*/}
+
+
+                    {/*<br/>*/}
+
                     <div className="date-wrapper">
+
                         <div className="inputBoxReserve date-picker-group" id="pickupDateDiv">
                             <label htmlFor="pickupDateInput" className="dateInputLabel">Pickup Date:</label>
                             <input type="date" id="pickupDateInput" className="datePickerReserve" value={pickupDate}
