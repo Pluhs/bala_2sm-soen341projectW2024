@@ -204,7 +204,7 @@ public class UserController {
     @GetMapping("/{userId}/reservations/{reservationId}")
     public ResponseEntity<?> getReservationById(@PathVariable ObjectId userId, @PathVariable ObjectId reservationId) {
         Optional<User> userOptional = userService.getUserById(userId);
-        if (!userOptional.isPresent()) {
+        if (userOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
 
