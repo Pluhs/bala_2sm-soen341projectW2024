@@ -2,10 +2,24 @@ import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import "./BrowseVehicle.css";
 import "../ReserveCar/ReserveCar";
+import {createUser} from "../LogInForm/UserInfo";
 
 function BrowseVehicle() {
     // State to store the car data
     const [cars, setCars] = useState([]);
+
+    const [branchFilter, setBranchFilter] = useState("ShowAll");
+    const [makeFilter, setMakeFilter] = useState("ShowAll");
+    const [colorFilter, setColorFilter] = useState("ShowAll");
+    const [typeFilter, setTypeFilter] = useState("ShowAll");
+    const [minYearFilter, setMinYearFilter] = useState("");
+    const [maxYearFilter, setMaxYearFilter] = useState("");
+    const [minPriceFilter, setMinPriceFilter] = useState("");
+    const [maxPriceFilter, setMaxPriceFilter] = useState("");
+    const [showFilters, setShowFilters] = useState(false);
+    // const [plusIconRotate, setPlusIconRotate] = useState(false);
+    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
+
     let navigate = useNavigate()
 
 
@@ -31,34 +45,119 @@ function BrowseVehicle() {
         displayCars();
     }, []);
 
-    // Simulating fetching data from a database
-    // useEffect(() => {
-    //     // fetch data from your database
-    //     // temporary array
-    //     const fetchedCars = [
-    //         { id: 1, brand: 'Toyota', model: 'Camry', year: 2015, image: '/Images/toyota2015.jpg', description: 'Description of Toyota Camry 2015' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 3, brand: 'Peugeot', model: '505', year: 1989, image: '/Images/Peugeot505.jpg', description: 'Description of Peugeot 505 1989' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //         { id: 2, brand: 'BMW', model: 'i8', year: 2020, image: '/Images/BMW2020.jpg', description: 'Description of BMW i8 2020' },
-    //
-    //
-    //     ];
+    const filterCars = (car) => {
+        return (
+            (branchFilter === "ShowAll" || car.branch.name === branchFilter) &&
+            (makeFilter === "ShowAll" || car.name === makeFilter) &&
+            (colorFilter === "ShowAll" || car.color === colorFilter) &&
+            (typeFilter === "ShowAll" || car.type === typeFilter) &&
+            (minYearFilter === "" || car.year >= parseInt(minYearFilter)) &&
+            (maxYearFilter === "" || car.year <= parseInt(maxYearFilter)) &&
+            (minPriceFilter === "" || car.price >= parseInt(minPriceFilter)) &&
+            (maxPriceFilter === "" || car.price <= parseInt(maxPriceFilter))
+        );
+    };
+    // const handleShowFilters = async (e) => {
+    //     e.preventDefault();
+    //         setShowFilters(false);
+    // };
 
-    // Update the state with the fetched data
-    //     setCars(fetchedCars);
-    // }, []);
+
+    const toggleFilters = () => {
+        setShowFilters(!showFilters);
+        // Rotate the plus icon
+        setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
+
 
     return (
         <div className="browseVehiclesContainer">
-            <div className="filterOptionsContainer">
-                <b>test</b>
+            <div className="filterHeader">
+                <h1>Filter by: <i className="fa fa-plus" onClick={toggleFilters} style={{
+                    transform: `rotate(${iconRotation}deg)`,
+                    transition: 'transform 0.65s ease'
+                }}></i></h1>
             </div>
+            {showFilters && (
+                <div className="filterOptionsContainer">
+                    <div>
+                        <label htmlFor="branchFilterOption">Branch: </label>
+                        <select id="branchFilterOption" className="filterInputGeneral" value={branchFilter}
+                            onChange={(e) => setBranchFilter(e.target.value)}>
+                        <option value="ShowAll">Show All</option>
+                        <option value="Dorval Location">Dorval Location</option>
+                        <option value="Peel Plaza">Peel Plaza</option>
+                        <option value="Saint-Jacques Estate">Saint-Jacques Estate</option>
+                        <option value="Henri-Julien Hub">Henri-Julien Hub</option>
+                        <option value="Montagne Suites">Montagne Suites</option>
+                        <option value="Le Corbusier Center">Le Corbusier Center</option>
+                    </select>
+                </div>
 
+                <div>
+                    <label htmlFor="makeFilterOption">Make: </label>
+                    <select id="makeFilterOption" className="filterInputGeneral" value={makeFilter}
+                            onChange={(e) => setMakeFilter(e.target.value)}>
+                        <option value="ShowAll">Show All</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Porsche">Porsche</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="Dodge">Dodge</option>
+                        <option value="Hyundai">Hyundai</option>
+                    </select>
+                </div>
+
+
+
+                <div>
+                    <label htmlFor="colorFilterOption">Color: </label>
+                    <select id="colorFilterOption" className="filterInputGeneral" value={colorFilter}
+                            onChange={(e) => setColorFilter(e.target.value)}>
+                        <option value="ShowAll">Show All</option>
+                        <option value="White">White</option>
+                        <option value="Silver">Silver</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Orange">Orange</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="typeFilterOption">Type: </label>
+                    <select id="typeFilterOption" className="filterInputGeneral" value={typeFilter}
+                            onChange={(e) => setTypeFilter(e.target.value)}>
+                        <option value="ShowAll">Show All</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sports Car">Sports Car</option>
+                        {/*<option value="Truck">Truck</option>*/}
+                    </select>
+
+                </div>
+                    <div>
+                        <label>Year Range: </label>
+                        <input type="number" id="minYearFilterOption" className="filterInputGeneral numberInputFilter" value={minYearFilter}
+                               onChange={(e) => setMinYearFilter(e.target.value)}/>
+                        <label> to </label>
+                        <input type="number" id="maxYearFilterOption" className="filterInputGeneral numberInputFilter" value={maxYearFilter}
+                               onChange={(e) => setMaxYearFilter(e.target.value)}/>
+                    </div>
+
+                    <div>
+                    <label>Price range: </label>
+                    <input type="number" id="minPriceFilterOption" className="filterInputGeneral numberInputFilter" value={minPriceFilter}
+                           onChange={(e) => setMinPriceFilter(e.target.value)}/>
+                    <label> to </label>
+                    <input type="number" id="maxPriceFilterOption" className="filterInputGeneral numberInputFilter" value={maxPriceFilter}
+                           onChange={(e) => setMaxPriceFilter(e.target.value)}/>
+                </div>
+
+            </div>
+            )}
             <div className="vehicle-container">
-                {}
-                {cars.map(car => (
+            {cars.filter(filterCars).map(car => (
                     <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
                         <img src={car.imageUrl} alt={`${car.name} ${car.model} ${car.year}`}/>
                         <h3>{`${car.name} ${car.model} ${car.year}`}</h3>
@@ -69,7 +168,6 @@ function BrowseVehicle() {
                         <button onClick={() => handleGetCarIdOnReserve(car.id)}>
                             Reserve
                         </button>
-
                     </div>
                 ))}
             </div>
