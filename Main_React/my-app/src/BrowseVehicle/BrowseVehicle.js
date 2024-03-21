@@ -12,7 +12,8 @@ function BrowseVehicle() {
     const [makeFilter, setMakeFilter] = useState("ShowAll");
     const [colorFilter, setColorFilter] = useState("ShowAll");
     const [typeFilter, setTypeFilter] = useState("ShowAll");
-    const [yearFilter, setYearFilter] = useState("");
+    const [minYearFilter, setMinYearFilter] = useState("");
+    const [maxYearFilter, setMaxYearFilter] = useState("");
     const [minPriceFilter, setMinPriceFilter] = useState("");
     const [maxPriceFilter, setMaxPriceFilter] = useState("");
     const [showFilters, setShowFilters] = useState(false);
@@ -50,7 +51,8 @@ function BrowseVehicle() {
             (makeFilter === "ShowAll" || car.name === makeFilter) &&
             (colorFilter === "ShowAll" || car.color === colorFilter) &&
             (typeFilter === "ShowAll" || car.type === typeFilter) &&
-            (yearFilter === "" || car.year.toString() === yearFilter) &&
+            (minYearFilter === "" || car.year >= parseInt(minYearFilter)) &&
+            (maxYearFilter === "" || car.year <= parseInt(maxYearFilter)) &&
             (minPriceFilter === "" || car.price >= parseInt(minPriceFilter)) &&
             (maxPriceFilter === "" || car.price <= parseInt(maxPriceFilter))
         );
@@ -121,6 +123,7 @@ function BrowseVehicle() {
                         <option value="Orange">Orange</option>
                     </select>
                 </div>
+
                 <div>
                     <label htmlFor="typeFilterOption">Type: </label>
                     <select id="typeFilterOption" className="filterInputGeneral" value={typeFilter}
@@ -131,19 +134,23 @@ function BrowseVehicle() {
                         <option value="Sports Car">Sports Car</option>
                         {/*<option value="Truck">Truck</option>*/}
                     </select>
-                </div>
-                <div>
-                    <label htmlFor="yearFilterOption">Year: </label>
-                    <input type="text" id="yearFilterOption" className="filterInputGeneral" value={yearFilter}
-                           onChange={(e) => setYearFilter(e.target.value)}/>
 
                 </div>
-                <div>
+                    <div>
+                        <label>Year Range: </label>
+                        <input type="number" id="minYearFilterOption" className="filterInputGeneral numberInputFilter" value={minYearFilter}
+                               onChange={(e) => setMinYearFilter(e.target.value)}/>
+                        <label> to </label>
+                        <input type="number" id="maxYearFilterOption" className="filterInputGeneral numberInputFilter" value={maxYearFilter}
+                               onChange={(e) => setMaxYearFilter(e.target.value)}/>
+                    </div>
+
+                    <div>
                     <label>Price range: </label>
-                    <input type="number" id="minPriceFilterOption" className="filterInputGeneral" value={minPriceFilter}
+                    <input type="number" id="minPriceFilterOption" className="filterInputGeneral numberInputFilter" value={minPriceFilter}
                            onChange={(e) => setMinPriceFilter(e.target.value)}/>
                     <label> to </label>
-                    <input type="number" id="maxPriceFilterOption" className="filterInputGeneral" value={maxPriceFilter}
+                    <input type="number" id="maxPriceFilterOption" className="filterInputGeneral numberInputFilter" value={maxPriceFilter}
                            onChange={(e) => setMaxPriceFilter(e.target.value)}/>
                 </div>
 

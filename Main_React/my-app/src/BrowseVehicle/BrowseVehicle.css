@@ -55,7 +55,9 @@ body {
 
 }
 
-
+.numberInputFilter{
+    max-width: 75px;
+}
 
 
 .vehicle-container {
