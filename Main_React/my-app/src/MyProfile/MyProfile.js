@@ -158,12 +158,12 @@ const MyProfile = () => {
                             {/*)}*/}
 
                             <div className="deleteReservationBtnContainer">
-                                <button
-                                    type="button"
-                                    className="deleteReservationBtn"
-                                    onClick={() => displayButtons(userId, reservation.id)}>
-                                    test
-                                </button>
+                                {/*<button*/}
+                                {/*    type="button"*/}
+                                {/*    className="deleteReservationBtn"*/}
+                                {/*    onClick={() => displayButtons(userId, reservation.id)}>*/}
+                                {/*    test*/}
+                                {/*</button>*/}
                                 <button
                                     type="button"
                                     className="deleteReservationBtn"
