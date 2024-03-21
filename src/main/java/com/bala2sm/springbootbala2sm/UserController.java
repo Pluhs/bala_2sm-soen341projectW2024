@@ -200,6 +200,27 @@ public class UserController {
         }
         return ResponseEntity.ok(reservations);
     }
+
+    @GetMapping("/{userId}/reservations/{reservationId}")
+    public ResponseEntity<?> getReservationById(@PathVariable ObjectId userId, @PathVariable ObjectId reservationId) {
+        Optional<User> userOptional = userService.getUserById(userId);
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        User user = userOptional.get();
+        Reservation foundReservation = user.getReservations().stream()
+                .filter(reservation -> reservation.getId().equals(reservationId))
+                .findFirst()
+                .orElse(null);
+
+        if (foundReservation == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reservation not found for the given user");
+        }
+
+        return ResponseEntity.ok(foundReservation);
+    }
+
     @PostMapping("/{userId}/pay")
     public ResponseEntity<?> makePayment(@PathVariable ObjectId userId, @RequestBody PaymentDetails paymentDetails) {
         boolean paymentAuthorized = mockBankService.authorizePayment(paymentDetails.getCreditCardNumber(), paymentDetails.getAmount());
