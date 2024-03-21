@@ -29,12 +29,13 @@ public class Reservation {
 	private double cleaningPrice = 35;
 	private boolean pickedUp;
 	private boolean returned;
+	private String cardNum;
 
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(ObjectId id, LocalDate pickupDate, LocalDate dropDate, Car car, String userAddress, String phoneNumber, String driverLicense, boolean insurance, boolean cleaning, boolean pickedUp, boolean returned) {
+	public Reservation(ObjectId id, LocalDate pickupDate, LocalDate dropDate, Car car, String userAddress, String phoneNumber, String driverLicense, boolean insurance, boolean cleaning, boolean pickedUp, boolean returned, String cardNum) {
 		this.id = id;
 		this.pickupDate = pickupDate;
 		this.dropDate = dropDate;
@@ -46,6 +47,7 @@ public class Reservation {
 		this.cleaning = cleaning;
 		this.pickedUp = pickedUp;
 		this.returned = returned;
+		this.cardNum = cardNum;
 	}
 
 	public LocalDate getPickupDate() {
@@ -150,4 +152,11 @@ public class Reservation {
 		this.cleaningPrice = cleaningPrice;
 	}
 
+	public String getCardNum() {
+		return cardNum;
+	}
+
+	public void setCardNum(String cardNum) {
+		this.cardNum = cardNum;
+	}
 }
