@@ -1,5 +1,6 @@
 package com.bala2sm.springbootbala2sm;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,11 +24,15 @@ public class Reservation {
 	private String userAddress;
 	private String phoneNumber;
 	private String driverLicense;
+	@JsonProperty
 	private boolean insurance;
 	private double insurancePrice = 70;
+	@JsonProperty
 	private boolean cleaning;
 	private double cleaningPrice = 35;
+	@JsonProperty
 	private boolean pickedUp;
+	@JsonProperty
 	private boolean returned;
 	private String cardNum;
 
