@@ -23,3 +23,16 @@ export const fetchBranchById = async (id) => {
         return null;
     }
 };
+export const fetchCarsByBranchId = async (branchId) => {
+    try {
+        const response = await fetch(`http://localhost:8080/cars/branch/${branchId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch cars');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error:', error);
+        return [];
+    }
+};
+

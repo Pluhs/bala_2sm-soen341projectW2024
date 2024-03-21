@@ -53,7 +53,7 @@ function App() {
                     <Route path="/users" element={<Users/>} />
                     <Route path="/branch" element={<Branch/>} />
                     <Route path="/CheckIn" element={<CheckIn/>} />
-                    <Route path="/branch/:id" component={BranchDetails} />
+                    <Route path="/branch/:id" element={<BranchDetails />} />
                 </Routes>
             </div>
         </Router>
