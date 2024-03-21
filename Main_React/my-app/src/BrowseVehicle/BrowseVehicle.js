@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import "./BrowseVehicle.css";
 import "../ReserveCar/ReserveCar";
+import {createUser} from "../LogInForm/UserInfo";
 
 function BrowseVehicle() {
     // State to store the car data
@@ -14,6 +15,9 @@ function BrowseVehicle() {
     const [yearFilter, setYearFilter] = useState("");
     const [minPriceFilter, setMinPriceFilter] = useState("");
     const [maxPriceFilter, setMaxPriceFilter] = useState("");
+    const [showFilters, setShowFilters] = useState(false);
+    // const [plusIconRotate, setPlusIconRotate] = useState(false);
+    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
 
     let navigate = useNavigate()
 
@@ -51,17 +55,32 @@ function BrowseVehicle() {
             (maxPriceFilter === "" || car.price <= parseInt(maxPriceFilter))
         );
     };
+    // const handleShowFilters = async (e) => {
+    //     e.preventDefault();
+    //         setShowFilters(false);
+    // };
+
+
+    const toggleFilters = () => {
+        setShowFilters(!showFilters);
+        // Rotate the plus icon
+        setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
 
 
     return (
         <div className="browseVehiclesContainer">
             <div className="filterHeader">
-                <h1>Filter by:</h1>
+                <h1>Filter by: <i className="fa fa-plus" onClick={toggleFilters} style={{
+                    transform: `rotate(${iconRotation}deg)`,
+                    transition: 'transform 0.65s ease'
+                }}></i></h1>
             </div>
-            <div className="filterOptionsContainer">
-                <div>
-                    <label htmlFor="branchFilterOption">Branch: </label>
-                    <select id="branchFilterOption" className="filterInputGeneral" value={branchFilter}
+            {showFilters && (
+                <div className="filterOptionsContainer">
+                    <div>
+                        <label htmlFor="branchFilterOption">Branch: </label>
+                        <select id="branchFilterOption" className="filterInputGeneral" value={branchFilter}
                             onChange={(e) => setBranchFilter(e.target.value)}>
                         <option value="ShowAll">Show All</option>
                         <option value="Dorval Location">Dorval Location</option>
@@ -129,7 +148,7 @@ function BrowseVehicle() {
                 </div>
 
             </div>
-
+            )}
             <div className="vehicle-container">
             {cars.filter(filterCars).map(car => (
                     <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
