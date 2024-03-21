@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,10 +37,18 @@ public class CarService {
         return carRepository.findById(id)
                 .map(car -> {
                     car.setName(carDetails.getName());
+                    car.setModel(carDetails.getModel());
+                    car.setColor(carDetails.getColor());
+                    car.setPlateNum(carDetails.getPlateNum());
+                    car.setType(carDetails.getType());
+                    car.setYear(carDetails.getYear());
+                    car.setVin(carDetails.getVin());
                     car.setPrice(carDetails.getPrice());
                     car.setInfo(carDetails.getInfo());
                     car.setImageUrl(carDetails.getImageUrl());
                     car.setAvailable(carDetails.isAvailable());
+                    car.setDamages(carDetails.getDamages());
+                    car.setMilage(carDetails.getMilage());
                     return carRepository.save(car);
                 })
                 .orElseGet(() -> {
@@ -50,4 +59,36 @@ public class CarService {
     public void deleteCar(ObjectId id) {
         carRepository.deleteById(id);
     }
+    public Optional<Car> inspectCar(ObjectId id, ArrayList<String> damages) {
+        return carRepository.findById(id)
+                .map(car -> {
+                    car.setDamages(damages);
+                    return carRepository.save(car);
+                });
+    }
+
+    public List<Car> getCarsByName(String name) {
+        return carRepository.findByName(name);
+    }
+
+    public List<Car> getCarsByYear(int year) {
+        return carRepository.findByYear(year);
+    }
+
+    public List<Car> getCarsByType(String type) {
+        return carRepository.findByType(type);
+    }
+
+    public List<Car> getCarsByColor(String color) {
+        return carRepository.findByColor(color);
+    }
+
+    public List<Car> getCarsByPriceRange(Double minPrice, Double maxPrice) {
+        return carRepository.findByPriceBetween(minPrice, maxPrice);
+    }
+    public List<Car> getCarsByBranchId(ObjectId branchId) {
+        return carRepository.findByBranch_Id(branchId);
+    }
+
+
 }

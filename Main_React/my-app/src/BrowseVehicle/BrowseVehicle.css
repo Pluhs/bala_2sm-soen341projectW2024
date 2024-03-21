@@ -6,17 +6,73 @@ body {
     /*background-repeat: no-repeat;*/
 }
 
+.browseVehiclesContainer{
+    /*margin-top: 100px;*/
+    padding-top: 100px;
+    margin-bottom: 20px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+
+}
+
+.filterOptionsContainer{
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+
+
+}
+
+.filterHeader{
+    padding-left: 2%;
+
+}
+
+
+.filterInputGeneral{
+    width: 130px;
+    padding: 10px;
+    border: 1px solid #052038;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-bottom: 5px;
+
+}
+.filterInputGeneral:focus{
+     border-color: #03172a;
+     box-shadow: 0 0 0 1px #052038;
+     outline: none;
+
+}
+
+.filterInputGeneral::placeholder{
+    color: #052038;
+    opacity: 1;
+    font-style: normal;
+
+}
+
+.numberInputFilter{
+    max-width: 75px;
+}
+
+
 .vehicle-container {
     display: grid;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-    margin-top: 50px;
-    padding: 50px 2%;
-    justify-items: center;
+    /*max-height: calc(100vh - 100px);*/
+    /*overflow-y: auto;*/
+    /*margin-top: 50px;*/
+    padding: 20px 2%;
+    /*justify-items: center;*/
+    justify-items: start;
     gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
 
 }
 
@@ -29,6 +85,8 @@ body {
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
+    /*margin-bottom: 100px;*/
+    max-width: 350px;
 }
 
 .vehicle img {

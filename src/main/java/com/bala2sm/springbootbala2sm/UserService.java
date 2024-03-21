@@ -17,7 +17,6 @@ public class UserService {
     @Autowired
     private ReservationRepository reservationRepository;
     @Autowired
-
     CarService carService = new CarService();
 
     public User createUser(User user) {
@@ -149,6 +148,8 @@ public class UserService {
         existingReservation.setCar(newCar);
         existingReservation.setPickupDate(updatedReservation.getPickupDate());
         existingReservation.setDropDate(updatedReservation.getDropDate());
+        existingReservation.setPickedUp(updatedReservation.pickedUp());
+        existingReservation.setReturned(updatedReservation.returned());
 
         Reservation savedReservation = reservationRepository.save(existingReservation);
 
@@ -163,8 +164,5 @@ public class UserService {
 
         return savedReservation;
     }
-
-
-
 
 }

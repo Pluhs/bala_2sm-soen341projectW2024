@@ -9,6 +9,7 @@ function Vehicles() {
     const [isLoading, setIsLoading] = useState(true);
     const [editingVehicle, setEditingVehicle] = useState(null);
 
+    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
 
 
     const loadVehiclesList = async () => {
@@ -159,13 +160,20 @@ function Vehicles() {
 
     // if (isLoading) return <div>Loading...</div>;
 
+    const toggleNewCars = () => {
+        setShowCreateForm(!showCreateForm);
+        // Rotate the plus icon
+        setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
+
     return (
         <div className="adminVehicle">
             {}
 
-            <h1>ALL VEHICLES: <i className="fa fa-plus"
-                                         onClick={() => setShowCreateForm(!showCreateForm)}
-                ></i></h1>
+            <h1>ALL VEHICLES: <i className="fa fa-plus" onClick={toggleNewCars} style={{
+                transform: `rotate(${iconRotation}deg)`,
+                transition: 'transform 0.65s ease'
+            }}></i></h1>
             {showCreateForm && (
                 <form onSubmit={handleSubmitNewVehicle} className="createVehicleForm">
                     <input
@@ -232,12 +240,12 @@ function Vehicles() {
 
                             <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
                             <div className="adminTopContent">
-                                <b className="adminCarName">{car.name} </b>
+                                <b className="adminCarName">{car.name} {car.model} {car.year} </b>
 
 
                             </div>
-                            <p className="adminVehicleInfo">{car.info}</p>
-
+                            {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
+                            <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
 
 
                             <div className="adminBottomContent">
