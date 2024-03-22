@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import "./CheckOut.css"
 import {Link, useLocation} from "react-router-dom";
-import {fetchUserById, fetchUserReservationById} from "../LogInForm/UserInfo";
-import * as events from "events";
+import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
+import {useNavigate} from 'react-router-dom';
 
 
 const CheckOut = () => {
-    const [reservationObject, setReservationObject] = useState("");
-    const [userObject, setUserObject] = useState("");
+    const [userReservations, setUserReservations] = useState([]);
+    const [checkOutReservationObject, setCheckOutReservationObject] = useState("");
+    const [checkOutUserObject, setCheckOutUserObject] = useState("");
     const location = useLocation();
-    const reservationID = location?.state?.id;
-    const reservationUserID = location?.state?.userID;
+    const checkOutReservationID = location?.state?.id;
+    const checkOutReservationUserID = location?.state?.userID;
+
 
     const [payWithCard, setPayWithCard] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
+    const [checkOutCarDamages, setCheckOutCarDamages] = useState('');
+    const [textList, setDamagesList] = useState([]);
+    let navigate = useNavigate()
 
     const handleRadioChange = (event) => {
         setPayWithCard(event.target.value === 'yes');
@@ -24,15 +29,17 @@ const CheckOut = () => {
         setCardNumber(event.target.value);
     };
 
+
+
     useEffect(() => {
         const fetchReservationData = async () => {
             try {
-                const userObjectInfo = await fetchUserById(reservationUserID);
-                const reservationObjectInfo = await fetchUserReservationById(reservationUserID, reservationID);
-                if (userObjectInfo && reservationObjectInfo) {
+                const checkOutUserObjectInfo = await fetchUserById(checkOutReservationUserID);
+                const checkOutReservationObjectInfo = await fetchUserReservationById(checkOutReservationUserID, checkOutReservationID);
+                if (checkOutUserObjectInfo && checkOutReservationObjectInfo) {
 
-                    setReservationObject(reservationObjectInfo)
-                    setUserObject(userObjectInfo)
+                    setCheckOutReservationObject(checkOutReservationObjectInfo)
+                    setCheckOutUserObject(checkOutUserObjectInfo)
                 }
 
             } catch (error) {
@@ -41,7 +48,7 @@ const CheckOut = () => {
             }
         };
         fetchReservationData();
-    }, [reservationUserID, reservationID]);
+    }, [checkOutReservationUserID, checkOutReservationID]);
 
     const userId = localStorage.getItem("userId");
 
@@ -58,10 +65,44 @@ const CheckOut = () => {
         );
     }
 
+    const updateCarDamages = async (carId, damages) => {
+        try {
+            const response = await fetch(`http://localhost:8080/cars/${carId}/inspect`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(damages),
+            });
+            if (!response.ok) {
+                throw new Error('Error updating car damages');
+            }
+            // return await response.json(); // Assuming your server responds with the updated reservation data
+        } catch (error) {
+            console.error('Error updating car damages:', error);
+            return null;
+        }
+    };
 
-    const handleSubmitCheckOut = async () => {
+    const handleGoToPayment = (userId, reservationId) => {
 
-        alert("hi")
+        navigate('/payment',{state:{userId: userId, reservationId: reservationId} } )
+    }
+
+    const handleSubmitCheckOut = (event) => {
+        event.preventDefault();
+
+        const checkOutCarDamagesValue = checkOutCarDamages.trim()
+        if (checkOutCarDamagesValue !== '') {
+            setCheckOutCarDamages(checkOutCarDamagesValue);
+            const damagesList = [checkOutCarDamagesValue]
+
+            setDamagesList(damagesList);
+
+            updateCarDamages(checkOutReservationObject.car.id, damagesList)
+        }
+
+        handleGoToPayment(checkOutReservationUserID,checkOutReservationID)
     }
 
 
@@ -72,8 +113,8 @@ const CheckOut = () => {
                     <h1>Checking out the following vehicle: </h1>
                 </div>
                 <div>
-                    <h2>{reservationObject?.car?.name} rented by {userObject?.name} on {reservationObject?.pickupDate},
-                        to be returned by {reservationObject?.dropDate} latest:</h2>
+                    <h2>{checkOutReservationObject?.car?.name} rented by {checkOutUserObject?.name} on {checkOutReservationObject?.pickupDate},
+                        to be returned by {checkOutReservationObject?.dropDate} latest:</h2>
                 </div>
                 <div>
                     <h2><u>Please check the following before checking out the vehicle</u></h2>
@@ -81,14 +122,14 @@ const CheckOut = () => {
                 <div>
                     <label className="checkbox-label">
                         <input type="checkbox" className="checkbox-input" required/>
-                        User presented their valid booking confirmation ({reservationObject.id})
+                        User presented their valid booking confirmation ({checkOutReservationObject.id})
                     </label>
                 </div>
 
                 <div>
                     <label className="checkbox-label">
                         <input type="checkbox" className="checkbox-input" required/>
-                        User returned the vehicle by {reservationObject.dropDate}
+                        User returned the vehicle by {checkOutReservationObject.dropDate}
                     </label>
                 </div>
                 <div>
@@ -111,14 +152,14 @@ const CheckOut = () => {
                      <textarea
                          className="checkInEntryField"
                          name="checkOutCarDamages"
-                         value="{checkOutCarDamages}"
-                         // onChange={(e) => setCheckOutCarDamages(e.target.value)}
+                         value={checkOutCarDamages}
+                         onChange={(e) => setCheckOutCarDamages(e.target.value)}
                          placeholder="Enter your text here..."
                      ></textarea>
                 </div>
                 <div>
                     <div>
-                        <label>User wishes to pay with card ****{reservationObject?.cardNum?.slice(-4)}
+                        <label>User wishes to pay with card ****{checkOutReservationObject?.cardNum?.slice(-4)}
                             <input
                                 type="radio"
                                 name="payWithCard"
