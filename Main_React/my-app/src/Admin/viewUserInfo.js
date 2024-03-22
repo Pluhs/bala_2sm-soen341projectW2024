@@ -210,11 +210,15 @@ function ViewUserInfo() {
                         </div>
                         <div className="buttonsContainerReservation">
                             {reservation.pickedUp ? (
-                                <button onClick={() => handleGetReservationIdOnCheckOut(reservation?.id)}>
+                                <button
+                                    className="checkInOutBtn"
+                                    onClick={() => handleGetReservationIdOnCheckOut(reservation?.id)}>
                                     Check Out
                                 </button>
                             ) : (
-                                <button onClick={() => handleGetReservationIdOnCheckIn(reservation?.id)}>
+                                <button
+                                    className="checkInOutBtn"
+                                    onClick={() => handleGetReservationIdOnCheckIn(reservation?.id)}>
                                     Check In
                                 </button>
                             )}
