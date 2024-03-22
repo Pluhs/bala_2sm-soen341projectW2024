@@ -110,8 +110,9 @@ const CheckOut = () => {
 
 
     return (
-        <div className="myProfile">
-            <form onSubmit={handleSubmitCheckOut}>
+
+        <div className = "checkOut">
+            <form className="CheckOutForm" onSubmit={handleSubmitCheckOut}>
                 <div>
                     <h1>Checking out the following vehicle: </h1>
                 </div>
@@ -123,37 +124,37 @@ const CheckOut = () => {
                     <h2><u>Please check the following before checking out the vehicle</u></h2>
                 </div>
                 <div>
-                    <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" required/>
-                        User presented their valid booking confirmation ({checkOutReservationObject.id})
+                    <label className="out-checkbox">
+                        <input type="checkbox" className="out-checkbox-input" required/>
+                        User presented their valid booking confirmation {checkOutReservationObject.id}
                     </label>
                 </div>
 
                 <div>
-                    <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" required/>
+                    <label className="out-checkbox">
+                        <input type="checkbox" className="out-checkbox-input" required/>
                         User returned the vehicle by {checkOutReservationObject.dropDate}
                     </label>
                 </div>
                 <div>
-                    <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" required/>
+                    <label className="out-checkbox">
+                        <input type="checkbox" className="out-checkbox-input" required/>
                         User returned the vehicle with a full tank or per discussed prior
                     </label>
                 </div>
                 <div>
-                    <label className="checkbox-label">
-                        <input type="checkbox" className="checkbox-input" required/>
+                    <label className="out-checkbox">
+                        <input type="checkbox" className="out-checkbox-input" required/>
                         Agent inspected the vehicle for any damages, and reported any damages found.
                     </label>
                 </div>
                 <div className="inputBoxReserve date-picker-group">
-                    <h3 className="checkbox-label">Any reported damages to this vehicle: </h3>
+                    <h3 className="checkbox-label">Any reported damages to this vehicle? </h3>
 
                 </div>
                 <div>
                      <textarea
-                         className="checkInEntryField"
+                         className="checkOutEntryField"
                          name="checkOutCarDamages"
                          value={checkOutCarDamages}
                          onChange={(e) => setCheckOutCarDamages(e.target.value)}
@@ -162,7 +163,8 @@ const CheckOut = () => {
                 </div>
                 <div>
                     <div>
-                        <label>User wishes to pay with card ****{checkOutReservationObject?.cardNum?.slice(-4)}
+                        <label>
+                            <h3> User wishes to pay with card ****{checkOutReservationObject?.cardNum?.slice(-4)}?</h3>
                             <input
                                 type="radio"
                                 name="payWithCard"
@@ -187,6 +189,7 @@ const CheckOut = () => {
                     {!payWithCard && (
                         <div>
                             <input
+                                className="checkOutCardNum"
                                 type="text"
                                 placeholder="Enter new card number"
                                 value={cardNumber}
@@ -195,7 +198,7 @@ const CheckOut = () => {
                         </div>
                     )}
                 </div>
-                <button type="submit" className="proceedToPayement">Proceed to Payment</button>
+                <button type="submit" className="proceedToPayment">Proceed to Payment</button>
             </form>
 
 

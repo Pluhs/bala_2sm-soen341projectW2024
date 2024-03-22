@@ -1,0 +1,78 @@
+.checkOut{
+    overflow-y: auto;
+    max-height: calc(100vh - 50px);
+}
+.proceedToPayment{
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    background-color: #052038;
+    /*border-radius: 0;*/
+    border: none;
+    /*border-color: white;*/
+    /*text-decoration: none;*/
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #f5f5f5;
+    font-family: "Times New Roman", sans-serif ;
+    border-radius: 10px;
+}
+
+.proceedToPayment:hover {
+    background-color: #123052;
+}
+
+.CheckOutForm{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.out-checkbox {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.out-checkbox-input {
+    margin-right: 10px;
+}
+
+.inputBoxReserve {
+    margin-bottom: 2px;
+}
+
+.checkOutCardNum,
+.checkOutEntryField{
+    width: 550px;
+    height: 160px;
+    min-width: 250px;
+    max-width: 90%;
+    min-height: 25px;
+    max-height: 300px;
+    background: transparent;
+    outline: none;
+    border: 2px solid #052038;
+    border-bottom-color: #03111e;
+    border-right-color: #051523;
+    border-left-color: #051523;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #000000;
+    /*padding: 5px 3px 5px 5px ;*/
+    /*padding-left: 10px;*/
+    padding: 8px;
+    margin-bottom:20px;
+    font-family: 'Times New Roman', sans-serif; /* Adjust the font-family to match your design */
+    font-size: 18px;
+}
+
+.checkOutCardNum{
+    margin-top:10px;
+    width:100px;
+    height: 10px;
+}
