@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {
     fetchReservationsForUserById,
     deleteReservationById,
@@ -24,6 +24,7 @@ function ViewUserInfo() {
         dropDate: '',
         car: '',
     });
+    let navigate = useNavigate()
 
 
     useEffect(() => {
@@ -104,6 +105,15 @@ function ViewUserInfo() {
             alert("Failed to cancel the reservation.");
         }
     };
+    const handleGetReservationIdOnCheckIn = (id) => {
+
+        navigate('/checkIn',{state:{id: id} } )
+    }
+
+    const handleGetReservationIdOnCheckOut = (id) => {
+
+        navigate('/checkOut',{state:{id: id} } )
+    }
     const fetchAndSetReservations = async () => {
         if (!userId) return;
         const fetchedReservations = await fetchReservationsForUserById(userId);
@@ -199,6 +209,15 @@ function ViewUserInfo() {
                             <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
                         </div>
                         <div className="buttonsContainerReservation">
+                            {reservation.pickedUp ? (
+                                <button onClick={() => handleGetReservationIdOnCheckOut(reservation?.id)}>
+                                    Check Out
+                                </button>
+                            ) : (
+                                <button onClick={() => handleGetReservationIdOnCheckIn(reservation?.id)}>
+                                    Check In
+                                </button>
+                            )}
                             <button type="button" className="editBtn"
                                     onClick={() => setEditingReservation(reservation)}>Edit
                             </button>
