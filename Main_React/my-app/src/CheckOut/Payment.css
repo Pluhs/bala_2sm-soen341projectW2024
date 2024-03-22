@@ -1,6 +1,7 @@
 .paymentDiv{
     display: flex;
     justify-content: center;
-    align-items: center; /* Optional: Align items vertically */
+    align-items: center;
     height: 100vh;
+    flex-direction: column;
 }

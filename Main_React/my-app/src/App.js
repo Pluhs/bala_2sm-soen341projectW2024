@@ -61,9 +61,7 @@ function App() {
                     <Route path="/branch/:id" element={<BranchDetails />} />
                     <Route path="/RentalAgreement" element={<RentalAgreement />} />
                     <Route path="/payment" element={<Payment />} />
-                    <Route path="/payment" element={<Payment />} />
                     <Route path="/thankYou" element={<ThankYou />} />
-
                 </Routes>
             </div>
         </Router>
