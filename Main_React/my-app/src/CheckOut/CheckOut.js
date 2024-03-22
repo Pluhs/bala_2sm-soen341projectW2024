@@ -17,7 +17,7 @@ const CheckOut = () => {
     const [payWithCard, setPayWithCard] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
     const [checkOutCarDamages, setCheckOutCarDamages] = useState('');
-    const [textList, setDamagesList] = useState([]);
+    const [damagesList, setDamagesList] = useState([]);
     let navigate = useNavigate()
 
     const handleRadioChange = (event) => {
@@ -102,6 +102,9 @@ const CheckOut = () => {
             updateCarDamages(checkOutReservationObject.car.id, damagesList)
         }
 
+        if (cardNumber.trim()!== ''){
+            alert(cardNumber)
+        }
         handleGoToPayment(checkOutReservationUserID,checkOutReservationID)
     }
 
@@ -154,7 +157,7 @@ const CheckOut = () => {
                          name="checkOutCarDamages"
                          value={checkOutCarDamages}
                          onChange={(e) => setCheckOutCarDamages(e.target.value)}
-                         placeholder="Enter your text here..."
+                         placeholder="Enter car damages here..."
                      ></textarea>
                 </div>
                 <div>
@@ -192,7 +195,7 @@ const CheckOut = () => {
                         </div>
                     )}
                 </div>
-                <button type="submit" className="proceedToPayement">proceed to payment</button>
+                <button type="submit" className="proceedToPayement">Proceed to Payment</button>
             </form>
 
 
