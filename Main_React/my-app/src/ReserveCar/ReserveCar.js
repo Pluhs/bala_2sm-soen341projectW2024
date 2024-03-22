@@ -49,7 +49,10 @@ const ReserveCarForm = () => {
         e.preventDefault();
 
         // Prompt confirmation dialog
-        const confirmed = window.confirm("Are you sure you want to reserve this car?");
+        const confirmed = window.confirm("Please verify the booking information.\nCar: " + carInfo.name + " " + carInfo.model + " " + carInfo.year +
+            "\nColor: " + carInfo.color + "\nPrice: " + carInfo.price + "$/day\nMax Mileage Per Day: " + carInfo.milage +
+            "\nCar Insurance Selected (for 70$/day): " + insurance + "\nCleaning Selected (for 35$/day): " + cleaning +
+            "\n\nYour Info:\nAddress: " + userAddress + "\nPhone Number: " + phoneNumber + "\nDriver's License Number: " + driverLicense);
         if (!confirmed) {
             return; // If user clicks cancel, do nothing
         }
