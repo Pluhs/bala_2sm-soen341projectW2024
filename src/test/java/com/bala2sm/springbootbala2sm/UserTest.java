@@ -1,8 +1,7 @@
 package com.bala2sm.springbootbala2sm;
 
-import com.bala2sm.springbootbala2sm.Reservation;
-import com.bala2sm.springbootbala2sm.Role;
-import com.bala2sm.springbootbala2sm.User;
+import com.bala2sm.springbootbala2sm.User.Role;
+import com.bala2sm.springbootbala2sm.User.User;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
