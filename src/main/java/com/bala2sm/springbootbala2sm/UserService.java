@@ -164,5 +164,11 @@ public class UserService {
 
         return savedReservation;
     }
+    public User updatePaymentMethod(ObjectId userId, PaymentDetails newPaymentDetails) throws Exception {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new Exception("User not found"));
+        user.setPaymentDetails(newPaymentDetails);
+        return userRepository.save(user);
+    }
 
 }

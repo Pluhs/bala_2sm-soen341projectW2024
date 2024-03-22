@@ -239,7 +239,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Refund processing failed");
         }
     }
-    
+    @PutMapping("/{userId}/updatePaymentMethod")
+    public ResponseEntity<?> updatePaymentMethod(@PathVariable ObjectId userId, @RequestBody PaymentDetails paymentDetails) {
+        try {
+            User updatedUser = userService.updatePaymentMethod(userId, paymentDetails);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
     @PostMapping( "/{userId}/mailConfirmation/{reservationId}")
     public ResponseEntity<?> sendConfirmationMail(@PathVariable ObjectId userId,@PathVariable ObjectId reservationId) throws Exception
     {

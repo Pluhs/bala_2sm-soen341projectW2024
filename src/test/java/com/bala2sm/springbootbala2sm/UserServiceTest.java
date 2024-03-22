@@ -38,8 +38,9 @@ public class UserServiceTest {
         String password = "password123";
         Role role = Role.USER;
         ArrayList<Reservation> reservations = new ArrayList<>();
+        PaymentDetails paymentDetails = new PaymentDetails();
 
-        return new User(id, name, email, password, role, reservations);
+        return new User(id, name, email, password, role, reservations, paymentDetails);
     }
     @Test
     public void testCreateUserSuccess() {
