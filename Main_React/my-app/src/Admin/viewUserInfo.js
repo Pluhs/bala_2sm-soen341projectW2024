@@ -107,12 +107,12 @@ function ViewUserInfo() {
     };
     const handleGetReservationIdOnCheckIn = (id) => {
 
-        navigate('/checkIn',{state:{id: id} } )
+        navigate('/checkIn',{state:{id: id, userID: userId} } )
     }
 
     const handleGetReservationIdOnCheckOut = (id) => {
 
-        navigate('/checkOut',{state:{id: id} } )
+        navigate('/checkOut',{state:{id: id, userID: userId} } )
     }
     const fetchAndSetReservations = async () => {
         if (!userId) return;
