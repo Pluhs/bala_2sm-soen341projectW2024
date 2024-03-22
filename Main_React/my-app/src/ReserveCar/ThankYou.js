@@ -86,8 +86,10 @@ const ReserveCarForm = () => {
     return (
         <div className="ThankYou">
             <h1>Thank You for Checking In!</h1>
-            <br />
+            <br/>
             <p>A deposit of $500 was taken from your account and will be reimbursed at checkout.</p>
+            <br/>
+            <p>Drive away and ENJOY!</p>
             <Link to={`/`}>
                 <button className="sorryBtn">Go Back To Home Page</button>
             </Link>
