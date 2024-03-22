@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './RentalAgreement.css';
 import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
-const RentalAgreement = ({ userId, reservationId }) => {
+const RentalAgreement = () => {
+
+    const location = useLocation();
+    const reservationId = location?.state?.reservationId;
+    const userId = location?.state?.userId;
+
+    // alert(reservationID)
+
     const [agreementDetails, setAgreementDetails] = useState({});
     const [renterSignature, setRenterSignature] = useState('');
     const [renterPrintName, setRenterPrintName] = useState('');
@@ -106,9 +113,9 @@ const RentalAgreement = ({ userId, reservationId }) => {
                     <p className="rental-detail">Rental End Date: {agreementDetails.rentalEndDate}</p>
                     <p className="rental-detail">Pick-up Location: {agreementDetails.pickupLocation}</p>
                     <p className="rental-detail">Drop-off Location: {agreementDetails.dropoffLocation}</p>
-                    <p className="rental-detail">Rental Period: {agreementDetails.period}</p>
-                    <p className="rental-detail">Mileage Limit (if applicable): {agreementDetails.mileageLimit}</p>
-                    <p className="rental-detail">Rental Rate: {agreementDetails.rentalRate}</p>
+                    <p className="rental-detail">Rental Period: {agreementDetails.period} day(s)</p>
+                    <p className="rental-detail">Mileage Limit (if applicable): {agreementDetails.mileageLimit} km</p>
+                    <p className="rental-detail">Rental Rate: ${agreementDetails.rentalRate}</p>
                     <p className="rental-detail">Additional Services (if
                         any): {agreementDetails.additionalCleaning}, {agreementDetails.additionalInsurance}</p>
                 </section>
@@ -195,6 +202,7 @@ const RentalAgreement = ({ userId, reservationId }) => {
                                 value={dateSigned}
                                 onChange={(e) => setDateSigned(e.target.value)}
                                 min={new Date().toISOString().split('T')[0]}
+                                max={new Date().toISOString().split('T')[0]}
                                 required
                             />
                         </label>
