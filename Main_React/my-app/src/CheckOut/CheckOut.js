@@ -1,12 +1,9 @@
 import React from 'react';
 import "./CheckOut.css"
 
-
-function CheckOut() {
-    return (<>
-
-        </>
-    );
+const CheckOut = () => {
+    <>
+    </>
 }
 
 export default CheckOut;
