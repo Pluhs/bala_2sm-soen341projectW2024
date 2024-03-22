@@ -18,6 +18,7 @@ import CheckIn from "./CheckIn/CheckIn";
 import RentalAgreement from "./CheckIn/RentalAgreement";
 import CheckOut from "./CheckOut/CheckOut";
 import Payment from "./CheckOut/Payment";
+import ThankYou from "./ReserveCar/ThankYou";
 
 
 
@@ -60,6 +61,8 @@ function App() {
                     <Route path="/branch/:id" element={<BranchDetails />} />
                     <Route path="/RentalAgreement" element={<RentalAgreement />} />
                     <Route path="/payment" element={<Payment />} />
+                    <Route path="/payment" element={<Payment />} />
+                    <Route path="/thankYou" element={<ThankYou />} />
 
                 </Routes>
             </div>
