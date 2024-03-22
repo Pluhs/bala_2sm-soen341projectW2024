@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import "./MyProfile.css"
 import {fetchUserById} from "../LogInForm/UserInfo";
-import { deleteReservationById,fetchReservationsForUserById } from '../Admin/ReservationsInfo';
+import {
+    deleteReservationById,
+    fetchReservationsForUserById,
+    fetchReservationsForUserByReservationId
+} from '../Admin/ReservationsInfo';
 import {Link} from "react-router-dom";
 
 
@@ -53,6 +57,78 @@ const MyProfile = () => {
         );
     }
 
+    // const getReservationsByReservationIs = async (reservationId) => {
+    //     const response = await fetchReservationsForUserByReservationId(userId, reservationId);
+    //
+    //
+    // }
+
+
+    // const displayButtons = async (userId, reservationId) => {
+    //     try {
+    //         alert('Fetching reservation for userId: ' + userId + ' and reservationId: ' + reservationId);
+    //         const reservation = await fetchReservationsForUserByReservationId(userId, reservationId);
+    //         // if (!reservation || Object.keys(reservation).length === 0) {
+    //         //     alert("no reservation")
+    //         //     throw new Error('Reservation not found or empty');
+    //         // }
+    //
+    //         const pickedUp = reservation?.pickedUp;
+    //         alert(pickedUp.toString())
+    //
+    //         if (pickedUp) {
+    //             alert('Reservation has been picked up.');
+    //         } else {
+    //             alert('Reservation has not been picked up.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching reservation and checking picked up status:', error);
+    //         return null; // Return null or handle error as needed
+    //     }
+    // };
+    //
+    // useEffect(() =>{
+    //     displayButtons(userId, reservationId);
+    // }, [userId, reservationId]);
+
+
+
+    // const displayButtons = async () => {
+    //     try {
+    //
+    //         const userReservations = await fetchReservationsForUserById(userId);
+    //         // alert(`hii ${JSON.stringify(userReservations)}`);
+    //         const variableValue = userReservations.map(reservation => reservation.car.pickedUp);
+    //         alert (userReservations)
+    //
+    //         // Display the variable value in an alert
+    //         // alert(`${variableValue}`);
+    //     } catch (error) {
+    //         console.error('Failed to fetch user reservations:', error);
+    //         alert('Failed to fetch user reservations.');
+    //     }
+    // }
+
+    // const displayButtons = async () => {
+    //     try {
+    //         const userReservations = await fetchReservationsForUserById(userId);
+    //
+    //         if (userReservations.length === 0) {
+    //             alert("No reservations found for this user.");
+    //             return;
+    //         }
+    //
+    //         userReservations.forEach(reservation => {
+    //             // const reservationId = reservation;
+    //             alert(`Reservation ID: ${reservation}`);
+    //
+    //         });
+    //     } catch (error) {
+    //         console.error('Failed to fetch user reservations:', error);
+    //         alert('Failed to fetch user reservations.');
+    //     }
+    // }
+
 
     return (
         <div className="myProfile">
@@ -70,7 +146,24 @@ const MyProfile = () => {
                                 <b className="price">Price: {reservation.car.price}$/day</b>
                                 <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
                             </div>
+
+                            {/*{userReservations.id === reservation.id? (*/}
+                            {/*    <Link to={`/checkOut/${reservation.id}`}>*/}
+                            {/*        <button className="checkoutButton">Check Out</button>*/}
+                            {/*    </Link>*/}
+                            {/*) : (*/}
+                            {/*    <Link to={`/checkIn/${reservation.id}`}>*/}
+                            {/*        <button className="checkinButton">Check In</button>*/}
+                            {/*    </Link>*/}
+                            {/*)}*/}
+
                             <div className="deleteReservationBtnContainer">
+                                {/*<button*/}
+                                {/*    type="button"*/}
+                                {/*    className="deleteReservationBtn"*/}
+                                {/*    onClick={() => displayButtons(userId, reservation.id)}>*/}
+                                {/*    test*/}
+                                {/*</button>*/}
                                 <button
                                     type="button"
                                     className="deleteReservationBtn"
