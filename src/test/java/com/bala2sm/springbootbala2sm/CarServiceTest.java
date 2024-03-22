@@ -1,7 +1,7 @@
 package com.bala2sm.springbootbala2sm;
-import com.bala2sm.springbootbala2sm.Car;
-import com.bala2sm.springbootbala2sm.CarRepository;
-import com.bala2sm.springbootbala2sm.CarService;
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car.CarRepository;
+import com.bala2sm.springbootbala2sm.Car.CarService;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
