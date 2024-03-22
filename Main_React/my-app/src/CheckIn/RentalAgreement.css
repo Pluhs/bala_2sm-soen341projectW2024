@@ -45,7 +45,6 @@
     margin-bottom: 5px;
 }
 
-
 .input-field {
     width: 95%;
     padding: 8px;
@@ -53,6 +52,9 @@
     border-radius: 4px;
 }
 .signature-input {
+    font-family: 'Dancing Script', cursive;
+}
+.companySignuture{
     font-family: 'Dancing Script', cursive;
 }
 

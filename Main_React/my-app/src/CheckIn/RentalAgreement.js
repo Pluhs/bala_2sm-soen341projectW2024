@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './RentalAgreement.css';
 import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
+import { useNavigate } from 'react-router-dom';
 
 const RentalAgreement = ({ userId, reservationId }) => {
     const [agreementDetails, setAgreementDetails] = useState({});
@@ -8,13 +9,13 @@ const RentalAgreement = ({ userId, reservationId }) => {
     const [renterPrintName, setRenterPrintName] = useState('');
     const [dateSigned, setDateSigned] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAgreementData = async () => {
             try {
-                const userResponse = await fetchUserById("65efa3b20d643e473880aeb5");
-                const reservationResponse = await fetchUserReservationById("65efa3b20d643e473880aeb5", "65fb42dbfc189f5551e25ad0");
+                const userResponse = await fetchUserById(userId);
+                const reservationResponse = await fetchUserReservationById(userId, reservationId);
                 if (userResponse && reservationResponse) {
                     const rentalStartDate = new Date(reservationResponse.pickupDate);
                     const rentalEndDate = new Date(reservationResponse.dropDate);
@@ -64,7 +65,12 @@ const RentalAgreement = ({ userId, reservationId }) => {
     }, [renterSignature, renterPrintName, dateSigned]);
 
     const handleSubmit = async (event) => {
-
+        event.preventDefault();
+        if (!isFormValid) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        navigate('/');
     }
 
 
@@ -152,7 +158,11 @@ const RentalAgreement = ({ userId, reservationId }) => {
                     </p>
                 </section>
                 <section className="signature-section">
-                    <h2 className="section-title">Signatures:</h2>
+                    <h2 className="section-title">Company Signature:</h2>
+                    <p className="signature-detail"><strong>Signature:</strong> <span className="companySignuture">Royal Car Rental </span></p>
+                    <p className="signature-detail"><strong>Print Name:</strong> Royal Car Rental</p>
+                    <p className="signature-detail"><strong>Date:</strong> {new Date().toISOString().split('T')[0]}</p>
+                    <h2 className="section-title">Renter's Signature:</h2>
                     <div className="input-group">
                         <label className="input-label">
                             Renter's Signature:
@@ -178,17 +188,18 @@ const RentalAgreement = ({ userId, reservationId }) => {
                         </label>
                     </div>
                     <div className="input-group">
-                        <label className="input-label">
-                            Date:
+                        <label className="input-label">Date:
                             <input
                                 className="input-field date-input"
                                 type="date"
                                 value={dateSigned}
                                 onChange={(e) => setDateSigned(e.target.value)}
+                                min={new Date().toISOString().split('T')[0]}
                                 required
                             />
                         </label>
                     </div>
+
                 </section>
 
                 <div className="form-actions">
