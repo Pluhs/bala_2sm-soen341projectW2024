@@ -267,8 +267,8 @@ public class UserController {
 				+ "Drop-off Location: "+car.getBranch().getAddress()+"\n"
 				+ "Rental Period: "+reservation.getPickupDate().until(reservation.getDropDate()).getDays()+" days\n"
 				+ "Mileage Limit (if applicable): "+car.getMilage()+" \n"
-				+ "Rental Rate: "+car.getPrice()+"$ \n"
-				+ "Additional Services (if any): cleaning (price : "+reservation.getCleaningPrice()+"$) and insurance (price: "+reservation.getInsurancePrice()+"$)\n";
+				+ "Rental Rate: "+car.getPrice()+" $ \n"
+				+ "Additional Services (if any): cleaning (price : "+reservation.getCleaningPrice()+" $) and insurance (price: "+reservation.getInsurancePrice()+" $)\n";
     	
     	
     	String carInfo= 
@@ -348,7 +348,7 @@ public class UserController {
 				+ "\n";
     	try {
     		emailSender.sendMail("bal2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
-    		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
+    		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){
     		 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
