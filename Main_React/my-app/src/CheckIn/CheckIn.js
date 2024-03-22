@@ -2,11 +2,16 @@ import React, {useEffect, useState} from 'react';
 import "./CheckIn.css"
 import {fetchUserById} from "../LogInForm/UserInfo";
 import { deleteReservationById,fetchReservationsForUserById } from '../Admin/ReservationsInfo';
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 
 const CheckIn = () => {
     const [userReservations, setUserReservations] = useState([]);
+
+
+    const location = useLocation();
+    const reservationID = location.state?.id;
+
 
     const userId = localStorage.getItem("userId");
 
@@ -56,34 +61,54 @@ const CheckIn = () => {
 
     return (
         <div className="myProfile">
-            <h1>PAGE UNDER CONSTRUCTION: CHECKIN PAGE:</h1>
-            {userReservations.length > 0 ? (
-                <div>
-                    {userReservations.map(reservation => (
-                        <div key={reservation.id} className="yourReservationContainer">
-                            <img src={reservation.car.imageUrl} alt="Car" className="yourReservationCarImg"/>
-                            <div className="leftContent">
-                                <b className="carInfoTxt">{reservation.car.name} {reservation.car.model} {reservation.car.year}</b>
-                                <b className="startDateTxt">Pickup Date: {reservation.pickupDate}</b>
-                            </div>
-                            <div className="rightContent">
-                                <b className="price">Price: {reservation.car.price}$/day</b>
-                                <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
-                            </div>
-                            <div className="deleteReservationBtnContainer">
-                                <button
-                                    type="button"
-                                    className="deleteReservationBtn"
-                                    onClick={() => cancelReservation(reservation.id)}>
-                                    Cancel Reservation
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p>You don't have any upcoming reservations.</p>
-            )}
+            <h1>PAGE UNDER CONSTRUCTION: CHECK-IN PAGE:</h1>
+
+            <div>
+                <label className="checkbox-label">
+                    <input type="checkbox" className="checkbox-input"/>
+                    Car Insurance (70$/day)
+                </label>
+            </div>
+
+            <div>
+                <label className="checkbox-label">
+                    <input type="checkbox" className="checkbox-input"/>
+                    Car Insurance (70$/day)
+                </label>
+            </div>
+            <div>
+            <label className="checkbox-label">
+                    <input type="checkbox" className="checkbox-input"/>
+                    Car Insurance (70$/day)
+                </label>
+            </div>
+            {/*{userReservations.length > 0 ? (*/}
+            {/*    <div>*/}
+            {/*        {userReservations.map(reservation => (*/}
+            {/*            <div key={reservation.id} className="yourReservationContainer">*/}
+            {/*                <img src={reservation.car.imageUrl} alt="Car" className="yourReservationCarImg"/>*/}
+            {/*                <div className="leftContent">*/}
+            {/*                    <b className="carInfoTxt">{reservation.car.name} {reservation.car.model} {reservation.car.year}</b>*/}
+            {/*                    <b className="startDateTxt">Pickup Date: {reservation.pickupDate}</b>*/}
+            {/*                </div>*/}
+            {/*                <div className="rightContent">*/}
+            {/*                    <b className="price">Price: {reservation.car.price}$/day</b>*/}
+            {/*                    <b className="endDateTxt">Return Date: {reservation.dropDate}</b>*/}
+            {/*                </div>*/}
+            {/*                <div className="deleteReservationBtnContainer">*/}
+            {/*                    <button*/}
+            {/*                        type="button"*/}
+            {/*                        className="deleteReservationBtn"*/}
+            {/*                        onClick={() => cancelReservation(reservation.id)}>*/}
+            {/*                        Cancel Reservation*/}
+            {/*                    </button>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        ))}*/}
+            {/*    </div>*/}
+            {/*) : (*/}
+            {/*    <p>You don't have any upcoming reservations.</p>*/}
+            {/*)}*/}
         </div>
     );
 }
