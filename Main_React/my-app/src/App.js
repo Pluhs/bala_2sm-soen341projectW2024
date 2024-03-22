@@ -16,6 +16,9 @@ import Branch from "./FindBranch/FindBranch";
 import BranchDetails from './FindBranch/BranchDetails';
 import CheckIn from "./CheckIn/CheckIn";
 import RentalAgreement from "./CheckIn/RentalAgreement";
+import CheckOut from "./CheckOut/CheckOut";
+import Payment from "./CheckOut/Payment";
+import ThankYou from "./ReserveCar/ThankYou";
 
 
 
@@ -54,8 +57,13 @@ function App() {
                     <Route path="/users" element={<Users/>} />
                     <Route path="/branch" element={<Branch/>} />
                     <Route path="/CheckIn" element={<CheckIn/>} />
+                    <Route path="/CheckOut" element={<CheckOut/>} />
                     <Route path="/branch/:id" element={<BranchDetails />} />
                     <Route path="/RentalAgreement" element={<RentalAgreement />} />
+                    <Route path="/payment" element={<Payment />} />
+                    <Route path="/payment" element={<Payment />} />
+                    <Route path="/thankYou" element={<ThankYou />} />
+
                 </Routes>
             </div>
         </Router>

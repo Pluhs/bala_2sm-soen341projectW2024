@@ -1,5 +1,6 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Reservation;
 
+import com.bala2sm.springbootbala2sm.Reservation.MockBankService;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

@@ -1,5 +1,6 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Reservation;
 
+import com.bala2sm.springbootbala2sm.User.PaymentDetails;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

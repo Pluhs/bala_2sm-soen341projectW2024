@@ -1,7 +1,7 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Reservation;
 
-import com.bala2sm.springbootbala2sm.Car;
-import com.bala2sm.springbootbala2sm.Reservation;
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;

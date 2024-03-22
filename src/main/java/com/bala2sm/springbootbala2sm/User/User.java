@@ -1,5 +1,6 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.User;
 
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,17 +21,17 @@ public class User {
     private String password;
     private Role role;
     private ArrayList<Reservation> reservations = new ArrayList<>();
-
+    private PaymentDetails paymentDetails;
     public User() {
     }
-
-    public User(ObjectId id, String name, String email, String password, Role role, ArrayList<Reservation> reservations) {
+    public User(ObjectId id, String name, String email, String password, Role role, ArrayList<Reservation> reservations, PaymentDetails paymentDetails) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
         this.reservations = reservations;
+        this.paymentDetails = paymentDetails;
     }
 
     public ObjectId getId() {
@@ -80,6 +81,11 @@ public class User {
     public void setReservations(ArrayList<Reservation> reservations) {
         this.reservations = reservations;
     }
+    public PaymentDetails getPaymentDetails() {
+        return paymentDetails;
+    }
 
+    public void setPaymentDetails(PaymentDetails paymentDetails) {
+        this.paymentDetails = paymentDetails;
+    }
 }
-

@@ -1,5 +1,11 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.User;
 
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car.CarService;
+import com.bala2sm.springbootbala2sm.Reservation.EmailSender;
+import com.bala2sm.springbootbala2sm.Reservation.MockBankService;
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
+import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -8,8 +14,6 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import jakarta.mail.MessagingException;
 
 import java.util.*;
 
@@ -239,7 +243,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Refund processing failed");
         }
     }
-    
+    @PutMapping("/{userId}/updatePaymentMethod")
+    public ResponseEntity<?> updatePaymentMethod(@PathVariable ObjectId userId, @RequestBody PaymentDetails paymentDetails) {
+        try {
+            User updatedUser = userService.updatePaymentMethod(userId, paymentDetails);
+            return ResponseEntity.ok(updatedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
     @PostMapping( "/{userId}/mailConfirmation/{reservationId}")
     public ResponseEntity<?> sendConfirmationMail(@PathVariable ObjectId userId,@PathVariable ObjectId reservationId) throws Exception
     {
@@ -252,9 +265,22 @@ public class UserController {
     	
     	Car car = carService.getCarById(reservation.getCar().getId())
                 .orElseThrow(() -> new Exception("Car not found"));
-    	
+    	String emailBody = "Subject: Confirmation of Car Rental Reservation\n\n"
+                + "Dear " + user.get().getName() + ",\n\n"
+                + "I hope this email finds you well.\n\n"
+                + "I am writing to confirm the rental reservation for a car that you recently made with Bala2sm. We are delighted to assist you with your transportation needs and ensure a seamless experience throughout your rental period.\n\n"
+                + "Below are the details of your reservation:\n\n"
+                + "\t• Rental Period: " + reservation.getPickupDate() + " to " + reservation.getDropDate() + "\n"
+                + "\t• Vehicle Reserved: " + car.getName() + "\n"
+                + "\t• Pickup Location: " + car.getBranch().getAddress() + "\n"
+                + "\t• Drop-off Location: " + car.getBranch().getAddress()  + "\n\n"
+                + "Please review the information provided above and let us know if there are any discrepancies or if you require any modifications to your reservation. If everything is accurate, no action is needed from your end, and we will have everything prepared for your arrival.\n\n"
+                + "Should you have any questions or need further assistance, feel free to reply to this email. Our team is dedicated to ensuring your satisfaction and making your rental experience enjoyable.\n\n"
+                + "Thank you for choosing Bala2sm. We look forward to serving you and wish you a pleasant journey with your rental car.\n\n"
+                + "Warm regards,\n\n"
+                + "Bala2sm";
     	try {
-    		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", "This email is sent to confirm that you reserved a car with Bala2sm");//change body
+    		emailSender.sendMail(user.get().getEmail(), "Car Rental Confirmation", emailBody);// and change body
     		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
     	}
     	catch (Exception e){
@@ -368,7 +394,9 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-    		emailSender.sendMail("bal2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
+
+    		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", mail);//
+
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){

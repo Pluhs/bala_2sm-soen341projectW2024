@@ -1,6 +1,5 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Car;
 
-import com.bala2sm.springbootbala2sm.Car;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 

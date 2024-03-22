@@ -1,8 +1,8 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Car;
 
-import com.bala2sm.springbootbala2sm.Car;
-import com.bala2sm.springbootbala2sm.CarController;
-import com.bala2sm.springbootbala2sm.CarService;
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car.CarController;
+import com.bala2sm.springbootbala2sm.Car.CarService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,10 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.User;
 
-import com.bala2sm.springbootbala2sm.*;
+import com.bala2sm.springbootbala2sm.Car.CarService;
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
+import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
+import com.bala2sm.springbootbala2sm.SecurityConfiguration;
+import com.bala2sm.springbootbala2sm.User.*;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,8 +42,9 @@ public class UserServiceTest {
         String password = "password123";
         Role role = Role.USER;
         ArrayList<Reservation> reservations = new ArrayList<>();
+        PaymentDetails paymentDetails = new PaymentDetails();
 
-        return new User(id, name, email, password, role, reservations);
+        return new User(id, name, email, password, role, reservations, paymentDetails);
     }
     @Test
     public void testCreateUserSuccess() {

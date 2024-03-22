@@ -1,0 +1,6 @@
+.paymentDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Optional: Align items vertically */
+    height: 100vh;
+}
