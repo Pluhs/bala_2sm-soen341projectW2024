@@ -93,7 +93,7 @@ html, body {
     position: relative;
     width: 98%;
     height: 2.5rem;
-    margin: 1.5rem 0;
+    margin: 0 0 1.5rem 0;
 
 }
 
@@ -286,3 +286,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #00ffea;
 }
 
+.checkbox-container {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    margin-bottom: 10px;
+}
+
+.checkbox-label {
+    /*display: flex;*/
+    /*align-items: center;*/
+    margin-right: 20px;
+}
+
+.checkbox-input {
+    margin-right: 8px;
+    transform: scale(1.5); /* Adjust the scale value to increase or decrease the size of the checkboxes */
+}

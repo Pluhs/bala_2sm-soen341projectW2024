@@ -107,7 +107,8 @@
     margin-right: 10px;
 }
 
-.editBtn {
+.editBtn,
+.checkInOutBtn{
     width: 150px;
     height: 40px;
     background: #052039;
@@ -159,6 +160,7 @@
 }
 
 
+.editReservationForm .checkInOutBtn,
 .editReservationForm .editBtn,
 .editReservationForm .cancelBtn {
     padding: 10px;
@@ -178,9 +180,17 @@
 }
 
 .editBtn:hover {
-    background: #03172a;
+    background: #0b365e;
 }
 
+.checkInOutBtn {
+    background: #0b365e;
+
+}
+
+.checkInOutBtn:hover {
+    background: #052039;
+}
 
 .cancelBtn {
     background: #A30021;

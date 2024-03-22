@@ -158,14 +158,14 @@ function BrowseVehicle() {
             )}
             <div className="vehicle-container">
             {cars.filter(filterCars).map(car => (
-                    <div key={car.id} to={`/${car.name}`} className="vehicle" style={{textDecoration: 'none'}}>
-                        <img src={car.imageUrl} alt={`${car.name} ${car.model} ${car.year}`}/>
-                        <h3>{`${car.name} ${car.model} ${car.year}`}</h3>
-                        <p className="browseCarInfo">{car.color} {car.type}</p>
-                        <p className="browseCarInfo">{car.info}</p>
-                        <p className="browseCarInfo">Available at: {car.branch.name}</p>
-                        <p className="browseCarPrice">{car.price}$/day</p>
-                        <button onClick={() => handleGetCarIdOnReserve(car.id)}>
+                    <div key={car?.id} to={`/${car?.name}`} className="vehicle" style={{textDecoration: 'none'}}>
+                        <img src={car?.imageUrl} alt={`${car?.name} ${car?.model} ${car?.year}`}/>
+                        <h3>{`${car?.name} ${car?.model} ${car?.year}`}</h3>
+                        <p className="browseCarInfo">{car?.color} {car?.type}</p>
+                        <p className="browseCarInfo">{car?.info}</p>
+                        <p className="browseCarInfo">Available at: {car?.branch?.name}</p>
+                        <p className="browseCarPrice">{car?.price}$/day</p>
+                        <button onClick={() => handleGetCarIdOnReserve(car?.id)}>
                             Reserve
                         </button>
                     </div>
