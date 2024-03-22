@@ -77,7 +77,7 @@ const CheckOut = () => {
             if (!response.ok) {
                 throw new Error('Error updating car damages');
             }
-            // return await response.json(); // Assuming your server responds with the updated reservation data
+            return await response.json();
         } catch (error) {
             console.error('Error updating car damages:', error);
             return null;
