@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./CheckIn.css"
 import {Link, useLocation} from "react-router-dom";
 import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
+import {useNavigate} from 'react-router-dom';
 
 
 const CheckIn = () => {
@@ -10,10 +11,14 @@ const CheckIn = () => {
     const [userObject, setUserObject] = useState("");
 
     const [textInput, setTextInput] = useState('');
+    const [textList, setTextList] = useState([]);
 
     const location = useLocation();
     const reservationID = location?.state?.id;
     const reservationUserID = location?.state?.userID;
+
+    let navigate = useNavigate()
+
 
     useEffect(() => {
         const fetchAgreementData = async () => {
@@ -41,6 +46,31 @@ const CheckIn = () => {
     const userId = localStorage.getItem("userId");
 
 
+    const updateCarDamages = async (carId, damages) => {
+        try {
+            const response = await fetch(`http://localhost:8080/cars/${carId}/inspect`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(damages),
+            });
+            if (!response.ok) {
+                throw new Error('Error updating car damages');
+            }
+            // return await response.json(); // Assuming your server responds with the updated reservation data
+        } catch (error) {
+            console.error('Error updating car damages:', error);
+            return null;
+        }
+    };
+
+    const handleGoToSignAgreement = (userId, reservationId) => {
+
+        navigate('/rentalAgreement',{state:{userId: userId, reservationId: reservationId} } )
+    }
+
+
     const handleSubmitToSignAgreement = (event) => {
         event.preventDefault(); // Prevent default form submission behavior
 
@@ -49,12 +79,16 @@ const CheckIn = () => {
         if (inputValue !== '') {
             // Input is not empty
             setTextInput(inputValue); // Save input to a constant (state variable)
-            alert(inputValue); // Print an alert with the input value
-        } else {
-            // Input is empty
-            // Ignore it or provide feedback to the user
-            alert('Textarea is empty. Ignoring submission.');
+            const tempList = [inputValue]
+
+            setTextList(tempList); // Add input value to the textList array
+
+            updateCarDamages(reservationObject.car.id,tempList)
+
+
         }
+        handleGoToSignAgreement(reservationUserID,reservationID)
+
 
     }
 
@@ -95,7 +129,7 @@ const CheckIn = () => {
                     <h1>Confirmation for the following reservation: </h1>
                 </div>
                 <div>
-                    <h2>{reservationObject?.car?.name} by {userObject?.name} to be picked up on {reservationObject?.pickupDate}:</h2>
+                    <h2>{reservationObject?.car?.color} {reservationObject?.car?.name} {reservationObject?.car?.model} {reservationObject?.car?.year}, by {userObject?.name}, to be picked up on {reservationObject?.pickupDate}:</h2>
                 </div>
                 <div>
                     <h2><u>Please check the following before proceeding to signing the user agreement</u></h2>
