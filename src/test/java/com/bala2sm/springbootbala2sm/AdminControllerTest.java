@@ -43,8 +43,9 @@ public class AdminControllerTest {
         String password = "password123";
         Role role = Role.USER;
         ArrayList<Reservation> reservations = new ArrayList<>();
+        PaymentDetails paymentDetails = new PaymentDetails();
 
-        return new User(id, name, email, password, role, reservations);
+        return new User(id, name, email, password, role, reservations, paymentDetails);
     }
 //    private User createAdminUser() {
 //        User adminUser = createBasicUser();
