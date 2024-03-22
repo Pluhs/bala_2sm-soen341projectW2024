@@ -1,5 +1,6 @@
 package com.bala2sm.springbootbala2sm;
 
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
 import com.bala2sm.springbootbala2sm.User.Role;
 import com.bala2sm.springbootbala2sm.User.User;
 import org.bson.types.ObjectId;

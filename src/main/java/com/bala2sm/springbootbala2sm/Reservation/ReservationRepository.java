@@ -1,5 +1,6 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Reservation;
 
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

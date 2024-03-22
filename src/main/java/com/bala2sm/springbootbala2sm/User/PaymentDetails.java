@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.User;
 
 public class PaymentDetails {
     private String creditCardNumber;
