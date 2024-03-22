@@ -12,6 +12,7 @@ function Users() {
     let navigate = useNavigate();
     const [editingUser, setEditingUser] = useState(null);
 
+    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
 
 
     const handleViewUser = (id) => {
@@ -56,12 +57,22 @@ function Users() {
         setEditingUser(null);
     };
 
+    const toggleNewUsers = () => {
+        setShowCreateForm(!showCreateForm);
+        // Rotate the plus icon
+        setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
+
 
     if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="usersContainer">
-            <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={() => setShowCreateForm(!showCreateForm)}></i></h1>
+            {/*<h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={() => setShowCreateForm(!showCreateForm)}></i></h1>*/}
+            <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={toggleNewUsers} style={{
+                transform: `rotate(${iconRotation}deg)`,
+                transition: 'transform 0.65s ease'
+            }}></i></h1>
             {showCreateForm && (
                 <form onSubmit={handleSubmitNewUser} className="createUserForm">
                     <input

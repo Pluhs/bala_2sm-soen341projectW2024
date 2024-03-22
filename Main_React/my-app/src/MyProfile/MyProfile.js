@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import "./MyProfile.css"
-import {fetchUserById} from "../LogInForm/UserInfo";
-import { deleteReservationById,fetchReservationsForUserById } from '../Admin/ReservationsInfo';
-import {Link} from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import "./MyProfile.css";
+import { fetchUserById } from "../LogInForm/UserInfo";
+import {
+    deleteReservationById,
+    fetchReservationsForUserById,
+} from '../Admin/ReservationsInfo';
 
 const MyProfile = () => {
     const [userReservations, setUserReservations] = useState([]);
-
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
@@ -25,7 +25,6 @@ const MyProfile = () => {
         }
     }, [userId]);
 
-
     const cancelReservation = async (reservationId) => {
         const isSuccess = await deleteReservationById(userId, reservationId);
         if (isSuccess) {
@@ -40,19 +39,6 @@ const MyProfile = () => {
             alert("Failed to cancel the reservation.");
         }
     };
-    if (!userId) {
-        return (
-            <div className="sorryContainer">
-                <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized" />
-                <h3 className="sorryMsg">We are Sorry...</h3>
-                <p className="sorryText">Access is denied due to the absence of a valid login session.</p>
-                <Link to={`/login`}>
-                    <button className="sorryBtn">Go Back To Login Page</button>
-                </Link>
-            </div>
-        );
-    }
-
 
     return (
         <div className="myProfile">
@@ -70,11 +56,12 @@ const MyProfile = () => {
                                 <b className="price">Price: {reservation.car.price}$/day</b>
                                 <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
                             </div>
+
                             <div className="deleteReservationBtnContainer">
                                 <button
                                     type="button"
                                     className="deleteReservationBtn"
-                                    onClick={() => cancelReservation(reservation.id)}>
+                                    onClick={() => cancelReservation(reservation?.id)}>
                                     Cancel Reservation
                                 </button>
                             </div>

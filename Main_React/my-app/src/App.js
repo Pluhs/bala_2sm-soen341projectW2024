@@ -15,6 +15,7 @@ import ViewUserInfo from "./Admin/viewUserInfo";
 import Branch from "./FindBranch/FindBranch";
 import BranchDetails from './FindBranch/BranchDetails';
 import CheckIn from "./CheckIn/CheckIn";
+import RentalAgreement from "./CheckIn/RentalAgreement";
 
 
 
@@ -53,7 +54,8 @@ function App() {
                     <Route path="/users" element={<Users/>} />
                     <Route path="/branch" element={<Branch/>} />
                     <Route path="/CheckIn" element={<CheckIn/>} />
-                    <Route path="/branch/:id" component={BranchDetails} />
+                    <Route path="/branch/:id" element={<BranchDetails />} />
+                    <Route path="/RentalAgreement" element={<RentalAgreement />} />
                 </Routes>
             </div>
         </Router>
