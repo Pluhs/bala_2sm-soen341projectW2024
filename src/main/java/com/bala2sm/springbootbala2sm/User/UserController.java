@@ -381,11 +381,9 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-<<<<<<< HEAD:src/main/java/com/bala2sm/springbootbala2sm/UserController.java
+
     		emailSender.sendMail("userbala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
-=======
-    		emailSender.sendMail("bala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
->>>>>>> main:src/main/java/com/bala2sm/springbootbala2sm/User/UserController.java
+
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){
