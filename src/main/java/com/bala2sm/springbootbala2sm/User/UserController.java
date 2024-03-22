@@ -1,5 +1,11 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.User;
 
+import com.bala2sm.springbootbala2sm.Car.Car;
+import com.bala2sm.springbootbala2sm.Car.CarService;
+import com.bala2sm.springbootbala2sm.Reservation.EmailSender;
+import com.bala2sm.springbootbala2sm.Reservation.MockBankService;
+import com.bala2sm.springbootbala2sm.Reservation.Reservation;
+import com.bala2sm.springbootbala2sm.Reservation.ReservationRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -8,8 +14,6 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import jakarta.mail.MessagingException;
 
 import java.util.*;
 
@@ -377,7 +381,11 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
+<<<<<<< HEAD:src/main/java/com/bala2sm/springbootbala2sm/UserController.java
     		emailSender.sendMail("userbala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
+=======
+    		emailSender.sendMail("bala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
+>>>>>>> main:src/main/java/com/bala2sm/springbootbala2sm/User/UserController.java
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){
