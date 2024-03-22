@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Reservation;
 
 import com.bala2sm.springbootbala2sm.Car.Car;
 import com.bala2sm.springbootbala2sm.Reservation.Reservation;
