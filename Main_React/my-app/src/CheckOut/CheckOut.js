@@ -65,6 +65,25 @@ const CheckOut = () => {
         );
     }
 
+    const updateCardNum = async (userId, cardNumber) => {
+        try {
+            const response = await fetch(`http://localhost:8080/cars/${userId}/updatePaymentMethod`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(cardNumber),
+            });
+            if (!response.ok) {
+                throw new Error('Error updating car damages');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error updating car damages:', error);
+            return null;
+        }
+    }
+
     const updateCarDamages = async (carId, damages) => {
         try {
             const response = await fetch(`http://localhost:8080/cars/${carId}/inspect`, {
@@ -100,6 +119,8 @@ const CheckOut = () => {
             setDamagesList(damagesList);
 
             updateCarDamages(checkOutReservationObject.car.id, damagesList)
+            updateCardNum(userId, cardNumber)
+
         }
 
         if (cardNumber.trim()!== ''){

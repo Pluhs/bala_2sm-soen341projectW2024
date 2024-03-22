@@ -77,7 +77,9 @@ const RentalAgreement = () => {
             alert('Please fill in all required fields.');
             return;
         }
-        navigate('/');
+
+        navigate('/ThankYou',{state:{userId: userId, reservationId: reservationId} } )
+
     }
 
 
