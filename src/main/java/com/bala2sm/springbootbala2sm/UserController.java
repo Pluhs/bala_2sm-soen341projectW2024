@@ -368,7 +368,7 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-    		emailSender.sendMail("bal2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
+    		emailSender.sendMail("bala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){
