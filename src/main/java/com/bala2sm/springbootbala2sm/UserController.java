@@ -263,7 +263,7 @@ public class UserController {
                 .orElseThrow(() -> new Exception("Car not found"));
     	
     	try {
-    		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", "This email is sent to confirm that you reserved a car with Bala2sm");//change body
+    		emailSender.sendMail("userbala2sm@outlook.com", "Car Rental Agreement", "This email is sent to confirm that you reserved a car with Bala2sm");//user.get().getEmail() and change body
     		return ResponseEntity.status(HttpStatus.OK).body("Email sent successfully");
     	}
     	catch (Exception e){
@@ -377,7 +377,7 @@ public class UserController {
 				+ "Date: _______________________________\n"
 				+ "\n";
     	try {
-    		emailSender.sendMail("bala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
+    		emailSender.sendMail("userbala2sm@outlook.com", "Car Rental Agreement", mail);//user.get().getEmail()
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
     	catch (Exception e){
