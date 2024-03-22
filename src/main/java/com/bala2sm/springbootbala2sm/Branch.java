@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Branch;
+package com.bala2sm.springbootbala2sm;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
