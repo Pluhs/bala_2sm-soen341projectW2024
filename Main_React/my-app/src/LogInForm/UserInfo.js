@@ -24,6 +24,18 @@ export const fetchUserById = async (id) => {
     }
 };
 
+export const fetchUserReservationById = async (userId,reservationId) => {
+    try {
+        const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`);
+        if (!response.ok) {
+            throw new Error('Reservation not found');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching Reservation:', error);
+        return null;
+    }
+};
 export const createUser = async (userData) => {
     try {
         const response = await fetch(`http://localhost:8080/users`, {

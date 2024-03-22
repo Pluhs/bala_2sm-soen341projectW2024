@@ -11,6 +11,19 @@ export const fetchReservationsForUserById = async (id) => {
     }
 };
 
+export const fetchReservationsForUserByReservationId = async (userId, reservationId) => {
+    try {
+        const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch reservation');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching reservation:', error);
+        return [];
+    }
+};
+
 export const deleteReservationById = async (userId, reservationId) => {
     try {
         const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`, {
