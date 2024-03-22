@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm;
+package com.bala2sm.springbootbala2sm.Car;
 import com.bala2sm.springbootbala2sm.Car.Car;
 import com.bala2sm.springbootbala2sm.Car.CarRepository;
 import com.bala2sm.springbootbala2sm.Car.CarService;
