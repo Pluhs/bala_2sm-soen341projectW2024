@@ -21,9 +21,15 @@ const CheckOut = () => {
     let navigate = useNavigate()
 
     const handleRadioChange = (event) => {
-        setPayWithCard(event.target.value === 'yes');
-        setCardNumber('');
+        if(event.target.value === 'yes') {
+            setPayWithCard(true);
+            setCardNumber(checkOutReservationObject.cardNum); // Default card number if "Yes" is selected
+        } else {
+            setPayWithCard(false);
+            // setCardNumber(''); // Clear card number if "No" is selected
+        }
     };
+
 
     const handleCardInputChange = (event) => {
         setCardNumber(event.target.value);
@@ -52,37 +58,28 @@ const CheckOut = () => {
 
     const userId = localStorage.getItem("userId");
 
-    if (!userId) {
-        return (
-            <div className="sorryContainer">
-                <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized" />
-                <h3 className="sorryMsg">We are Sorry...</h3>
-                <p className="sorryText">Access is denied due to the absence of a valid login session.</p>
-                <Link to={`/login`}>
-                    <button className="sorryBtn">Go Back To Login Page</button>
-                </Link>
-            </div>
-        );
-    }
-
-    const updateCardNum = async (userId, cardNumber) => {
-        try {
-            const response = await fetch(`http://localhost:8080/cars/${userId}/updatePaymentMethod`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(cardNumber),
-            });
-            if (!response.ok) {
-                throw new Error('Error updating car damages');
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Error updating car damages:', error);
-            return null;
-        }
-    }
+    // const updateCardNum = async (checkOutReservationUserID, cardNumber) => {
+    //     try {
+    //         const response = await fetch(`http://localhost:8080/users/${checkOutReservationUserID}/updatePaymentMethod`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({cardNum: cardNumber}),
+    //         });
+    //         if (!response.ok) {
+    //             alert('Errorrrrrr')
+    //             throw new Error('Error updating card number');
+    //         }
+    //         else{
+    //             alert("hi")
+    //         }
+    //         return await response.json();
+    //     } catch (error) {
+    //         console.error('Error updating card number:', error);
+    //         return null;
+    //     }
+    // }
 
     const updateCarDamages = async (carId, damages) => {
         try {
@@ -103,31 +100,31 @@ const CheckOut = () => {
         }
     };
 
-    const handleGoToPayment = (userId, reservationId) => {
+    const handleGoToPayment = (userId, reservationId, cardNumber) => {
 
-        navigate('/payment',{state:{userId: userId, reservationId: reservationId} } )
+        navigate('/payment',{state:{userId: userId, reservationId: reservationId, cardNumber: cardNumber} } )
     }
 
-    const handleSubmitCheckOut = (event) => {
+    const handleSubmitCheckOut = async (event) => {
         event.preventDefault();
 
-        const checkOutCarDamagesValue = checkOutCarDamages.trim()
+        const checkOutCarDamagesValue = checkOutCarDamages.trim();
         if (checkOutCarDamagesValue !== '') {
             setCheckOutCarDamages(checkOutCarDamagesValue);
-            const damagesList = [checkOutCarDamagesValue]
-
+            const damagesList = [checkOutCarDamagesValue];
             setDamagesList(damagesList);
-
-            updateCarDamages(checkOutReservationObject.car.id, damagesList)
-            updateCardNum(userId, cardNumber)
-
+            await updateCarDamages(checkOutReservationObject.car.id, damagesList);
         }
 
-        if (cardNumber.trim()!== ''){
-            alert(cardNumber)
+        // If "No" is selected and cardNumber input is not empty, update cardNumber
+        if (!payWithCard && cardNumber.trim() !== '') {
+            setCardNumber(cardNumber); // Update card number if "No" is selected and cardNumber input is not empty
         }
-        handleGoToPayment(checkOutReservationUserID,checkOutReservationID)
-    }
+
+        handleGoToPayment(checkOutReservationUserID, checkOutReservationID, cardNumber);
+    };
+
+
 
 
     return (
@@ -215,6 +212,7 @@ const CheckOut = () => {
                                 placeholder="Enter new card number"
                                 value={cardNumber}
                                 onChange={handleCardInputChange}
+                                required
                             />
                         </div>
                     )}
