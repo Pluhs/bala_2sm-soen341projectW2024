@@ -99,8 +99,8 @@ const CheckIn = () => {
         return <div className="centered-container">Loading...</div>;
     }
 
-    return (<div className="myProfile">
-            <form onSubmit={handleSubmitToSignAgreement}>
+    return (<div className="checkInPage">
+            <form onSubmit={handleSubmitToSignAgreement} className="checkInForm">
                 <div>
                     <h1>Confirmation for the following reservation: </h1>
                 </div>
