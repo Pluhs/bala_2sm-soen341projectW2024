@@ -63,7 +63,7 @@ export const updateReservationById = async (userId, reservationId, updatedReserv
         if (!response.ok) {
             throw new Error('Error updating reservation');
         }
-        return await response.json(); // Assuming your server responds with the updated reservation data
+        return await response.json();
     } catch (error) {
         console.error('Error updating reservation:', error);
         return null;

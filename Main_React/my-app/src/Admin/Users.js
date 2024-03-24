@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { fetchAllUsers, deleteUser,createUser,updateUser } from '../LogInForm/UserInfo';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {fetchAllUsers, deleteUser, createUser, updateUser} from '../LogInForm/UserInfo';
+import {useNavigate} from 'react-router-dom';
 import "./Users.css";
 
 
@@ -8,15 +8,14 @@ function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [showCreateForm, setShowCreateForm] = useState(false);
-    const [newUser, setNewUser] = useState({ name: '', email: '', password: '' });
+    const [newUser, setNewUser] = useState({name: '', email: '', password: ''});
     let navigate = useNavigate();
     const [editingUser, setEditingUser] = useState(null);
-
-    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
+    const [iconRotation, setIconRotation] = useState(0);
 
 
     const handleViewUser = (id) => {
-        navigate('/viewUser', { state: { id: id } });
+        navigate('/viewUser', {state: {id: id}});
     };
 
     const loadUsers = async () => {
@@ -35,8 +34,8 @@ function Users() {
         const isSuccess = await createUser(newUser);
         if (isSuccess) {
             setShowCreateForm(false);
-            setNewUser({ name: '', email: '', password: '' });
-            await loadUsers(); // Refresh the users list
+            setNewUser({name: '', email: '', password: ''});
+            await loadUsers();
         } else {
             alert("Failed to create the user.");
         }
@@ -59,16 +58,14 @@ function Users() {
 
     const toggleNewUsers = () => {
         setShowCreateForm(!showCreateForm);
-        // Rotate the plus icon
         setIconRotation(iconRotation === 0 ? -135 : 0);
     }
 
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div className="centered-container">Loading...</div>;
 
     return (
         <div className="usersContainer">
-            {/*<h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={() => setShowCreateForm(!showCreateForm)}></i></h1>*/}
             <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={toggleNewUsers} style={{
                 transform: `rotate(${iconRotation}deg)`,
                 transition: 'transform 0.65s ease'
@@ -79,19 +76,19 @@ function Users() {
                         type="text"
                         placeholder="Name"
                         value={newUser.name}
-                        onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                        onChange={(e) => setNewUser({...newUser, name: e.target.value})}
                     />
                     <input
                         type="email"
                         placeholder="Email"
                         value={newUser.email}
-                        onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                        onChange={(e) => setNewUser({...newUser, email: e.target.value})}
                     />
                     <input
                         type="password"
                         placeholder="Password"
                         value={newUser.password}
-                        onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                        onChange={(e) => setNewUser({...newUser, password: e.target.value})}
                     />
                     <button type="submit">Create User</button>
                 </form>
@@ -127,7 +124,7 @@ function Users() {
                                 <b className="carInfoTxt">{user.name}</b>
                             </div>
                             <div className="rightContentUsers">
-                            <b className="startDateTxt">Email: {user.email}</b>
+                                <b className="startDateTxt">Email: {user.email}</b>
                             </div>
                             <div className="buttonsContainerUsers">
                                 <i className="fas fa-edit" onClick={() => setEditingUser(user)}></i>

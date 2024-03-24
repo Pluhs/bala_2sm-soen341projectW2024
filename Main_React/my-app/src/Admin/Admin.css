@@ -152,3 +152,11 @@
     margin-top: 50px;
     width: 80%;
 }
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}

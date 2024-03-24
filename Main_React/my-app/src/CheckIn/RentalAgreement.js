@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './RentalAgreement.css';
-import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
+import {fetchUserById, fetchUserReservationById} from '../LogInForm/UserInfo'
 import {useLocation, useNavigate} from 'react-router-dom';
 
 const RentalAgreement = () => {
@@ -8,19 +8,18 @@ const RentalAgreement = () => {
     const location = useLocation();
     const reservationId = location?.state?.reservationId;
     const userId = location?.state?.userId;
-
-    // alert(reservationID)
-
     const [agreementDetails, setAgreementDetails] = useState({});
     const [renterSignature, setRenterSignature] = useState('');
     const [renterPrintName, setRenterPrintName] = useState('');
     const [dateSigned, setDateSigned] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAgreementData = async () => {
             try {
+                setIsLoading(true);
                 const userResponse = await fetchUserById(userId);
                 const reservationResponse = await fetchUserReservationById(userId, reservationId);
                 if (userResponse && reservationResponse) {
@@ -47,16 +46,18 @@ const RentalAgreement = () => {
                         rentalEndDate: rentalEndDate.toISOString().split('T')[0],
                         pickupLocation: reservationResponse.car.branch.address,
                         dropoffLocation: reservationResponse.car.branch.address,
-                        period:period,
+                        period: period,
                         mileageLimit: reservationResponse.car.milage * period,
                         rentalRate: reservationResponse.car.price * period,
-                        additionalCleaning: reservationResponse.cleaning?`Cleaning: $35` : "Cleaning not included" ,
-                        additionalInsurance: reservationResponse.insurance? `Insurance: $70` : "Insurance not included",
+                        additionalCleaning: reservationResponse.cleaning ? `Cleaning: $35` : "Cleaning not included",
+                        additionalInsurance: reservationResponse.insurance ? `Insurance: $70` : "Insurance not included",
                     });
                 }
             } catch (error) {
                 console.error('Error fetching agreement data', error);
                 alert('Error fetching agreement data');
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -78,8 +79,11 @@ const RentalAgreement = () => {
             return;
         }
 
-        navigate('/ThankYou',{state:{userId: userId, reservationId: reservationId} } )
+        navigate('/ThankYou', {state: {userId: userId, reservationId: reservationId}})
 
+    }
+    if (isLoading) {
+        return <div className="centered-container">Loading...</div>;
     }
 
 
@@ -88,7 +92,9 @@ const RentalAgreement = () => {
             <form onSubmit={handleSubmit} className="rental-agreement-form">
                 <h1 className="agreement-title">Rental Agreement</h1>
                 <h2 className="section-title">Rental Agreement Number: {reservationId}</h2>
-                <p className="renter-detail">This Rental Agreement ("Agreement") is entered into between Royal Car Rental, located at {agreementDetails.pickupLocation}, hereinafter referred to as the "Rental Company," and the
+                <p className="renter-detail">This Rental Agreement ("Agreement") is entered into between Royal Car
+                    Rental, located at {agreementDetails.pickupLocation}, hereinafter referred to as the "Rental
+                    Company," and the
                     individual or entity identified below, hereinafter referred to as the "Renter":</p>
                 <section className="renter-info">
                     <h2 className="section-title">Renter's Information:</h2>
@@ -168,7 +174,8 @@ const RentalAgreement = () => {
                 </section>
                 <section className="signature-section">
                     <h2 className="section-title">Company Signature:</h2>
-                    <p className="signature-detail"><strong>Signature:</strong> <span className="companySignuture">Royal Car Rental </span></p>
+                    <p className="signature-detail"><strong>Signature:</strong> <span className="companySignuture">Royal Car Rental </span>
+                    </p>
                     <p className="signature-detail"><strong>Print Name:</strong> Royal Car Rental</p>
                     <p className="signature-detail"><strong>Date:</strong> {new Date().toISOString().split('T')[0]}</p>
                     <h2 className="section-title">Renter's Signature:</h2>
