@@ -1,13 +1,8 @@
 body {
-    /*background-image: url('');*/
     background-color: #BBDCF2;
-    /*background-size: cover;*/
-    /*background-position: center;*/
-    /*background-repeat: no-repeat;*/
 }
 
 .browseVehiclesContainer{
-    /*margin-top: 100px;*/
     padding-top: 100px;
     margin-bottom: 20px;
     max-height: calc(100vh - 100px);
@@ -64,11 +59,7 @@ body {
     display: grid;
     flex-wrap: wrap;
     justify-content: space-between;
-    /*max-height: calc(100vh - 100px);*/
-    /*overflow-y: auto;*/
-    /*margin-top: 50px;*/
     padding: 20px 2%;
-    /*justify-items: center;*/
     justify-items: start;
     gap: 25px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -80,7 +71,7 @@ body {
     width: calc(100%);
     margin-bottom: 4%;
     padding: 20px;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -97,10 +88,15 @@ body {
 }
 
 .vehicle h3 {
-    /*font-family: "Arial", sans-serif;*/
     margin-top: 10px;
     margin-bottom: 5px;
     color: black;
+}
+
+.priceBtnDiv{
+    display: flex; /* Use flexbox to put the elements in a row */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Spread items horizontally */
 }
 
 .browseCarInfo {
@@ -116,21 +112,27 @@ body {
 
 
 .vehicle button {
-    margin-left: 70%;
+    /*margin-left: 70%;*/
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
-    /*border-radius: 0;*/
     border: none;
-    /*border-color: white;*/
-    /*text-decoration: none;*/
     font-size: 1.1rem;
     font-weight: 500;
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
-    border-radius: 3px;
+    border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+
 }
 
 .vehicle button:hover {
-    background-color: #A30021;
+    /*background-color: #A30021;*/
+    /*cursor: pointer;*/
+    background-color: #B28735;
+    cursor: pointer;
+    border-radius: 20px 5px 20px 5px;
+    /*border: 2px #6e5b12 solid ;*/
+    transition: all 0.2s ease-in-out;
+
 }

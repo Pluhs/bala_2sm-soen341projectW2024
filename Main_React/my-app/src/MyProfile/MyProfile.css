@@ -50,7 +50,7 @@
     background: #A30021;
     border: none;
     outline: none;
-    border-radius: 40px;
+    border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     cursor: pointer;
     font-size: 15px;
@@ -59,11 +59,16 @@
     float: right;
     margin-left: 20px;
     margin-right: 20px;
+    transition: all 0.16s ease-in-out;
 
 }
 
 .deleteReservationBtn:hover{
     background: #8a031d;
+    transition: all 0.12s ease-in-out;
+    /*border-radius: 30px;*/
+    border-radius: 5px 20px 5px 20px;
+
 
 }
 
