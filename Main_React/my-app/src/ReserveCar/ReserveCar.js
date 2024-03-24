@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./ReserveCar.css"
 import { useLocation, useNavigate } from "react-router-dom";
+import {fetchReservationsForUserById} from "../Admin/ReservationsInfo";
 
 const ReserveCarForm = () => {
     // const [name, setName] = useState('');
@@ -17,6 +18,8 @@ const ReserveCarForm = () => {
     const carId = location.state?.id;
     const userId = localStorage.getItem("userId");
     const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    const [reservationId, setReservationId] = useState(0);
+
 
     const handleAddressChange = (event) => {
         setUserAddress(event.target.value);
@@ -36,7 +39,6 @@ const ReserveCarForm = () => {
     };
 
 
-
     const handleDateChangeStart = (event) => {
         setPickupDate(event.target.value);
     };
@@ -44,6 +46,51 @@ const ReserveCarForm = () => {
     const handleDateChangeEnd = (event) => {
         setReturnDate(event.target.value);
     };
+
+
+//     const sendConfirmationEmail = async (userId, reservationId) => {
+//     alert("email okkkkk")
+//     alert(reservationId)
+//
+//
+// }
+
+    const findReservationByPickUpDate = async () => {
+        const reservations = await fetchReservationsForUserById(userId);
+
+        // Convert pickupDate to match the format in reservations (assuming it's in YYYY-MM-DD format)
+        const formattedPickupDate = new Date(pickupDate).toISOString().split('T')[0];
+
+        // Loop through reservations to find matching reservation
+        for (const reservation of reservations) {
+            if (reservation.pickupDate === formattedPickupDate && reservation.car.id === carId) {
+                // Matching reservation found, retrieve reservationId
+                const reservationId = reservation.id;
+                setReservationId(reservationId);
+                alert(reservationId);
+
+                try {
+                    const response = await fetch(`http://localhost:8080/users/${userId}/mailConfirmation/${reservationId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to send confirmation email');
+                    }
+
+                    alert('Confirmation email sent successfully');
+                    return response.json();
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Failed to send email");
+                }
+            }
+        }
+    }
 
     const handleSubmitReserveCar = async (e) => {
         e.preventDefault();
@@ -53,6 +100,7 @@ const ReserveCarForm = () => {
             "\nColor: " + carInfo.color + "\nPrice: " + carInfo.price + "$/day\nMax Mileage Per Day: " + carInfo.milage +
             "\nCar Insurance Selected (for 70$/day): " + insurance + "\nCleaning Selected (for 35$/day): " + cleaning +
             "\n\nYour Info:\nAddress: " + userAddress + "\nPhone Number: " + phoneNumber + "\nDriver's License Number: " + driverLicense);
+
         if (!confirmed) {
             return; // If user clicks cancel, do nothing
         }
@@ -76,22 +124,25 @@ const ReserveCarForm = () => {
 
                 });
 
+
                 if (!response.ok) {
+
                     throw new Error('Failed to reserve the car');
                 }
                 const data = await response.json();
-                navigate('/myProfile');
+                await findReservationByPickUpDate(userId)
+
+                    navigate('/myProfile');
 
                 console.log('Car reserved successfully');
+
             } catch (err) {
                 alert("Failed to reserve the car");
             }
-
         }
 
-        // Navigate to home page upon confirming the account number
-        // navigate('/');
     };
+
 
     const displayCarInfo = async () => {
         const signInUrl = `http://localhost:8080/cars/${carId}`;
