@@ -15,6 +15,7 @@ const Payment = () => {
             try {
                 const userId = location?.state?.userId;
                 const reservationId = location?.state?.reservationId;
+                const cardNumber = location?.state?.cardNumber;
 
                 const userInfo = await fetchUserById(userId);
                 const reservationInfo = await fetchUserReservationById(userId, reservationId);
@@ -32,6 +33,7 @@ const Payment = () => {
                     const totalAmount = rentalPrice + cleaningFee + insuranceFee;
 
                     setRentalDetails({
+                        cardNumber,
                         userInfo,
                         reservationInfo,
                         rentedDays,
@@ -72,50 +74,75 @@ const Payment = () => {
 
 
     return (
-        <div className="paymentDiv">
-            <h2>Rental Details</h2>
-            <div className="rental-details">
+        <div className="payment">
+            <div className="paymentDiv">
+                <h2>Rental Details</h2>
+                <div className="rental-details">
 
-                <div className="userInfoDiv">
-                    <p><strong>User Information:</strong></p>
-                    <p>Name: {rentalDetails.userInfo.name}</p>
-                    <p>Email: {rentalDetails.userInfo.email}</p>
-                    <p>Address: {rentalDetails.reservationInfo.userAddress} </p>
-                    <p>Phone Number: {rentalDetails.reservationInfo.phoneNumber} </p>
-                </div>
+                    <div className="userInfoDiv">
+                        <p>----------------------</p>
+                        <p><strong>User Information:</strong></p>
+                        <p>-------------------------------</p>
 
-                <div className="rentalInfoDiv">
-                    <p><strong>Rental Information:</strong></p>
-                    <p>Pickup Date: {new Date(rentalDetails.reservationInfo.pickupDate).toLocaleDateString()}</p>
-                    <p>Drop Date: {new Date(rentalDetails.reservationInfo.dropDate).toLocaleDateString()}</p>
-                    <p>Number of Days: {rentalDetails.rentedDays}</p>
-                    <p>Price Per Day: ${rentalDetails.pricePerDay}</p>
-                    <p>Insurance: {rentalDetails.insuranceFee ? 'Yes' : 'No'}</p>
-                    <p>Cleaning: {rentalDetails.cleaningFee ? 'Yes' : 'No'}</p>
-                </div>
+                        <p>Name: {rentalDetails.userInfo.name}</p>
+                        <p>Email: {rentalDetails.userInfo.email}</p>
+                        <p>Address: {rentalDetails.reservationInfo.userAddress} </p>
+                        <p>Phone Number: {rentalDetails.reservationInfo.phoneNumber} </p>
+                    </div>
 
-                <div className="serInfoDiv">
-                    <p><strong>Rental Total Price:</strong></p>
-                    <p>Rental Price: ${rentalDetails.rentalPrice}</p>
-                </div>
+                    <div className="rentalInfoDiv">
+                        <p>-------------------------------</p>
 
-                <div className="serInfoDiv">
-                    <p><strong>Additional Charges:</strong></p>
-                    <p>Cleaning Fee: ${rentalDetails.cleaningFee}</p>
-                    <p>Insurance Fee: ${rentalDetails.insuranceFee}</p>
-                </div>
+                        <p><strong>Rental Information:</strong></p>
+                        <p>-------------------------------</p>
 
-                <div className="totalAmountDiv">
-                    <p><strong>Total Amount Due:</strong></p>
-                    <p>${rentalDetails.totalAmount}</p>
-                </div>
+                        <p>Pickup Date: {new Date(rentalDetails.reservationInfo.pickupDate).toLocaleDateString()}</p>
+                        <p>Drop Date: {new Date(rentalDetails.reservationInfo.dropDate).toLocaleDateString()}</p>
+                        <p>Number of Days: {rentalDetails.rentedDays}</p>
+                        <p>Price Per Day: ${rentalDetails.pricePerDay}</p>
+                        <p>Insurance: {rentalDetails.insuranceFee ? 'Yes' : 'No'}</p>
+                        <p>Cleaning: {rentalDetails.cleaningFee ? 'Yes' : 'No'}</p>
+                    </div>
 
-                <div className="payment-actions">
-                    <button className="proceedToPayment" onClick={handlePay}>Pay</button>
+                    <div className="serInfoDiv">
+                        <p>-------------------------------</p>
+
+                        <p><strong>Rental Total Price:</strong></p>
+                        <p>-------------------------------</p>
+
+                        <p>Rental Price: ${rentalDetails.rentalPrice}</p>
+                    </div>
+
+                    <div className="serInfoDiv">
+
+                        <p>-------------------------------</p>
+
+                        <p><strong>Additional Charges:</strong></p>
+                        <p>-------------------------------</p>
+
+                        <p>Cleaning Fee: ${rentalDetails.cleaningFee}</p>
+                        <p>Insurance Fee: ${rentalDetails.insuranceFee}</p>
+                    </div>
+
+                    <div className="totalAmountDiv">
+                        <p>-------------------------------</p>
+
+                        <p><strong>Total Amount Due:</strong></p>
+                        <p><strong>${rentalDetails.totalAmount}</strong></p>
+                        <p></p>
+                    </div>
+
+
                 </div>
 
             </div>
+
+            <div className="paymentDiv">
+                <h3>Press the button to pay using credit card ending with ****{rentalDetails.cardNumber.slice(-4)}</h3>
+                <button className="proceedToPayment" onClick={handlePay}>Pay</button>
+            </div>
         </div>
+
     );
 }
 
