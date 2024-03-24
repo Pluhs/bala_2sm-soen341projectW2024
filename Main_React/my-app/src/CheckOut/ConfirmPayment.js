@@ -80,6 +80,31 @@ function ConfirmPayment() {
         }
     };
 
+    const deleteReservation = async (userId, reservationId) => {
+        try {
+            const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                const errorResponse = await response.text();
+                throw new Error(`Failed to delete reservation: ${errorResponse}`);
+            }
+
+            // Reservation successfully deleted
+            const deletedReservation = await response.json();
+            console.log('Deleted reservation:', JSON.stringify(deletedReservation));
+            // alert('deleted reservation: ' + deletedReservation)
+            return deletedReservation;
+        } catch (error) {
+            console.error('Error deleting reservation:', error);
+            alert('An error occurred while deleting reservation. Please try again.');
+        }
+    };
+
 
 
     useEffect(() => {
@@ -87,6 +112,7 @@ function ConfirmPayment() {
             await pay(paymentAmount);
             await refund(refundAmount);
             setIsLoading(false);
+            await deleteReservation(userId, reservationId);
         };
 
         processPayment();
