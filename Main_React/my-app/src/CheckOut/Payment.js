@@ -59,13 +59,13 @@ const Payment = () => {
     }
 
     if (!rentalDetails) {
-        return <div>No rental details found.</div>;
+        return <div className="centered-container">No rental details found :(</div>;
     }
 
     const handlePay = async (event) => {
         event.preventDefault();
 
-        navigate('/ConfirmPayment')
+        navigate('/ConfirmPayment', {state: {rentalDetails: rentalDetails}})
 
     }
     if (isLoading) {
