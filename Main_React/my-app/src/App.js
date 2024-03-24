@@ -19,7 +19,7 @@ import RentalAgreement from "./CheckIn/RentalAgreement";
 import CheckOut from "./CheckOut/CheckOut";
 import Payment from "./CheckOut/Payment";
 import ThankYou from "./ReserveCar/ThankYou";
-
+import ConfirmPayment from "./CheckOut/ConfirmPayment";
 
 
 function App() {
@@ -62,6 +62,8 @@ function App() {
                     <Route path="/RentalAgreement" element={<RentalAgreement />} />
                     <Route path="/payment" element={<Payment />} />
                     <Route path="/thankYou" element={<ThankYou />} />
+                    <Route path="/confirmPayment" element={<ConfirmPayment />} />
+
                 </Routes>
             </div>
         </Router>

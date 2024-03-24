@@ -217,7 +217,7 @@ const CheckOut = () => {
                         </div>
                     )}
                 </div>
-                <button type="submit" className="proceedToPayment">Proceed to Payment</button>
+                <button type="submit" className="proceedToPayment">Proceed to Bill</button>
             </form>
 
 
