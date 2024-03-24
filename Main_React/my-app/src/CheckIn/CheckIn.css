@@ -34,10 +34,17 @@
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+
 }
 .goToSignBtn:hover{
-    background-color: #A30021;
+    background-color: #B28735;
     cursor: pointer;
+    border-radius: 20px 5px 20px 5px;
+    border: 2px #6e5b12 solid ;
+    transition: all 0.2s ease-in-out;
+    /*color: #052038;*/
+
 }
 
 .checkInEntryField {
