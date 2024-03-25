@@ -193,11 +193,11 @@ const ReserveCarForm = () => {
                     </div>
                     <br/>
                     <div className="checkbox-container">
-                        <label className="checkbox-label">
+                        <label className="checkboxLabel">
                             <input type="checkbox" className="checkbox-input" onChange={handleInsuranceChange}/>
                             Car Insurance (70$/day)
                         </label>
-                        <label className="checkbox-label">
+                        <label className="checkboxLabel">
                             <input type="checkbox" className="checkbox-input" onChange={handleCleaningChange}/>
                             Car Cleaning (35$/reservation)
                         </label>
