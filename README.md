@@ -66,6 +66,7 @@ cd bala_2sm-soen341projectW2024
 3. **Install Node.js Dependencies**: Run this in the directory where `package.json` is located: 
  ```
 npm install
+npm install --save google-maps-react --force
  ```
 4. **Run Maven Build**: This step is crucial for Spring Boot projects. In the root directory of the Spring Boot application (where the `pom.xml` file is located), execute: 
  ```
