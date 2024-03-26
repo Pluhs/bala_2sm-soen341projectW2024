@@ -37,9 +37,11 @@ body {
 
 }
 .filterInputGeneral:focus{
-     border-color: #03172a;
-     box-shadow: 0 0 0 1px #052038;
+     border-color: #ad881a;
+     /*box-shadow: 0 0 0 1px #052038;*/
      outline: none;
+
+    /*border: 2px solid #ad8c10;*/
 
 }
 
@@ -94,13 +96,13 @@ body {
 }
 
 .priceBtnDiv{
-    display: flex; /* Use flexbox to put the elements in a row */
-    align-items: center; /* Align items vertically in the center */
-    justify-content: space-between; /* Spread items horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .browseCarInfo {
-    color: #666;
+    color: #444343;
     text-decoration: none;
 }
 
