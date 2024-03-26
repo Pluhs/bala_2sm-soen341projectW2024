@@ -93,19 +93,19 @@
 }
 
 
-.yourReservationCarImg {
-    display: block;
-    max-width: 20%;
-    max-height: 90%;
-    width: auto;
-    height: auto;
-    position: relative;
-    float: left;
-    border-radius: 8px;
-    margin: 5px;
-    flex: 0 0 auto;
-    margin-right: 10px;
-}
+/*.yourReservationCarImg {*/
+/*    display: block;*/
+/*    max-width: 20%;*/
+/*    max-height: 90%;*/
+/*    width: auto;*/
+/*    height: auto;*/
+/*    position: relative;*/
+/*    float: left;*/
+/*    border-radius: 8px;*/
+/*    margin: 5px;*/
+/*    flex: 0 0 auto;*/
+/*    margin-right: 10px;*/
+/*}*/
 
 .editBtn,
 .checkInOutBtn{

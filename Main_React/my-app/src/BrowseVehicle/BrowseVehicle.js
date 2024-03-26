@@ -164,10 +164,12 @@ function BrowseVehicle() {
                         <p className="browseCarInfo">{car?.color} {car?.type}</p>
                         <p className="browseCarInfo">{car?.info}</p>
                         <p className="browseCarInfo">Available at: {car?.branch?.name}</p>
-                        <p className="browseCarPrice">{car?.price}$/day</p>
-                        <button onClick={() => handleGetCarIdOnReserve(car?.id)}>
-                            Reserve
-                        </button>
+                        <div className="priceBtnDiv">
+                            <p className="browseCarPrice">{car?.price}$/day</p>
+                            <button onClick={() => handleGetCarIdOnReserve(car?.id)}>
+                                Reserve
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
