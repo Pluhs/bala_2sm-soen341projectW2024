@@ -139,19 +139,19 @@ function BrowseVehicle() {
                     <div>
                         <label>Year Range: </label>
                         <input type="number" id="minYearFilterOption" className="filterInputGeneral numberInputFilter" value={minYearFilter}
-                               onChange={(e) => setMinYearFilter(e.target.value)}/>
+                               onChange={(e) => setMinYearFilter(e.target.value)} min='1960' max="2050"/>
                         <label> to </label>
                         <input type="number" id="maxYearFilterOption" className="filterInputGeneral numberInputFilter" value={maxYearFilter}
-                               onChange={(e) => setMaxYearFilter(e.target.value)}/>
+                               onChange={(e) => setMaxYearFilter(e.target.value)} min='1960' max="2050"/>
                     </div>
 
                     <div>
                     <label>Price range: </label>
                     <input type="number" id="minPriceFilterOption" className="filterInputGeneral numberInputFilter" value={minPriceFilter}
-                           onChange={(e) => setMinPriceFilter(e.target.value)}/>
+                           onChange={(e) => setMinPriceFilter(e.target.value)} min='0'/>
                     <label> to </label>
                     <input type="number" id="maxPriceFilterOption" className="filterInputGeneral numberInputFilter" value={maxPriceFilter}
-                           onChange={(e) => setMaxPriceFilter(e.target.value)}/>
+                           onChange={(e) => setMaxPriceFilter(e.target.value)} min='0'/>
                 </div>
 
             </div>
@@ -164,10 +164,12 @@ function BrowseVehicle() {
                         <p className="browseCarInfo">{car?.color} {car?.type}</p>
                         <p className="browseCarInfo">{car?.info}</p>
                         <p className="browseCarInfo">Available at: {car?.branch?.name}</p>
-                        <p className="browseCarPrice">{car?.price}$/day</p>
-                        <button onClick={() => handleGetCarIdOnReserve(car?.id)}>
-                            Reserve
-                        </button>
+                        <div className="priceBtnDiv">
+                            <p className="browseCarPrice">{car?.price}$/day</p>
+                            <button onClick={() => handleGetCarIdOnReserve(car?.id)}>
+                                Reserve
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
