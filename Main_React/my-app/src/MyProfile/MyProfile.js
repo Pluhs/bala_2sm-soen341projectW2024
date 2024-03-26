@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {Link} from "react-router-dom";
 import "./MyProfile.css";
 import { fetchUserById } from "../LogInForm/UserInfo";
 import {
@@ -8,9 +9,11 @@ import {
 
 const MyProfile = () => {
     const [userReservations, setUserReservations] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
+        setIsLoading(true);
         if (userId) {
             fetchUserById(userId).then(result => {
                 if (result && result.reservations) {
@@ -18,10 +21,15 @@ const MyProfile = () => {
                 } else {
                     setUserReservations([]);
                 }
+                setIsLoading(false);
             }).catch(error => {
                 console.error('Error fetching user data:', error);
                 setUserReservations([]);
+                setIsLoading(false);
             });
+        }
+        else {
+            setIsLoading(false);
         }
     }, [userId]);
 
@@ -39,6 +47,21 @@ const MyProfile = () => {
             alert("Failed to cancel the reservation.");
         }
     };
+    if (isLoading) {
+        return <div>
+            <div className="centered-container">Loading...</div>
+        </div>;
+    }
+    if (!userId) {
+        return <div className="sorryContainer">
+            <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized"/>
+            <h3 className="sorryMsg">We are Sorry...</h3>
+            <p className="sorryText">Access denied due to absence of login.</p>
+            <Link to={`/login`}>
+                <button className="sorryBtn">Go To Log In Page</button>
+            </Link>
+        </div>;
+    }
 
     return (
         <div className="myProfile">
