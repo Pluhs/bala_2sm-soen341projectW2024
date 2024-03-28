@@ -38,10 +38,7 @@ body {
 }
 .filterInputGeneral:focus{
      border-color: #ad881a;
-     /*box-shadow: 0 0 0 1px #052038;*/
      outline: none;
-
-    /*border: 2px solid #ad8c10;*/
 
 }
 
@@ -129,12 +126,9 @@ body {
 }
 
 .vehicle button:hover {
-    /*background-color: #A30021;*/
-    /*cursor: pointer;*/
     background-color: #B28735;
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
-    /*border: 2px #6e5b12 solid ;*/
     transition: all 0.2s ease-in-out;
 
 }
@@ -164,4 +158,24 @@ body {
     /*border: 2px #6e5b12 solid ;*/
     transition: all 0.2s ease-in-out;
 
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.imgBrowseVehicles{
+    transition: all 0.2s ease-in-out;
+}
+
+.imgBrowseVehicles:hover{
+    /*width: 120%;*/
+
+    /*transform: scale(110%);*/
+    transition: all 0.2s ease-in-out;
 }
