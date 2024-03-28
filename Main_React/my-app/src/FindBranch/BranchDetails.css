@@ -27,7 +27,6 @@
     width: calc(100%);
     margin-bottom: 4%;
     padding: 20px;
-    /*border: 1px solid #ccc;*/
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -61,7 +60,6 @@
 }
 
 .reserveVehicleBtnBranch {
-    /*margin-left: 70%;*/
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -76,12 +74,9 @@
 }
 
 .reserveVehicleBtnBranch:hover {
-    /*background-color: #A30021;*/
-    /*cursor: pointer;*/
     background-color: #B28735;
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
-    /*border: 2px #6e5b12 solid ;*/
     transition: all 0.2s ease-in-out;
 
 }
