@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./FindBranch.css";
-import { Map, GoogleApiWrapper, Marker, DirectionsRenderer } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, DirectionsRenderer,InfoWindow } from 'google-maps-react';
 import { fetchAllBranches } from "./BranchInfo";
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,9 @@ function FindBranch(props) {
     const [userLocation, setUserLocation] = useState(null);
     const mapRef = React.useRef(null);
     const directionsRendererRef = React.useRef(null);
-
+    const [selectedBranchMarker, setSelectedBranchMarker] = useState(null);
+    const [activeMarker, setActiveMarker] = useState(null);
+    const [showInfoWindow, setInfoWindowFlag] = useState(true);
 
     useEffect(() => {
         const fetchBranches = async () => {
@@ -142,9 +144,36 @@ function FindBranch(props) {
                     initialCenter={{ lat: 45.5019, lng: -73.5674 }}
                     ref={mapRef}
                 >
+                    <></>
                     {allBranches.map(branch => (
-                        <Marker key={branch.id} position={{ lat: branch.lat, lng: branch.lng }} />
+                        <Marker key={branch.id} position={{ lat: branch.lat, lng: branch.lng }} onClick={(props, marker) => {
+                            setSelectedBranchMarker(branch);
+                            setActiveMarker(marker);
+                          }}/>
                     ))}
+                     {selectedBranchMarker ? (
+                        <InfoWindow
+                            visible={showInfoWindow}
+                            marker={activeMarker}
+                            onCloseClick={() => {
+                            setSelectedBranchMarker(null);
+                            }}
+                        >
+                            <div>
+                                <a href={`/branch/${selectedBranchMarker.id}`} >
+                                    <button className="searchButton">
+                                        <i className="fa fa-info"></i>
+                                    </button>
+                                </a>
+                                
+                                <h2 style={{display:'inline'}}> {selectedBranchMarker.name}</h2>
+                                <p>{selectedBranchMarker.address}</p>
+                                
+                                            
+                            </div>
+                            
+                        </InfoWindow>
+                        ) : null}
                 </Map>
             </div>
         </div>
