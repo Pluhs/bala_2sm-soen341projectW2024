@@ -10,12 +10,6 @@
     background-repeat: no-repeat;
     z-index: 1;
 }
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
 .wrapperLogin {
     width: 23rem;
     height: 25rem;

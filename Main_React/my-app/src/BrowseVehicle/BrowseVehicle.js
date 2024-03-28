@@ -5,9 +5,7 @@ import "../ReserveCar/ReserveCar";
 import {createUser} from "../LogInForm/UserInfo";
 
 function BrowseVehicle() {
-    // State to store the car data
     const [cars, setCars] = useState([]);
-
     const [branchFilter, setBranchFilter] = useState("ShowAll");
     const [makeFilter, setMakeFilter] = useState("ShowAll");
     const [colorFilter, setColorFilter] = useState("ShowAll");
@@ -17,8 +15,8 @@ function BrowseVehicle() {
     const [minPriceFilter, setMinPriceFilter] = useState("");
     const [maxPriceFilter, setMaxPriceFilter] = useState("");
     const [showFilters, setShowFilters] = useState(false);
-    // const [plusIconRotate, setPlusIconRotate] = useState(false);
-    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
+    const [iconRotation, setIconRotation] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     let navigate = useNavigate()
 
@@ -29,6 +27,7 @@ function BrowseVehicle() {
     }
 
     const displayCars = async () => {
+        setIsLoading(true);
         const signInUrl = `http://localhost:8080/cars/available`;
 
         try {
@@ -38,6 +37,8 @@ function BrowseVehicle() {
             setCars(carsData);
         } catch (error) {
             console.log(error.message);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -57,18 +58,13 @@ function BrowseVehicle() {
             (maxPriceFilter === "" || car.price <= parseInt(maxPriceFilter))
         );
     };
-    // const handleShowFilters = async (e) => {
-    //     e.preventDefault();
-    //         setShowFilters(false);
-    // };
-
-
     const toggleFilters = () => {
         setShowFilters(!showFilters);
-        // Rotate the plus icon
         setIconRotation(iconRotation === 0 ? -135 : 0);
     }
-
+    if (isLoading) {
+        return <div className="centered-container">Loading...</div>;
+    }
 
     return (
         <div className="browseVehiclesContainer">
