@@ -12,7 +12,7 @@ function FindBranch(props) {
     const [userLocation, setUserLocation] = useState(null);
     const mapRef = React.useRef(null);
     const directionsRendererRef = React.useRef(null);
-    const [selectedBranchMarker, setSelectedBranchMarker] = useState(null);
+    const [selectedBranch, setSelectedBranch] = useState(null);
     const [activeMarker, setActiveMarker] = useState(null);
     const [showInfoWindow, setInfoWindowFlag] = useState(true);
 
@@ -147,27 +147,27 @@ function FindBranch(props) {
                     <></>
                     {allBranches.map(branch => (
                         <Marker key={branch.id} position={{ lat: branch.lat, lng: branch.lng }} onClick={(props, marker) => {
-                            setSelectedBranchMarker(branch);
+                            setSelectedBranch(branch);
                             setActiveMarker(marker);
                           }}/>
                     ))}
-                     {selectedBranchMarker ? (
+                     {selectedBranch ? (
                         <InfoWindow
                             visible={showInfoWindow}
                             marker={activeMarker}
                             onCloseClick={() => {
-                            setSelectedBranchMarker(null);
+                            setSelectedBranch(null);
                             }}
                         >
                             <div>
-                                <a href={`/branch/${selectedBranchMarker.id}`} >
+                                <a href={`/branch/${selectedBranch.id}`} >
                                     <button className="searchButton">
                                         <i className="fa fa-info"></i>
                                     </button>
                                 </a>
                                 
-                                <h2 style={{display:'inline'}}> {selectedBranchMarker.name}</h2>
-                                <p>{selectedBranchMarker.address}</p>
+                                <h2 style={{display:'inline'}}> {selectedBranch.name}</h2>
+                                <p>{selectedBranch.address}</p>
                                 
                                             
                             </div>
