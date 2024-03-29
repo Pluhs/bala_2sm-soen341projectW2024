@@ -5,11 +5,11 @@ import {fetchUserById} from "../LogInForm/UserInfo";
 
 function Admin() {
     const [userRole, setUserRole] = useState('');
-    const [isLoading, setIsLoading] = useState(true); // Added loading state
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const checkUserRole = async () => {
-            setIsLoading(true); // Start loading
+            setIsLoading(true);
             const userId = localStorage.getItem('userId');
             if (userId) {
                 const user = await fetchUserById(userId);
@@ -27,7 +27,6 @@ function Admin() {
         </div>;
     }
 
-    // Unauthorized access message
     if (userRole !== 'ADMIN') {
         return <div className="sorryContainer">
             <img src="/Images/unauthorized.png" className="sorryImg" alt="unauthorized"/>
@@ -39,7 +38,6 @@ function Admin() {
         </div>;
     }
 
-    // Admin main content
     return (
         <div className="adminMainContainer">
             <div className="adminLeftContainer">

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "./CheckOut.css"
 import {Link, useLocation} from "react-router-dom";
-import {fetchUserById,fetchUserReservationById} from '../LogInForm/UserInfo'
+import {fetchUserById, fetchUserReservationById} from '../LogInForm/UserInfo'
 import {useNavigate} from 'react-router-dom';
 
 
@@ -9,6 +9,7 @@ const CheckOut = () => {
     const [userReservations, setUserReservations] = useState([]);
     const [checkOutReservationObject, setCheckOutReservationObject] = useState("");
     const [checkOutUserObject, setCheckOutUserObject] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
     const checkOutReservationID = location?.state?.id;
     const checkOutReservationUserID = location?.state?.userID;
@@ -21,12 +22,11 @@ const CheckOut = () => {
     let navigate = useNavigate()
 
     const handleRadioChange = (event) => {
-        if(event.target.value === 'yes') {
+        if (event.target.value === 'yes') {
             setPayWithCard(true);
-            setCardNumber(checkOutReservationObject.cardNum); // Default card number if "Yes" is selected
+            setCardNumber(checkOutReservationObject.cardNum);
         } else {
             setPayWithCard(false);
-            // setCardNumber(''); // Clear card number if "No" is selected
         }
     };
 
@@ -36,9 +36,9 @@ const CheckOut = () => {
     };
 
 
-
     useEffect(() => {
         const fetchReservationData = async () => {
+            setIsLoading(true);
             try {
                 const checkOutUserObjectInfo = await fetchUserById(checkOutReservationUserID);
                 const checkOutReservationObjectInfo = await fetchUserReservationById(checkOutReservationUserID, checkOutReservationID);
@@ -51,35 +51,14 @@ const CheckOut = () => {
             } catch (error) {
                 console.error('Error fetching agreement data', error);
                 alert('Error fetching agreement data');
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchReservationData();
     }, [checkOutReservationUserID, checkOutReservationID]);
 
     const userId = localStorage.getItem("userId");
-
-    // const updateCardNum = async (checkOutReservationUserID, cardNumber) => {
-    //     try {
-    //         const response = await fetch(`http://localhost:8080/users/${checkOutReservationUserID}/updatePaymentMethod`, {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({cardNum: cardNumber}),
-    //         });
-    //         if (!response.ok) {
-    //             alert('Errorrrrrr')
-    //             throw new Error('Error updating card number');
-    //         }
-    //         else{
-    //             alert("hi")
-    //         }
-    //         return await response.json();
-    //     } catch (error) {
-    //         console.error('Error updating card number:', error);
-    //         return null;
-    //     }
-    // }
 
     const updateCarDamages = async (carId, damages) => {
         try {
@@ -102,7 +81,7 @@ const CheckOut = () => {
 
     const handleGoToPayment = (userId, reservationId, cardNumber) => {
 
-        navigate('/payment',{state:{userId: userId, reservationId: reservationId, cardNumber: cardNumber} } )
+        navigate('/payment', {state: {userId: userId, reservationId: reservationId, cardNumber: cardNumber}})
     }
 
     const handleSubmitCheckOut = async (event) => {
@@ -116,26 +95,28 @@ const CheckOut = () => {
             await updateCarDamages(checkOutReservationObject.car.id, damagesList);
         }
 
-        // If "No" is selected and cardNumber input is not empty, update cardNumber
         if (!payWithCard && cardNumber.trim() !== '') {
-            setCardNumber(cardNumber); // Update card number if "No" is selected and cardNumber input is not empty
+            setCardNumber(cardNumber);
         }
 
         handleGoToPayment(checkOutReservationUserID, checkOutReservationID, cardNumber);
     };
 
-
-
-
+    if (isLoading) {
+        return <div>
+            <div className="centered-container">Loading...</div>
+        </div>;
+    }
     return (
 
-        <div className = "checkOut">
+        <div className="checkOut">
             <form className="CheckOutForm" onSubmit={handleSubmitCheckOut}>
                 <div>
                     <h1>Checking out the following vehicle: </h1>
                 </div>
                 <div>
-                    <h2>{checkOutReservationObject?.car?.name} rented by {checkOutUserObject?.name} on {checkOutReservationObject?.pickupDate},
+                    <h2>{checkOutReservationObject?.car?.name} rented
+                        by {checkOutUserObject?.name} on {checkOutReservationObject?.pickupDate},
                         to be returned by {checkOutReservationObject?.dropDate} latest:</h2>
                 </div>
                 <div>

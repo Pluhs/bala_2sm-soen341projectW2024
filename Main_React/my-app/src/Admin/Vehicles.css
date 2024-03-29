@@ -219,3 +219,11 @@
     background: #03172a;
     opacity: 0.9;
 }
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}

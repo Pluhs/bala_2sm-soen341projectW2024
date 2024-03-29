@@ -16,23 +16,23 @@
 .carsGrid {
     display: grid;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     padding: 20px 2%;
-    justify-items: center;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: start;
+    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .carDetailCard {
     width: calc(100%);
-    max-width: 500px;
     margin-bottom: 4%;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
+    /*margin-bottom: 100px;*/
+    max-width: 350px;
 }
 
 .carImageDetail {
@@ -59,8 +59,7 @@
     font-size: large;
 }
 
-.reserveCarButton {
-    margin-left: 80%;
+.reserveVehicleBtnBranch {
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -69,10 +68,15 @@
     font-weight: 500;
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
-    border-radius: 3px;
-    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+
 }
 
-.reserveCarButton:hover {
-    background-color: #A30021;
+.reserveVehicleBtnBranch:hover {
+    background-color: #B28735;
+    cursor: pointer;
+    border-radius: 20px 5px 20px 5px;
+    transition: all 0.2s ease-in-out;
+
 }
