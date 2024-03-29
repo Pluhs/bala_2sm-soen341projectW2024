@@ -14,7 +14,7 @@ function FindBranch(props) {
     const directionsRendererRef = React.useRef(null);
     const [selectedBranch, setSelectedBranch] = useState(null);
     const [activeMarker, setActiveMarker] = useState(null);
-    const [showInfoWindow, setInfoWindowFlag] = useState(true);
+    const showInfoWindow = useState(true)[0];
     const autoCompleteRef = useRef();
     const inputRef = useRef();
     const [place, setPlace]= useState(null);
@@ -29,9 +29,9 @@ function FindBranch(props) {
         autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
         autoCompleteRef.current.addListener("place_changed", async function () {
             const place = await autoCompleteRef.current.getPlace();//gets a place object which contain the location of the searched address
-            
-            setSearchTerm(place.formatted_adress)//sets the content of the input box to the address of the place
             setPlace(place)
+            setSearchTerm(place.formatted_adress)//sets the content of the input box to the address of the place
+            
            });
     }, []);
 
@@ -40,6 +40,9 @@ function FindBranch(props) {
         e.preventDefault();
         setSearchPerformed(true);
 
+        if(place==null||place==undefined){//if user submits form without selecting an address
+            return;
+        }
         for(let i=0;i<place.address_components.length;i++){
             if(place.address_components[i].types[0].toString() === 'country'){//looks for the country component in the place object
                 
