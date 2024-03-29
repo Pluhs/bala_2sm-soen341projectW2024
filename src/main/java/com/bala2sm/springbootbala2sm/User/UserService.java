@@ -73,6 +73,9 @@ public class UserService {
 
     public User addReservation(ObjectId userId, Reservation reservation) throws Exception {
         User user = userRepository.findById(userId).orElseThrow(() -> new Exception("User not found"));
+        if (overlappingReservations(reservation)) {
+            throw new Exception("Overlapping reservations exist for the selected dates");
+        }
         reservationRepository.save(reservation);
         user.getReservations().add(reservation);
         return userRepository.save(user);
@@ -137,16 +140,9 @@ public class UserService {
         Car newCar = carService.getCarById(updatedReservation.getCar().getId())
                 .orElseThrow(() -> new Exception("Car not found"));
 
-        List<Reservation> overlappingReservations = reservationRepository
-                .findByCarAndPickupDateLessThanEqualAndDropDateGreaterThanEqual(
-                        updatedReservation.getCar().getId(),
-                        updatedReservation.getPickupDate(),
-                        updatedReservation.getDropDate())
-                .stream()
-                .filter(r -> !r.getId().equals(reservationId))
-                .toList();
+       
 
-        if (!overlappingReservations.isEmpty()) {
+        if (overlappingReservations(updatedReservation)) {
             throw new Exception("Overlapping reservations exist for the selected dates");
         }
 
@@ -174,6 +170,20 @@ public class UserService {
                 .orElseThrow(() -> new Exception("User not found"));
         user.setPaymentDetails(newPaymentDetails);
         return userRepository.save(user);
+    }
+    public Boolean overlappingReservations(Reservation newReservation) {
+    	
+    	List<Reservation> overlappingReservations = reservationRepository
+                .findByCar(newReservation.getCar().getId()).stream()
+                .filter(r -> !r.getId().equals(newReservation.getId()))
+                .toList();
+    	for (Reservation reservation : overlappingReservations) {
+    		if(!(newReservation.getDropDate().isBefore(reservation.getPickupDate()) || 
+    				newReservation.getPickupDate().isAfter(reservation.getDropDate()))) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
 }
