@@ -9,7 +9,7 @@ function Vehicles() {
     const [isLoading, setIsLoading] = useState(true);
     const [editingVehicle, setEditingVehicle] = useState(null);
 
-    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
+    const [iconRotation, setIconRotation] = useState(0);
 
 
     const loadVehiclesList = async () => {
@@ -77,7 +77,6 @@ function Vehicles() {
                 alert("Failed to delete the vehicle.");
             }
         } else {
-            // If the user cancels, do nothing
             console.log("Deletion cancelled by user.");
         }
     };
@@ -122,48 +121,19 @@ function Vehicles() {
         }
     }
 
-    // const fetchAllUsers = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:8080/users`);
-    //         if (!response.ok) {
-    //             throw new Error('Error fetching users');
-    //         }
-    //         return await response.json();
-    //     } catch (error) {
-    //         console.error('Error fetching users:', error);
-    //         return [];
-    //     }
-    // };
-
     useEffect(() => {
         loadVehiclesList();
     }, []);
 
-
-    // useEffect(() => {
-    //     // fetchReservations(); // Fetch reservations on component mount
-    //     const fetchedCars = [
-    //         { id: 1, pickupDate: "2024-04-10", dropDate: "2024-04-15", location: "Saint-Laurent",
-    //             car: {name: "Toyota Camry 2015", price: 80.00, info: "A sedan, excellent for city drives",
-    //                 imageUrl: "/Images/toyota2015.jpg"}},
-    //
-    //         { id: 2, pickupDate: "2024-04-18", dropDate: "2024-04-21", location: "Old Montreal",
-    //             car: {name: "Peugeot 505 1989", price: 30.99, info: "A great car for road trips",
-    //                 imageUrl: "/Images/Peugeot505.jpg"}},
-    //
-    //         { id: 3, pickupDate: "2024-05-02", dropDate: "2024-05-08", location: "Airport",
-    //             car: {name: "BMW I8 2020", price: 11.79, info: "A fast fancy car",
-    //                 imageUrl: "/Images/BMW2020.jpg"}}
-    //
-    //     ]; setCars(fetchedCars);
-    // }, []);
-
-    // if (isLoading) return <div>Loading...</div>;
-
     const toggleNewCars = () => {
         setShowCreateForm(!showCreateForm);
-        // Rotate the plus icon
         setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
+
+    if (isLoading) {
+        return <div>
+            <div className="centered-container">Loading...</div>
+        </div>;
     }
 
     return (
@@ -254,10 +224,6 @@ function Vehicles() {
                             </div>
 
                             <div className="buttonsContainerVehicles">
-
-                                {/*<button type="button" className="editVehicleBtn"*/}
-                                {/*>Edit Vehicle*/}
-                                {/*</button>*/}
 
                                 <i className="fas fa-edit"  onClick={() => setEditingVehicle(car)}></i>
 

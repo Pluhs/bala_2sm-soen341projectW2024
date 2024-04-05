@@ -76,7 +76,6 @@
 }
 
 .navLogOut{
-
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #A30021;
@@ -85,11 +84,14 @@
     font-size: 1.1rem;
     font-weight: 500;
     color: #f5f5f5;
+    transition: all 0.2s ease-in-out;
 
 }
 
 .navLogOut:hover{
     background-color: #8a031d;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
 
 }
 

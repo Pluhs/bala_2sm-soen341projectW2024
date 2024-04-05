@@ -146,8 +146,8 @@ public class UserController {
             if (!overlappingReservations.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Car is already reserved for the selected dates");
             }
-            User updatedUser = userService.addReservation(userId, reservation);
-            return ResponseEntity.ok(updatedUser);
+            userService.addReservation(userId, reservation);
+            return ResponseEntity.ok("User updated");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
@@ -395,7 +395,7 @@ public class UserController {
 				+ "\n";
     	try {
 
-    		emailSender.sendMail(user.get().getEmail(), "Car Rental Agreement", mail);//
+    		emailSender.sendMail("userbala2sm@outlook.com", "Car Rental Agreement", mail);//
 
     		return ResponseEntity.status(HttpStatus.OK).body(mail);
     	}
