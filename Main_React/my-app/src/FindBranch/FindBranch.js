@@ -26,7 +26,13 @@ function FindBranch(props) {
             setAllBranches(fetchedBranches);
         };
         fetchBranches();
-        autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current);
+        const options = {
+            componentRestrictions: { country: ["ca","us"] },
+            fields: ["address_components", "geometry", "name"],
+            types:["address"]
+          };
+          
+        autoCompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current,options);
         autoCompleteRef.current.addListener("place_changed", async function () {
             const place = await autoCompleteRef.current.getPlace();//gets a place object which contain the location of the searched address
             setPlace(place)
@@ -43,12 +49,7 @@ function FindBranch(props) {
         if(place==null||place==undefined){//if user submits form without selecting an address
             return;
         }
-        for(let i=0;i<place.address_components.length;i++){
-            if(place.address_components[i].types[0].toString() === 'country'){//looks for the country component in the place object
-                
-                //if the address entered is in canada give a route to closest branch 
-                //(routing doesn't work from different country)
-                if(place.address_components[i].short_name==="CA"){
+        
 
                     var location=place.geometry.location;
                     setUserLocation(location);
@@ -72,11 +73,9 @@ function FindBranch(props) {
                             setBranches(sortedBranches);
                         }
                 });
-            }else{//if address not in canada
-                alert("Please enter an address in Canada.")
-            }
-        }
-    }
+            
+        
+    
       
     };
 
