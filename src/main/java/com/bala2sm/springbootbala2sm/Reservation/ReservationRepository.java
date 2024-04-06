@@ -13,6 +13,7 @@ public interface ReservationRepository extends MongoRepository<Reservation, Obje
     List<Reservation> findByPickupDate(LocalDate pickupDate);
 
     List<Reservation> findByDropDate(LocalDate dropDate);
-
+    List<Reservation> findByCar(ObjectId carId);
     List<Reservation> findByCarAndPickupDateLessThanEqualAndDropDateGreaterThanEqual(ObjectId carId, LocalDate endDate, LocalDate startDate);
 }
+
