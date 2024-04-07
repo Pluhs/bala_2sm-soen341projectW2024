@@ -69,7 +69,7 @@ function BrowseVehicle() {
     return (
         <div className="browseVehiclesContainer">
             <div className="filterHeader">
-                <h1>Filter by: <i className="fa fa-plus" onClick={toggleFilters} style={{
+                <h1 >Filter by: <i className="fa fa-plus plusSignBrowse" onClick={toggleFilters} style={{
                     transform: `rotate(${iconRotation}deg)`,
                     transition: 'transform 0.65s ease'
                 }}></i></h1>
@@ -78,7 +78,7 @@ function BrowseVehicle() {
                 <div className="filterOptionsContainer">
                     <div>
                         <label htmlFor="branchFilterOption">Branch: </label>
-                        <select id="branchFilterOption" className="filterInputGeneral" value={branchFilter}
+                        <select id="branchFilterOption" className="filterInputGeneral filterInputDropDown" value={branchFilter}
                             onChange={(e) => setBranchFilter(e.target.value)}>
                         <option value="ShowAll">Show All</option>
                         <option value="Dorval Location">Dorval Location</option>
@@ -92,7 +92,7 @@ function BrowseVehicle() {
 
                 <div>
                     <label htmlFor="makeFilterOption">Make: </label>
-                    <select id="makeFilterOption" className="filterInputGeneral" value={makeFilter}
+                    <select id="makeFilterOption" className="filterInputGeneral filterInputDropDown" value={makeFilter}
                             onChange={(e) => setMakeFilter(e.target.value)}>
                         <option value="ShowAll">Show All</option>
                         <option value="Toyota">Toyota</option>
@@ -109,7 +109,7 @@ function BrowseVehicle() {
 
                 <div>
                     <label htmlFor="colorFilterOption">Color: </label>
-                    <select id="colorFilterOption" className="filterInputGeneral" value={colorFilter}
+                    <select id="colorFilterOption" className="filterInputGeneral filterInputDropDown" value={colorFilter}
                             onChange={(e) => setColorFilter(e.target.value)}>
                         <option value="ShowAll">Show All</option>
                         <option value="White">White</option>
@@ -122,7 +122,7 @@ function BrowseVehicle() {
 
                 <div>
                     <label htmlFor="typeFilterOption">Type: </label>
-                    <select id="typeFilterOption" className="filterInputGeneral" value={typeFilter}
+                    <select id="typeFilterOption" className="filterInputGeneral filterInputDropDown" value={typeFilter}
                             onChange={(e) => setTypeFilter(e.target.value)}>
                         <option value="ShowAll">Show All</option>
                         <option value="Sedan">Sedan</option>
@@ -155,7 +155,9 @@ function BrowseVehicle() {
             <div className="vehicle-container">
             {cars.filter(filterCars).map(car => (
                     <div key={car?.id} to={`/${car?.name}`} className="vehicle" style={{textDecoration: 'none'}}>
-                        <img className="imgBrowseVehicles" src={car?.imageUrl} alt={`${car?.name} ${car?.model} ${car?.year}`}/>
+                        <div className='imgContainerBrowse'>
+                            <img className="imgBrowseVehicles" src={car?.imageUrl} alt={`${car?.name} ${car?.model} ${car?.year}`}/>
+                        </div>
                         <h3>{`${car?.name} ${car?.model} ${car?.year}`}</h3>
                         <p className="browseCarInfo">{car?.color} {car?.type}</p>
                         <p className="browseCarInfo">{car?.info}</p>

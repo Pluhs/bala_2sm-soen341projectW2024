@@ -228,3 +228,7 @@
 .carSelectText {
     font-weight: bold;
 }
+
+.plusSignUserInfoAdmin:hover{
+    cursor: pointer;
+}

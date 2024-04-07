@@ -191,9 +191,10 @@
     display: flex;
 
 }
-.createVehicleForm input[type="text"]:focus {
-    border-color: #03172a;
-    box-shadow: 0 0 0 3px #052038;
+.createVehicleForm input:focus {
+    /*border-color: #03172a;*/
+    /*box-shadow: 0 0 0 3px #052038;*/
+    border-color: #937212;
     outline: none;
 }
 .createVehicleForm input[type="text"]::placeholder {
@@ -226,4 +227,8 @@
     justify-content: center;
     height: 100vh;
     text-align: center;
+}
+
+.plusSignVehiclesAdmin:hover{
+    cursor: pointer;
 }
