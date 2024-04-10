@@ -5,7 +5,7 @@ import "./Vehicles.css"
 function Vehicles() {
     const [cars, setCars] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
-    const [newVehicle, setNewVehicle] = useState({ name: '', email: '', info: '', imageUrl: '' });
+    const [newVehicle, setNewVehicle] = useState({name: '', email: '', info: '', imageUrl: ''});
     const [isLoading, setIsLoading] = useState(true);
     const [editingVehicle, setEditingVehicle] = useState(null);
 
@@ -42,7 +42,7 @@ function Vehicles() {
         const isSuccess = await createVehicle(newVehicle);
         if (isSuccess) {
             setShowCreateForm(false);
-            setNewVehicle({ name: '', price: '', info: '', imageUrl: ''  }); // Reset form fields
+            setNewVehicle({name: '', price: '', info: '', imageUrl: ''}); // Reset form fields
             await loadVehiclesList();
         } else {
             alert("Failed to create the vehicle.");
@@ -51,7 +51,7 @@ function Vehicles() {
 
     const deleteVehicle = async (id) => {
         try {
-            const queryParams = new URLSearchParams({ id });
+            const queryParams = new URLSearchParams({id});
             const response = await fetch(`http://localhost:8080/cars/${id}?${queryParams}`, {
                 method: 'DELETE',
             });
@@ -108,7 +108,7 @@ function Vehicles() {
 
 
     const displayCars = async () => {
-         const response = await fetch(`http://localhost:8080/cars`);
+        const response = await fetch(`http://localhost:8080/cars`);
 
         try {
             if (!response.ok) {
@@ -186,7 +186,7 @@ function Vehicles() {
                             value={editingVehicle.price}
                             onChange={(e) => setEditingVehicle({...editingVehicle, price: e.target.value})}
                         />
-                        <p className="static-info-container">    Info:</p>
+                        <p className="static-info-container"> Info:</p>
                         <input
                             type="text"
                             placeholder="Info"
@@ -203,43 +203,43 @@ function Vehicles() {
             )}
             {cars.length > 0 ?
                 (
-                <div>
-                    {cars.map(car => (
-                        <div key={car.id} to={`/${car.name}`} className="adminVehicleContainer"
-                             style={{textDecoration: 'none'}}>
+                    <div>
+                        {cars.map(car => (
+                            <div key={car.id} to={`/${car.name}`} className="adminVehicleContainer"
+                                 style={{textDecoration: 'none'}}>
 
-                            <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
-                            <div className="adminTopContent">
-                                <b className="adminCarName">{car.name} {car.model} {car.year} </b>
+                                <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
+                                <div className="adminTopContent">
+                                    <b className="adminCarName">{car.name} {car.model} {car.year} </b>
 
 
+                                </div>
+                                {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
+                                <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
+
+
+                                <div className="adminBottomContent">
+                                    <b className="adminVehiclePrice">Price: {car.price}$/day </b>
+
+                                </div>
+
+                                <div className="buttonsContainerVehicles">
+
+                                    <i className="fas fa-edit" onClick={() => setEditingVehicle(car)}></i>
+
+                                    <button type="button" className="deleteVehicleBtn"
+                                            onClick={() => handleDeleteVehicle(car.id)}
+                                    >Delete Vehicle
+                                    </button>
+                                </div>
                             </div>
-                            {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
-                            <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
 
 
-                            <div className="adminBottomContent">
-                                <b className="adminVehiclePrice">Price: {car.price}$/day </b>
-
-                            </div>
-
-                            <div className="buttonsContainerVehicles">
-
-                                <i className="fas fa-edit"  onClick={() => setEditingVehicle(car)}></i>
-
-                                <button type="button" className="deleteVehicleBtn"
-                                        onClick={() => handleDeleteVehicle(car.id)}
-                                >Delete Vehicle
-                                </button>
-                            </div>
-                        </div>
-
-
-                    ))}
-                </div>
+                        ))}
+                    </div>
                 ) : (
                     <p>No cars to display</p>
-            )}
+                )}
         </div>
 
 
