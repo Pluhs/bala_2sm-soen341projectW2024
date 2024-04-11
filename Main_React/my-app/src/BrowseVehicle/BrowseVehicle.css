@@ -35,8 +35,9 @@ body {
 }
 
 .filterInputGeneral:focus{
-     border-color: #ad881a;
-     outline: none;
+    border-color: #937212;
+    outline: none;
+
 
 }
 
@@ -46,6 +47,12 @@ body {
     font-style: normal;
 
 }
+
+.filterInputDropDown:hover{
+    cursor: pointer;
+
+}
+
 
 .numberInputFilter{
     max-width: 75px;
@@ -70,6 +77,19 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
     max-width: 350px;
+
+    overflow: hidden;
+
+
+}
+
+.imgContainerBrowse{
+    /*position: relative;*/
+    width: 100%;
+    /*padding-top: 67%;*/
+    overflow: hidden;
+    border-radius: 8px;
+
 }
 
 .vehicle img {
@@ -79,10 +99,24 @@ body {
     border-radius: 8px;
 }
 
+.imgBrowseVehicles{
+
+    transition: all 0.3s ease-in-out;
+}
+
+.imgBrowseVehicles:hover{
+    /*width: 120%;*/
+
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+
 .vehicle h3 {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    /*margin-top: 10px;*/
+    /*margin-bottom: 5px;*/
     color: black;
+    margin: 10px 20px 5px 20px;
 }
 
 .priceBtnDiv{
@@ -94,12 +128,14 @@ body {
 .browseCarInfo {
     color: #444343;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .browseCarPrice{
     color: black;
     font-weight: bolder;
     font-size: large;
+    margin-left: 20px;
 }
 
 
@@ -114,6 +150,8 @@ body {
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
     transition: all 0.25s ease-in-out;
+    margin-right: 20px;
+
 }
 
 .vehicle button:hover {
@@ -153,10 +191,14 @@ body {
     text-align: center;
 }
 
-.imgBrowseVehicles{
-    transition: all 0.2s ease-in-out;
-}
+
 
 .imgBrowseVehicles:hover{
     transition: all 0.2s ease-in-out;
 }
+
+.plusSignBrowse:hover{
+    cursor: pointer;
+}
+
+

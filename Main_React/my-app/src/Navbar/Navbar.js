@@ -1,21 +1,21 @@
 import {Component} from "react";
 import {MenuData} from "./MenuData";
 import "./NavbarStyles.css";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 class Navbar extends Component {
     state = {clicked: false};
-    handleClick =()=> this.setState({clicked: !this.state.clicked})
+    handleClick = () => this.setState({clicked: !this.state.clicked})
 
-    handlePageOpened =()=> this.setState({clicked: false})
+    handlePageOpened = () => this.setState({clicked: false})
 
     render() {
         return (
             <nav className="NavbarItems">
                 <a href={"/"}><img className="logo" src="/Images/FullLogoBright.png"></img></a>
-                <div className= "menuIcones" onClick={this.handleClick}>
-                    <i className= {this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+                <div className="menuIcones" onClick={this.handleClick}>
+                    <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
                 </div>
                 <ul className={this.state.clicked ? "navMenu active" : "navMenu"}>
                     {MenuData.map((item, index) => {

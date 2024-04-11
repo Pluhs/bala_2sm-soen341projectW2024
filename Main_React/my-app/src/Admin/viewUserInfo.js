@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {
-    createReservation,
     deleteReservationById,
     fetchCars,
     fetchReservationsForUserById,
@@ -13,7 +12,7 @@ import "./viewUserInfo.css";
 function ViewUserInfo() {
     const location = useLocation();
     const userId = location.state?.id;
-
+    const [selectedCar, setSelectedCar] = useState('');
     const [user, setUser] = useState(null);
     const [reservations, setReservations] = useState([]);
     const [editingReservation, setEditingReservation] = useState(null);
@@ -36,29 +35,80 @@ function ViewUserInfo() {
         fetchAvailableCars();
     }, []);
 
+    const handleCarChange = (e) => {
+        setSelectedCar(e.target.value);
+    };
+
     const handleSubmitNewReservation = async (e) => {
         e.preventDefault();
-        if (!newReservation.pickupDate || !newReservation.dropDate || !newReservation.car) {
+        if (!newReservation.pickupDate || !newReservation.dropDate || !newReservation.car || !newReservation.userAddress || !newReservation.phoneNumber || !newReservation.driverLicense || !newReservation.cardNumber) {
             alert("Please fill in all fields.");
             return;
         }
-        const reservationData = {
-            pickupDate: new Date(newReservation.pickupDate).toISOString(),
-            dropDate: new Date(newReservation.dropDate).toISOString(),
-            car: {id: newReservation.car},
-        };
+
+        const confirmed = window.confirm(`Please verify the booking information.
+        \nCar: ${newReservation.car}
+        \nCar Insurance Selected (for 70$/day): ${newReservation.insurance}
+        \n pickup: ${newReservation.pickupDate}
+         \n drop: ${newReservation.dropDate}
+        \nCleaning Selected (for 35$/day): ${newReservation.cleaning}
+        \n\nYour Info:
+        \nAddress: ${newReservation.userAddress}
+        \nPhone Number: ${newReservation.phoneNumber}
+        \nDriver's License Number: ${newReservation.driverLicense}
+        \nCard Number: ${newReservation.cardNumber}`);
+
+
+        if (!confirmed) {
+            return;
+        }
+
+        const cardNum = newReservation.cardNumber;
+
         try {
-            const createdReservation = await createReservation(userId, reservationData);
-            if (createdReservation && createdReservation.id) {
-                await fetchAndSetReservations();
-                setShowCreateReservationForm(false);
-                setNewReservation({pickupDate: '', dropDate: '', car: ''});
-            } else {
-                alert("Failed to create the reservation.");
+            const pickedUp = false;
+            const returned = false;
+            const response = await fetch(`http://localhost:8080/users/${userId}/reservations`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    pickupDate: new Date(newReservation.pickupDate).toISOString(),
+                    dropDate: new Date(newReservation.dropDate).toISOString(),
+                    car: {id: newReservation.car},
+                    userAddress: newReservation.userAddress,
+                    phoneNumber: newReservation.phoneNumber,
+                    driverLicense: newReservation.driverLicense,
+                    insurance: newReservation.insurance,
+                    cleaning: newReservation.cleaning,
+                    pickedUp,
+                    returned,
+                    cardNum: newReservation.cardNumber
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to reserve the car');
             }
-        } catch (error) {
-            console.error("Error creating reservation:", error);
-            alert("An error occurred while creating the reservation. Please try again.");
+
+            await fetchAndSetReservations();
+            setShowCreateReservationForm(false);
+            setNewReservation({
+                pickupDate: '',
+                dropDate: '',
+                car: '',
+                userAddress: '',
+                phoneNumber: '',
+                driverLicense: '',
+                insurance: false,
+                cleaning: false,
+                cardNumber: ''
+            });
+            console.log('Car reserved successfully');
+        } catch (err) {
+            console.error("Error creating reservation:", err);
+            alert("Failed to reserve the car");
         }
     };
 
@@ -121,54 +171,102 @@ function ViewUserInfo() {
     };
     useEffect(() => {
         fetchAndSetReservations();
-    }, [userId]); // This will run when the component mounts and anytime userId changes
+    }, [userId]);
 
 
     if (!user || !reservations) return <div className="centered-container">Loading...</div>;
 
     return (
         <div className="ReservationAdmin">
-            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus"
+            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus plusSignUserInfoAdmin"
                                                                onClick={() => setShowCreateReservationForm(!showCreateReservationForm)}></i>
-            </h1>
-            {showCreateReservationForm && (
-                <form onSubmit={handleSubmitNewReservation} className="editReservationForm">
-                    <div className="formInputContainer">
-                        <label>Pickup Date:</label>
-                        <input
-                            type="date"
-                            value={newReservation.pickupDate}
-                            onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
-                        />
-                    </div>
-                    <p className="carSelectText">Available Cars:</p>
-                    <select
-                        className="carSelect"
-                        value={newReservation.car}
-                        onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
-                    >
-                        <option value="">-- Select --</option>
-                        {cars.map(car => (
-                            <option key={car.id} value={car.id}>{car.name}</option>
-                        ))}
-                    </select>
-                    <div className="formInputContainer">
-                        <label>Drop Date:</label>
-                        <input
-                            type="date"
-                            value={newReservation.dropDate}
-                            onChange={(e) => setNewReservation({...newReservation, dropDate: e.target.value})}
-                        />
-                    </div>
-                    {/* Include other necessary fields */}
-                    <div className="formButtonsContainerReservation">
-                        <button type="submit" className="editBtn">Create Reservation</button>
-                        <button type="button" onClick={() => setShowCreateReservationForm(false)}
-                                className="cancelBtn">Cancel
-                        </button>
-                    </div>
-                </form>
-            )}
+            </h1>{showCreateReservationForm && (
+            <form onSubmit={handleSubmitNewReservation} className="editReservationForm">
+                <p className="carSelectText">Car:</p>
+                <select
+                    className="carSelect"
+                    value={newReservation.car}
+                    onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
+                >
+                    <option value={selectedCar} onChange={handleCarChange}>-- Select --</option>
+                    {cars.map(car => (
+                        <option key={car.id} value={car.id}> {car.color} {car.name} {car.model} {car.year} </option>
+                    ))}
+                </select>
+                <div className="formInputContainer">
+                    <label>Pickup Date:</label>
+                    <input
+                        type="date"
+                        value={newReservation.pickupDate}
+                        onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <label>Drop Date:</label>
+                    <input
+                        type="date"
+                        value={newReservation.dropDate}
+                        onChange={(e) => setNewReservation({...newReservation, dropDate: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <label>Address:</label>
+                    <input
+                        type="text"
+                        value={newReservation.userAddress}
+                        onChange={(e) => setNewReservation({...newReservation, userAddress: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <label>Phone Number:</label>
+                    <input
+                        type="text"
+                        value={newReservation.phoneNumber}
+                        onChange={(e) => setNewReservation({...newReservation, phoneNumber: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <label>Driver's License:</label>
+                    <input
+                        type="text"
+                        value={newReservation.driverLicense}
+                        onChange={(e) => setNewReservation({...newReservation, driverLicense: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <label>Card Number:</label>
+                    <input
+                        type="text"
+                        value={newReservation.cardNumber}
+                        onChange={(e) => setNewReservation({...newReservation, cardNumber: e.target.value})}
+                    />
+                </div>
+                <div className="formInputContainer">
+                    <input
+                        type="checkbox"
+                        checked={newReservation.insurance}
+                        onChange={(e) => setNewReservation({...newReservation, insurance: e.target.checked})}
+                    />
+                    <label>Insurance (70$/day)</label>
+                </div>
+                <div className="formInputContainer">
+                    <input
+                        type="checkbox"
+                        checked={newReservation.cleaning}
+                        onChange={(e) => setNewReservation({...newReservation, cleaning: e.target.checked})}
+                    />
+                    <label>Cleaning (35$/day)</label>
+                </div>
+                <div className="formButtonsContainerReservation">
+                    <button type="submit" className="editBtn">Create Reservation</button>
+                    <button type="button" onClick={() => setShowCreateReservationForm(false)}
+                            className="cancelBtn">Cancel
+                    </button>
+                </div>
+            </form>
+        )}
+
+
             {
                 editingReservation && (
                     <form onSubmit={(e) => handleSaveEdit(e, editingReservation)} className="editReservationForm">
@@ -176,7 +274,7 @@ function ViewUserInfo() {
                             <label>Pickup Date:</label>
                             <input
                                 type="date"
-                                value={editingReservation.pickupDate.split('T')[0]} // Assuming the date comes in ISO format
+                                value={editingReservation.pickupDate.split('T')[0]}
                                 onChange={(e) => setEditingReservation({...editingReservation, pickupDate: e.target.value})}
                             />
                         </div>
@@ -184,7 +282,7 @@ function ViewUserInfo() {
                             <label>Drop Date:</label>
                             <input
                                 type="date"
-                                value={editingReservation.dropDate.split('T')[0]} // Assuming the date comes in ISO format
+                                value={editingReservation.dropDate.split('T')[0]}
                                 onChange={(e) => setEditingReservation({...editingReservation, dropDate: e.target.value})}
                             />
                         </div>

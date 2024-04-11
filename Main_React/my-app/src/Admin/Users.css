@@ -125,8 +125,9 @@
 .createUserForm input[type="text"]:focus,
 .createUserForm input[type="email"]:focus,
 .createUserForm input[type="password"]:focus {
-    border-color: #03172a;
-    box-shadow: 0 0 0 1px #052038;
+    /*border-color: #03172a;*/
+    /*box-shadow: 0 0 0 1px #052038;*/
+    border-color: #937212;
     outline: none;
 }
 .createUserForm input[type="text"]::placeholder,
@@ -215,3 +216,7 @@
     text-align: center;
 }
 
+.plusSignUsersAdmin{
+    cursor: pointer;
+
+}
