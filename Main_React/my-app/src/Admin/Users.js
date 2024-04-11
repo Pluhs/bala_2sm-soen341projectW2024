@@ -66,7 +66,7 @@ function Users() {
 
     return (
         <div className="usersContainer">
-            <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={toggleNewUsers} style={{
+            <h1>ALL REGISTERED USERS: <i className="fa fa-plus plusSignUsersAdmin" onClick={toggleNewUsers} style={{
                 transform: `rotate(${iconRotation}deg)`,
                 transition: 'transform 0.65s ease'
             }}></i></h1>

@@ -178,7 +178,7 @@ function ViewUserInfo() {
 
     return (
         <div className="ReservationAdmin">
-            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus"
+            <h1>Reservations for {user.name || user.email}: <i className="fa fa-plus plusSignUserInfoAdmin"
                                                                onClick={() => setShowCreateReservationForm(!showCreateReservationForm)}></i>
             </h1>{showCreateReservationForm && (
             <form onSubmit={handleSubmitNewReservation} className="editReservationForm">

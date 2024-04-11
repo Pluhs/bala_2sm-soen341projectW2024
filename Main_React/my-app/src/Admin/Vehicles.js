@@ -140,7 +140,7 @@ function Vehicles() {
         <div className="adminVehicle">
             {}
 
-            <h1>ALL VEHICLES: <i className="fa fa-plus" onClick={toggleNewCars} style={{
+            <h1>ALL VEHICLES: <i className="fa fa-plus plusSignVehiclesAdmin" onClick={toggleNewCars} style={{
                 transform: `rotate(${iconRotation}deg)`,
                 transition: 'transform 0.65s ease'
             }}></i></h1>
