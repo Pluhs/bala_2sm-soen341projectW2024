@@ -17,9 +17,13 @@
 		<java.version>17</java.version>
 		<sonar.organization>pluhs</sonar.organization>
 		<sonar.projectKey>Pluhs_bala_2sm-soen341projectW2024</sonar.projectKey>
-		<sonar.sources>.</sonar.sources>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.exclusions>**/*Test.java,**/*Tests.java</sonar.exclusions>
+		<sonar.test.inclusions>**/*Test.java,**/*Tests.java</sonar.test.inclusions>
 	</properties>
+
 	<dependencies>
 	<dependency>
     <groupId>org.springframework.boot</groupId>
