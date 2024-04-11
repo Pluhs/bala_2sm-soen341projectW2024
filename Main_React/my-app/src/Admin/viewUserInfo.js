@@ -268,8 +268,6 @@ function ViewUserInfo() {
                 </div>
             </form>
         )}
-
-
             {
                 editingReservation && (
                     <form onSubmit={(e) => handleSaveEdit(e, editingReservation)} className="editReservationForm">
