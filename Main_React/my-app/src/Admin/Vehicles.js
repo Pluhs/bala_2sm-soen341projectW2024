@@ -5,11 +5,11 @@ import "./Vehicles.css"
 function Vehicles() {
     const [cars, setCars] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
-    const [newVehicle, setNewVehicle] = useState({ name: '', email: '', info: '', imageUrl: '' });
+    const [newVehicle, setNewVehicle] = useState({name: '', email: '', info: '', imageUrl: ''});
     const [isLoading, setIsLoading] = useState(true);
     const [editingVehicle, setEditingVehicle] = useState(null);
 
-    const [iconRotation, setIconRotation] = useState(0); // State for icon rotation
+    const [iconRotation, setIconRotation] = useState(0);
 
 
     const loadVehiclesList = async () => {
@@ -42,7 +42,7 @@ function Vehicles() {
         const isSuccess = await createVehicle(newVehicle);
         if (isSuccess) {
             setShowCreateForm(false);
-            setNewVehicle({ name: '', price: '', info: '', imageUrl: ''  }); // Reset form fields
+            setNewVehicle({name: '', price: '', info: '', imageUrl: ''}); // Reset form fields
             await loadVehiclesList();
         } else {
             alert("Failed to create the vehicle.");
@@ -51,7 +51,7 @@ function Vehicles() {
 
     const deleteVehicle = async (id) => {
         try {
-            const queryParams = new URLSearchParams({ id });
+            const queryParams = new URLSearchParams({id});
             const response = await fetch(`http://localhost:8080/cars/${id}?${queryParams}`, {
                 method: 'DELETE',
             });
@@ -77,7 +77,6 @@ function Vehicles() {
                 alert("Failed to delete the vehicle.");
             }
         } else {
-            // If the user cancels, do nothing
             console.log("Deletion cancelled by user.");
         }
     };
@@ -109,7 +108,7 @@ function Vehicles() {
 
 
     const displayCars = async () => {
-         const response = await fetch(`http://localhost:8080/cars`);
+        const response = await fetch(`http://localhost:8080/cars`);
 
         try {
             if (!response.ok) {
@@ -122,48 +121,19 @@ function Vehicles() {
         }
     }
 
-    // const fetchAllUsers = async () => {
-    //     try {
-    //         const response = await fetch(`http://localhost:8080/users`);
-    //         if (!response.ok) {
-    //             throw new Error('Error fetching users');
-    //         }
-    //         return await response.json();
-    //     } catch (error) {
-    //         console.error('Error fetching users:', error);
-    //         return [];
-    //     }
-    // };
-
     useEffect(() => {
         loadVehiclesList();
     }, []);
 
-
-    // useEffect(() => {
-    //     // fetchReservations(); // Fetch reservations on component mount
-    //     const fetchedCars = [
-    //         { id: 1, pickupDate: "2024-04-10", dropDate: "2024-04-15", location: "Saint-Laurent",
-    //             car: {name: "Toyota Camry 2015", price: 80.00, info: "A sedan, excellent for city drives",
-    //                 imageUrl: "/Images/toyota2015.jpg"}},
-    //
-    //         { id: 2, pickupDate: "2024-04-18", dropDate: "2024-04-21", location: "Old Montreal",
-    //             car: {name: "Peugeot 505 1989", price: 30.99, info: "A great car for road trips",
-    //                 imageUrl: "/Images/Peugeot505.jpg"}},
-    //
-    //         { id: 3, pickupDate: "2024-05-02", dropDate: "2024-05-08", location: "Airport",
-    //             car: {name: "BMW I8 2020", price: 11.79, info: "A fast fancy car",
-    //                 imageUrl: "/Images/BMW2020.jpg"}}
-    //
-    //     ]; setCars(fetchedCars);
-    // }, []);
-
-    // if (isLoading) return <div>Loading...</div>;
-
     const toggleNewCars = () => {
         setShowCreateForm(!showCreateForm);
-        // Rotate the plus icon
         setIconRotation(iconRotation === 0 ? -135 : 0);
+    }
+
+    if (isLoading) {
+        return <div>
+            <div className="centered-container">Loading...</div>
+        </div>;
     }
 
     return (
@@ -216,7 +186,7 @@ function Vehicles() {
                             value={editingVehicle.price}
                             onChange={(e) => setEditingVehicle({...editingVehicle, price: e.target.value})}
                         />
-                        <p className="static-info-container">    Info:</p>
+                        <p className="static-info-container"> Info:</p>
                         <input
                             type="text"
                             placeholder="Info"
@@ -233,47 +203,43 @@ function Vehicles() {
             )}
             {cars.length > 0 ?
                 (
-                <div>
-                    {cars.map(car => (
-                        <div key={car.id} to={`/${car.name}`} className="adminVehicleContainer"
-                             style={{textDecoration: 'none'}}>
+                    <div>
+                        {cars.map(car => (
+                            <div key={car.id} to={`/${car.name}`} className="adminVehicleContainer"
+                                 style={{textDecoration: 'none'}}>
 
-                            <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
-                            <div className="adminTopContent">
-                                <b className="adminCarName">{car.name} {car.model} {car.year} </b>
+                                <img src={car.imageUrl} className="adminVehicleImg" alt={"car"}/>
+                                <div className="adminTopContent">
+                                    <b className="adminCarName">{car.name} {car.model} {car.year} </b>
 
 
+                                </div>
+                                {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
+                                <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
+
+
+                                <div className="adminBottomContent">
+                                    <b className="adminVehiclePrice">Price: {car.price}$/day </b>
+
+                                </div>
+
+                                <div className="buttonsContainerVehicles">
+
+                                    <i className="fas fa-edit" onClick={() => setEditingVehicle(car)}></i>
+
+                                    <button type="button" className="deleteVehicleBtn"
+                                            onClick={() => handleDeleteVehicle(car.id)}
+                                    >Delete Vehicle
+                                    </button>
+                                </div>
                             </div>
-                            {/*<p className="adminVehicleInfo">{car.color} {car.type}</p>*/}
-                            <p className="adminVehicleInfo">{car.color} {car.type}<br/>{car.info}</p>
 
 
-                            <div className="adminBottomContent">
-                                <b className="adminVehiclePrice">Price: {car.price}$/day </b>
-
-                            </div>
-
-                            <div className="buttonsContainerVehicles">
-
-                                {/*<button type="button" className="editVehicleBtn"*/}
-                                {/*>Edit Vehicle*/}
-                                {/*</button>*/}
-
-                                <i className="fas fa-edit"  onClick={() => setEditingVehicle(car)}></i>
-
-                                <button type="button" className="deleteVehicleBtn"
-                                        onClick={() => handleDeleteVehicle(car.id)}
-                                >Delete Vehicle
-                                </button>
-                            </div>
-                        </div>
-
-
-                    ))}
-                </div>
+                        ))}
+                    </div>
                 ) : (
                     <p>No cars to display</p>
-            )}
+                )}
         </div>
 
 

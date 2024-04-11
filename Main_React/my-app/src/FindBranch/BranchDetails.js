@@ -36,7 +36,7 @@ function BranchDetails() {
             <div className="detailsMainContainer">
                 <div className="branchInfoSection">
                     <h2>{branch.name}</h2>
-                    <p>Address: {branch.address}</p>
+                    <p><b>Address:</b> {branch.address}</p>
                 </div>
                 <div className="carsGrid">
                     {cars.map(car => (
@@ -46,12 +46,21 @@ function BranchDetails() {
                             <h3 className="carDetailTitle">{`${car.name} ${car.model} ${car.year}`}</h3>
                             <p className="carInfoText">{car.color} {car.type}</p>
                             <p className="carInfoText">{car.info}</p>
-                            <p className="carInfoText">Available at: {branch.name}</p>
-                            <p className="carPriceDetail">{car.price}$/day</p>
-                            {/*<Link to={`/reserveCar`} className="reserveCarButton">Reserve</Link>*/}
-                            <button onClick={() => handleGetCarIdOnReserve2(car.id)} className="reserveCarButton">
-                                Reserve
-                            </button>
+                            <p className="carInfoText"><b>Available at:</b> {branch.name}</p>
+                            {/*<p className="carPriceDetail">{car.price}$/day</p>*/}
+                            {/*/!*<Link to={`/reserveCar`} className="reserveCarButton">Reserve</Link>*!/*/}
+                            {/*<button onClick={() => handleGetCarIdOnReserve2(car.id)} className="reserveCarButton">*/}
+                            {/*    Reserve*/}
+                            {/*</button>*/}
+
+                            <div className="priceBtnDiv">
+                                <p className="browseCarPrice">{car?.price}$/day</p>
+                                <button onClick={() => handleGetCarIdOnReserve2(car?.id)} className="reserveVehicleBtnBranch">
+                                    Reserve
+                                </button>
+                            </div>
+
+
                         </div>
                     ))}
                 </div>

@@ -1,6 +1,27 @@
+.checkInPage {
+    background-color: #BBDCF2;
+    padding: 100px 20px;
+    height: 100rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.checkInForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin-top: 100px;*/
+
+}
+
 .goToSignBtn {
     /*margin-left: 70%;*/
     margin-top: 10px;
+    margin-bottom: 25px;
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -13,13 +34,25 @@
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+
+}
+.goToSignBtn:hover{
+    background-color: #B28735;
+    cursor: pointer;
+    border-radius: 20px 5px 20px 5px;
+    border: 2px #6e5b12 solid ;
+    transition: all 0.2s ease-in-out;
+    /*color: #052038;*/
+
 }
 
 .checkInEntryField {
     width: 550px;
     height: 160px;
     min-width: 250px;
-    max-width: 90%;
+    /*max-width: 90%;*/
+    max-width: 1000px;
     min-height: 25px;
     max-height: 300px;
     background: transparent;
@@ -35,3 +68,13 @@
     /*padding-left: 10px;*/
     padding: 8px;
 }
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+

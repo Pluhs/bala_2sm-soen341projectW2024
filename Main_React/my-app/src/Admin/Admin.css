@@ -1,34 +1,31 @@
 
-
-.adminMainContainer{
-    /*padding-top: 100px;*/
+.adminMainContainer {
     display: flex;
     height: 100rem;
     background-color: #00ffea;
-    /*position: relative;*/
 
 }
 
-.warningMsgAdmin{
+.warningMsgAdmin {
 
     padding-top: 100px;
     padding-left: 25px;
 
 }
 
-.adminLeftContainer, adminRightContainer{
+.adminLeftContainer, adminRightContainer {
     flex: 1;
     height: 100%;
 
 }
 
-.adminLeftContainer{
+.adminLeftContainer {
     background-color: #0c0e11;
     width: 50%;
 }
 
 
-.adminRightContainer{
+.adminRightContainer {
 
     background-color: #454343;
     width: 50%;
@@ -36,10 +33,7 @@
 }
 
 
-.adminPageBackgroundImgLeft{
-    /*max-height: 100%;*/
-    /*max-width: 100%;*/
-    /*min-height: 100rem;*/
+.adminPageBackgroundImgLeft {
     margin-top: -160px;
     width: 100%;
     height: auto;
@@ -50,32 +44,24 @@
 
 }
 
-.adminPageBackgroundImgLeft:hover{
+.adminPageBackgroundImgLeft:hover {
     transform: scale(1.1) translateX(-4.5%);
     transition: transform 0.5s ease;
 }
 
 
-
-.adminPageBackgroundImgRight{
-    /*max-height: 100%;*/
-    /*max-width: 100%;*/
+.adminPageBackgroundImgRight {
     object-fit: fill;
-    /*min-height: 100rem;*/
     margin-top: -160px;
-    /*width: auto;*/
-    /*height: auto;*/
     width: 100%;
     height: auto;
     transition: transform 0.8s ease;
-    /*overflow: hidden;*/
 
 
 }
 
-.adminPageBackgroundImgRight:hover{
+.adminPageBackgroundImgRight:hover {
     transform: scale(1.1) translateX(4.5%);
-    /*transform: scale(1.1);*/
     transition: transform 0.5s ease;
 }
 
@@ -85,11 +71,11 @@
     top: 50%;
     left: 25%;
     transform: translate(-50%, -50%);
-    color: white; /* Adjust as needed */
-    font-size: 20px; /* Adjust as needed */
-    text-align: center; /* Adjust as needed */
+    color: white;
+    font-size: 20px;
+    text-align: center;
 
-    text-shadow: 1px 1px 5px #000000,-1px -1px 5px #000000, -1px 1px 5px #000000,1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
+    text-shadow: 1px 1px 5px #000000, -1px -1px 5px #000000, -1px 1px 5px #000000, 1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
 
 }
 
@@ -99,11 +85,11 @@
     top: 50%;
     left: 75%;
     transform: translate(-50%, -50%);
-    color: white; /* Adjust as needed */
-    font-size: 20px; /* Adjust as needed */
-    text-align: center; /* Adjust as needed */
+    color: white;
+    font-size: 20px;
+    text-align: center;
 
-    text-shadow: 1px 1px 5px #000000,-1px -1px 5px #000000, -1px 1px 5px #000000,1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
+    text-shadow: 1px 1px 5px #000000, -1px -1px 5px #000000, -1px 1px 5px #000000, 1px -1px 5px #000000, 0 0 10px #A30021, 0 0 20px #052038;
 
 
 }
@@ -130,7 +116,7 @@
     color: #052038;
 }
 
-.sorryBtn{
+.sorryBtn {
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -138,7 +124,7 @@
     font-size: 1.1rem;
     font-weight: 500;
     color: #f5f5f5;
-    font-family: "Times New Roman", sans-serif ;
+    font-family: "Times New Roman", sans-serif;
     border-radius: 3px;
     box-shadow: 1px 1px 5px #000000;
     cursor: pointer;
@@ -148,7 +134,16 @@
     background-color: #A30021;
 }
 
-.sorryImg{
+.sorryImg {
     margin-top: 50px;
     width: 80%;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
 }
