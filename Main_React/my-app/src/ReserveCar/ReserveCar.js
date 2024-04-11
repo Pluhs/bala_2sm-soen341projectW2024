@@ -80,7 +80,9 @@ const ReserveCarForm = () => {
 
     const handleSubmitReserveCar = async (e) => {
         e.preventDefault();
-        const confirmed = window.confirm("Please verify the booking information.\nCar: " + carInfo.name + " " + carInfo.model + " " + carInfo.year +
+
+        const confirmed = window.confirm("Please verify your booking information before proceeding. " +
+            "If you find a mistake please go back and fix it.\nCar: " + carInfo.name + " " + carInfo.model + " " + carInfo.year +
             "\nColor: " + carInfo.color + "\nPrice: " + carInfo.price + "$/day\nMax Mileage Per Day: " + carInfo.milage +
             "\nCar Insurance Selected (for 70$/day): " + insurance + "\nCleaning Selected (for 35$/day): " + cleaning +
             "\n\nYour Info:\nAddress: " + userAddress + "\nPhone Number: " + phoneNumber + "\nDriver's License Number: " + driverLicense);
@@ -89,7 +91,7 @@ const ReserveCarForm = () => {
             return;
         }
 
-        const cardNum = prompt("Please enter your card number:");
+        const cardNum = prompt("Please enter your debit or credit card number: ");
         if (cardNum === null) {
             return;
         } else {
@@ -117,9 +119,7 @@ const ReserveCarForm = () => {
 
                 });
 
-
                 if (!response.ok) {
-
                     throw new Error('Failed to reserve the car');
                 }
                 const data = await response.json();
@@ -135,7 +135,6 @@ const ReserveCarForm = () => {
         }
 
     };
-
 
     const displayCarInfo = async () => {
         const signInUrl = `http://localhost:8080/cars/${carId}`;
@@ -163,9 +162,6 @@ const ReserveCarForm = () => {
                 </div>
             </div>
             <div className="formWrapperDiv">
-                <div>
-                    <h3>{carInfo.info}</h3>
-                </div>
                 <form onSubmit={handleSubmitReserveCar} className="formWrapper">
                     <h1>Reserve This Car Now</h1>
                     <h2>This car's Pickup and Drop off branch is: <u>{carInfo.branch?.name}</u></h2>
