@@ -47,20 +47,12 @@ function BranchDetails() {
                             <p className="carInfoText">{car.color} {car.type}</p>
                             <p className="carInfoText">{car.info}</p>
                             <p className="carInfoText"><b>Available at:</b> {branch.name}</p>
-                            {/*<p className="carPriceDetail">{car.price}$/day</p>*/}
-                            {/*/!*<Link to={`/reserveCar`} className="reserveCarButton">Reserve</Link>*!/*/}
-                            {/*<button onClick={() => handleGetCarIdOnReserve2(car.id)} className="reserveCarButton">*/}
-                            {/*    Reserve*/}
-                            {/*</button>*/}
-
                             <div className="priceBtnDiv">
                                 <p className="browseCarPrice">{car?.price}$/day</p>
                                 <button onClick={() => handleGetCarIdOnReserve2(car?.id)} className="reserveVehicleBtnBranch">
                                     Reserve
                                 </button>
                             </div>
-
-
                         </div>
                     ))}
                 </div>
