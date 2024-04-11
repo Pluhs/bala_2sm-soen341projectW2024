@@ -10,6 +10,7 @@
     background-repeat: no-repeat;
     z-index: 1;
 }
+
 .wrapperLogin {
     width: 23rem;
     height: 25rem;
@@ -26,31 +27,30 @@
     font-size: 2.25rem;
     text-align: center;
 }
+
 .wrapperLogin .inputBoxLogin {
     position: relative;
     width: 98%;
     height: 2.5rem;
     margin: 2rem 0;
-
 }
+
 .inputBoxLogin input {
     width: 98%;
     height: 100%;
     background: transparent;
-    border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 40px;
     font-size: 16px;
     color: #f5f5f5;
-    padding: 5px 3px 5px 5px ;
-    padding-left: 10px;
-
+    padding: 5px 3px 5px 10px;
 }
+
 .inputBoxLogin input::placeholder {
     color: #f5f5f5;
-
 }
+
 .inputBoxLogin i {
     position: absolute;
     right: 20px;
@@ -58,6 +58,7 @@
     tranform: translateY(-50%);
     font-size: 16px;
 }
+
 .wrapperLogin button {
     width: 100%;
     height: 45px;
@@ -65,13 +66,14 @@
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 11px rgba(0,0,0,0.1);
     cursor: pointer;
     font-size: 16px;
     color: #052038;
     font-weight: 700;
     font-family: "Times New Roman", sans-serif;
 }
+
 .wrapperLogin button:hover {
     background-color: antiquewhite;
 }
@@ -81,14 +83,17 @@
     text-align: center;
     margin: 20px 0 15px;
 }
+
 .registerLink p a {
     color: #f5f5f5;
     text-decoration: none;
     font-weight: 600;
 }
+
 .registerLink p a:hover {
     text-decoration: underline;
 }
+
 .LogInErrorMessage {
     text-align: center;
     color: #A30021;
