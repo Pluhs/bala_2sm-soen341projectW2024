@@ -12,7 +12,7 @@ public class Branch {
     @JsonSerialize(using= ToStringSerializer.class)
     private ObjectId id;
     private String name;
-    private String address;//testok
+    private String address;
     private double lat;
     private double lng;
 
