@@ -19,7 +19,7 @@ html, body {
 .carInfoWrapper {
     width: 90%;
     height: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@ html, body {
 .formWrapperDiv {
     width: 90%;
     height: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
     justify-content: center;
     align-items: center;
@@ -54,7 +54,7 @@ html, body {
     flex: auto;
 }
 
-.formWrapper{
+.formWrapper {
     color: #000000;
 }
 
@@ -94,8 +94,9 @@ html, body {
     font-size: 16px;
     color: #000000;
     padding: 5px 3px 5px 10px;
-
+    padding: 10px 3px 5px 5px;
 }
+
 .inputBoxReserve input::placeholder {
     color: #052038;
 }
@@ -119,7 +120,7 @@ html, body {
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
     color: #052038;
@@ -166,7 +167,7 @@ html, body {
     border: none;
     outline: none;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
     color: #f5f5f5;
@@ -178,9 +179,8 @@ html, body {
     background-color: #B28735;
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
-    border: 2px #6e5b12 solid ;
+    border: 2px #6e5b12 solid;
     transition: all 0.2s ease-in-out;
-
 }
 
 .date-wrapper {
@@ -207,15 +207,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 10px;
 }
 
-.dateInputLabel{
+.dateInputLabel {
     padding: 0px 10px 0px 12px;
     font-size: 16px;
 }
 
-.reserveCarImg{
+.reserveCarImg {
     display: block;
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     position: relative;
@@ -223,16 +223,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: auto;
     border-radius: 8px;
 }
-.carModelHeader{
-    text-align: center;
 
+.carModelHeader {
+    text-align: center;
 }
 
 .carInfoContainer{
     text-align: left;
 }
 
-.datePickerReserve{
+.datePickerReserve {
     width: 50%;
     cursor: pointer;
 }

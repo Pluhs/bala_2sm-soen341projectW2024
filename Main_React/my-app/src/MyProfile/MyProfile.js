@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import "./MyProfile.css";
-import { fetchUserById } from "../LogInForm/UserInfo";
-import {
-    deleteReservationById,
-    fetchReservationsForUserById,
-} from '../Admin/ReservationsInfo';
+import {fetchUserById} from "../LogInForm/UserInfo";
+import {deleteReservationById, fetchReservationsForUserById,} from '../Admin/ReservationsInfo';
 
 const MyProfile = () => {
     const [userReservations, setUserReservations] = useState([]);
@@ -27,8 +24,7 @@ const MyProfile = () => {
                 setUserReservations([]);
                 setIsLoading(false);
             });
-        }
-        else {
+        } else {
             setIsLoading(false);
         }
     }, [userId]);
@@ -77,7 +73,7 @@ const MyProfile = () => {
                             </div>
                             <div className="rightContent">
                                 <b className="price">Price: {reservation.car.price}$/day</b>
-                                <b className="endDateTxt">Return Date: {reservation.dropDate}</b>
+                                <b>Return Date: {reservation.dropDate}</b>
                             </div>
 
                             <div className="deleteReservationBtnContainer">

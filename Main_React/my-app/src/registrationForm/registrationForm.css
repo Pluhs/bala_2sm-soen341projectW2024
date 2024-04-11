@@ -1,4 +1,4 @@
-.RegisterFormMain{
+.RegisterFormMain {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +52,7 @@ html, body {
     font-size: 16px;
     color: #f5f5f5;
     padding: 5px 3px 5px 10px;
+
 }
 
 .inputBoxRegister input::placeholder {
@@ -73,7 +74,7 @@ html, body {
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
     color: #052038;
@@ -103,6 +104,6 @@ html, body {
 .RegisterError{
     text-align: center;
     color: #A30021;
-    font-size:16px;
+    font-size: 16px;
     font-weight: bold;
 }
