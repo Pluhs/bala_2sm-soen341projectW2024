@@ -23,6 +23,7 @@
 		<sonar.tests>src/test/java</sonar.tests>
 		<sonar.exclusions>**/*Test.java,**/*Tests.java</sonar.exclusions>
 		<sonar.test.inclusions>**/*Test.java,**/*Tests.java</sonar.test.inclusions>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
 	<dependencies>
