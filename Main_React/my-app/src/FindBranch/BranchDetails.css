@@ -31,7 +31,6 @@
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    /*margin-bottom: 100px;*/
     max-width: 350px;
 }
 
@@ -68,9 +67,8 @@
     font-weight: 500;
     color: #f5f5f5;
     font-family: "Times New Roman", sans-serif ;
-    border-radius: 10px;
+    border-radius: 11px;
     transition: all 0.25s ease-in-out;
-
 }
 
 .reserveVehicleBtnBranch:hover {
