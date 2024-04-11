@@ -1,4 +1,5 @@
-.cards * {
+.cards *,
+.cards {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,8 +7,7 @@
 
 .cards {
     padding: 4rem;
-    background: #BBDCF2;
-
+    background: #bbdcf2;
 }
 
 .cards h1 {
