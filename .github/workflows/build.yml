@@ -2,9 +2,9 @@ name: Build and SonarCloud analysis
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -17,8 +17,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Maven
+          cache: maven
+      - name: Build and analyze with Maven and SonarCloud
+        run: mvn -B verify sonar:sonar
         env:
-          GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run:  mvn -B verify sonar:sonar -Dsonar.projectKey=Pluhs_bala_2sm-soen341projectW2024 -Dsonar.organization=pluhs -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
