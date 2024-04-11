@@ -431,16 +431,41 @@
     cursor: pointer;
 }
 
-.InputViewUserInfo{
-    width: 130px;
-    height: 35px;
+.selectInputVUI{
+    width: 225px;
+    height: 40px;
     padding: 10px;
     border: 1px solid #052038;
     border-radius: 20px;
     box-sizing: border-box;
-    margin: 10px;
+    margin: 5px 10px 5px 2px;
+}
+
+.selectInputVUI:focus{
+    border-color: #937212;
+    outline: none;
+
 
 }
+
+.selectInputVUI::placeholder{
+    color: #052038;
+    opacity: 1;
+    font-style: normal;
+
+}
+
+
+.InputViewUserInfo{
+    width: 130px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #052038;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 5px 10px 5px 2px;
+}
+
 
 .InputViewUserInfo:focus{
     border-color: #937212;
@@ -462,8 +487,8 @@
 }
 
 .dateInputVUI {
-    width: 200px;
-    height: 35px;
+    width: 155px;
+    height: 40px;
     /*background: transparent;*/
     outline: none;
     font-size: 16px;
@@ -472,9 +497,7 @@
     border: 1px solid #052038;
     border-radius: 20px;
     box-sizing: border-box;
-    /*margin-right: 5px;*/
-    /*margin-bottom: 5px;*/
-    margin: 10px;
+    margin: 5px 10px 5px 2px;
 }
 .dateInputVUI::placeholder {
     color: #052038;
