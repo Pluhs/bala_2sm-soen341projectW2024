@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CarRepository extends MongoRepository<Car, ObjectId> {
-    List<Car> findByAvailable(boolean available);
+
     List<Car> findByPriceBetween(Double minPrice, Double maxPrice);
     List<Car> findByName(String name);
     List<Car> findByYear(int year);
