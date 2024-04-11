@@ -7,7 +7,6 @@ body {
     margin-bottom: 20px;
     max-height: calc(100vh - 100px);
     overflow-y: auto;
-
 }
 
 .filterOptionsContainer{
@@ -20,7 +19,6 @@ body {
 
 .filterHeader{
     padding-left: 2%;
-
 }
 
 .filterInputGeneral{
@@ -31,28 +29,22 @@ body {
     box-sizing: border-box;
     margin-right: 5px;
     margin-bottom: 5px;
-
 }
 
 .filterInputGeneral:focus{
     border-color: #937212;
     outline: none;
-
-
 }
 
 .filterInputGeneral::placeholder{
     color: #052038;
     opacity: 1;
     font-style: normal;
-
 }
 
 .filterInputDropDown:hover{
     cursor: pointer;
-
 }
-
 
 .numberInputFilter{
     max-width: 75px;
@@ -77,16 +69,11 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
     max-width: 350px;
-
     overflow: hidden;
-
-
 }
 
 .imgContainerBrowse{
-    /*position: relative;*/
     width: 100%;
-    /*padding-top: 67%;*/
     overflow: hidden;
     border-radius: 8px;
 
@@ -100,21 +87,16 @@ body {
 }
 
 .imgBrowseVehicles{
-
     transition: all 0.3s ease-in-out;
 }
 
 .imgBrowseVehicles:hover{
-    /*width: 120%;*/
-
     transform: scale(1.1);
     transition: all 0.3s ease-in-out;
 }
 
 
 .vehicle h3 {
-    /*margin-top: 10px;*/
-    /*margin-bottom: 5px;*/
     color: black;
     margin: 10px 20px 5px 20px;
 }
@@ -140,7 +122,7 @@ body {
 
 
 .vehicle button {
-    padding: 0.5rem 1rem;
+    /*padding: 0.5rem 1rem;*/
     white-space: nowrap;
     background-color: #052038;
     border: none;
@@ -172,7 +154,6 @@ body {
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
     transition: all 0.25s ease-in-out;
-
 }
 
 .reserveVehicleBtnBrowse:hover {
