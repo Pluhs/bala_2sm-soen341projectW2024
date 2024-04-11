@@ -16,15 +16,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 95%;
-
-
 }
 
 .filterHeader{
     padding-left: 2%;
 
 }
-
 
 .filterInputGeneral{
     width: 130px;
@@ -61,7 +58,6 @@ body {
     max-width: 75px;
 }
 
-
 .vehicle-container {
     display: grid;
     flex-wrap: wrap;
@@ -70,20 +66,16 @@ body {
     justify-items: start;
     gap: 25px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-
 }
 
 .vehicle {
     width: calc(100%);
     margin-bottom: 4%;
-    /*padding: 20px;*/
-    /*border: 1px solid #ccc;*/
+    padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    /*margin-bottom: 100px;*/
     max-width: 350px;
 
     overflow: hidden;
@@ -148,7 +140,6 @@ body {
 
 
 .vehicle button {
-    /*margin-left: 70%;*/
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -159,8 +150,8 @@ body {
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
     transition: all 0.25s ease-in-out;
-    /*margin: 10px 20px 5px 20px;*/
     margin-right: 20px;
+
 }
 
 .vehicle button:hover {
@@ -168,12 +159,9 @@ body {
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
     transition: all 0.2s ease-in-out;
-
 }
 
-
 .reserveVehicleBtnBrowse {
-    /*margin-left: 70%;*/
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -188,14 +176,10 @@ body {
 }
 
 .reserveVehicleBtnBrowse:hover {
-    /*background-color: #A30021;*/
-    /*cursor: pointer;*/
     background-color: #B28735;
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
-    /*border: 2px #6e5b12 solid ;*/
     transition: all 0.2s ease-in-out;
-
 }
 
 .centered-container {
@@ -208,7 +192,13 @@ body {
 }
 
 
+
+.imgBrowseVehicles:hover{
+    transition: all 0.2s ease-in-out;
+}
+
 .plusSignBrowse:hover{
     cursor: pointer;
 }
+
 

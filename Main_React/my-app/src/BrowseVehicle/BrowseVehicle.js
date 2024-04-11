@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import "./BrowseVehicle.css";
 import "../ReserveCar/ReserveCar";
-import {createUser} from "../LogInForm/UserInfo";
 
 function BrowseVehicle() {
     const [cars, setCars] = useState([]);
@@ -23,7 +22,7 @@ function BrowseVehicle() {
 
     const handleGetCarIdOnReserve = (id) => {
 
-        navigate('/reserveCar',{state:{id: id} } )
+        navigate('/reserveCar', {state: {id: id}})
     }
 
     const displayCars = async () => {
@@ -31,7 +30,7 @@ function BrowseVehicle() {
         const signInUrl = `http://localhost:8080/cars/available`;
 
         try {
-            const response = await fetch(signInUrl, { method: "GET" });
+            const response = await fetch(signInUrl, {method: "GET"});
 
             const carsData = await response.json();
             setCars(carsData);
@@ -104,7 +103,20 @@ function BrowseVehicle() {
                         <option value="Hyundai">Hyundai</option>
                     </select>
                 </div>
-
+                    <div>
+                        <label htmlFor="makeFilterOption">Make: </label>
+                        <select id="makeFilterOption" className="filterInputGeneral" value={makeFilter}
+                                onChange={(e) => setMakeFilter(e.target.value)}>
+                            <option value="ShowAll">Show All</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Dodge">Dodge</option>
+                            <option value="Hyundai">Hyundai</option>
+                        </select>
+                    </div>
 
 
                 <div>
@@ -131,29 +143,33 @@ function BrowseVehicle() {
                         {/*<option value="Truck">Truck</option>*/}
                     </select>
 
-                </div>
+                    </div>
                     <div>
                         <label>Year Range: </label>
-                        <input type="number" id="minYearFilterOption" className="filterInputGeneral numberInputFilter" value={minYearFilter}
+                        <input type="number" id="minYearFilterOption" className="filterInputGeneral numberInputFilter"
+                               value={minYearFilter}
                                onChange={(e) => setMinYearFilter(e.target.value)} min='1960' max="2050"/>
                         <label> to </label>
-                        <input type="number" id="maxYearFilterOption" className="filterInputGeneral numberInputFilter" value={maxYearFilter}
+                        <input type="number" id="maxYearFilterOption" className="filterInputGeneral numberInputFilter"
+                               value={maxYearFilter}
                                onChange={(e) => setMaxYearFilter(e.target.value)} min='1960' max="2050"/>
                     </div>
 
                     <div>
-                    <label>Price range: </label>
-                    <input type="number" id="minPriceFilterOption" className="filterInputGeneral numberInputFilter" value={minPriceFilter}
-                           onChange={(e) => setMinPriceFilter(e.target.value)} min='0'/>
-                    <label> to </label>
-                    <input type="number" id="maxPriceFilterOption" className="filterInputGeneral numberInputFilter" value={maxPriceFilter}
-                           onChange={(e) => setMaxPriceFilter(e.target.value)} min='0'/>
-                </div>
+                        <label>Price range: </label>
+                        <input type="number" id="minPriceFilterOption" className="filterInputGeneral numberInputFilter"
+                               value={minPriceFilter}
+                               onChange={(e) => setMinPriceFilter(e.target.value)} min='0'/>
+                        <label> to </label>
+                        <input type="number" id="maxPriceFilterOption" className="filterInputGeneral numberInputFilter"
+                               value={maxPriceFilter}
+                               onChange={(e) => setMaxPriceFilter(e.target.value)} min='0'/>
+                    </div>
 
-            </div>
+                </div>
             )}
             <div className="vehicle-container">
-            {cars.filter(filterCars).map(car => (
+                {cars.filter(filterCars).map(car => (
                     <div key={car?.id} to={`/${car?.name}`} className="vehicle" style={{textDecoration: 'none'}}>
                         <div className='imgContainerBrowse'>
                             <img className="imgBrowseVehicles" src={car?.imageUrl} alt={`${car?.name} ${car?.model} ${car?.year}`}/>
@@ -164,7 +180,8 @@ function BrowseVehicle() {
                         <p className="browseCarInfo"><b>Available at:</b> {car?.branch?.name}</p>
                         <div className="priceBtnDiv">
                             <p className="browseCarPrice">{car?.price}$/day</p>
-                            <button onClick={() => handleGetCarIdOnReserve(car?.id)} className="reserveVehicleBtnBrowse">
+                            <button onClick={() => handleGetCarIdOnReserve(car?.id)}
+                                    className="reserveVehicleBtnBrowse">
                                 Reserve
                             </button>
                         </div>

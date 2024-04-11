@@ -12,7 +12,7 @@ export const fetchReservationsForUserById = async (id) => {
 };
 
 
-export const fetchReservationById = async (userId, reservationId) =>{
+export const fetchReservationById = async (userId, reservationId) => {
     try {
         const response = await fetch(`http://localhost:8080/users/${userId}/reservations/${reservationId}`);
         if (!response.ok) {
