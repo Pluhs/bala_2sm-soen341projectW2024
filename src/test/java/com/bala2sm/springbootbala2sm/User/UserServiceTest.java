@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.bala2sm.springbootbala2sm.Car.Car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -158,7 +159,9 @@ public class UserServiceTest {
     public void testAddReservation() throws Exception {
         User user = createBasicUser();
         ObjectId userId = user.getId();
-        Reservation reservation = new Reservation(); // Create a Reservation with appropriate details
+        Reservation reservation = new Reservation();
+        Car car = new Car();
+        reservation.setCar(car);
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
         when(reservationRepository.save(reservation)).thenReturn(reservation);

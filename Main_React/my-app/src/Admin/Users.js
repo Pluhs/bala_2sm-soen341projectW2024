@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {fetchAllUsers, deleteUser, createUser, updateUser} from '../LogInForm/UserInfo';
+import React, {useEffect, useState} from 'react';
+import {createUser, deleteUser, fetchAllUsers, updateUser} from '../LogInForm/UserInfo';
 import {useNavigate} from 'react-router-dom';
 import "./Users.css";
 

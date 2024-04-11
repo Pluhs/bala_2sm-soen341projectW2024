@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {
-    fetchReservationsForUserById,
-    deleteReservationById,
-    updateReservationById,
     createReservation,
-    fetchCars
+    deleteReservationById,
+    fetchCars,
+    fetchReservationsForUserById,
+    updateReservationById
 } from './ReservationsInfo';
 import {fetchUserById} from '../LogInForm/UserInfo'
 import "./viewUserInfo.css";
@@ -107,12 +107,12 @@ function ViewUserInfo() {
     };
     const handleGetReservationIdOnCheckIn = (id) => {
 
-        navigate('/checkIn',{state:{id: id, userID: userId} } )
+        navigate('/checkIn', {state: {id: id, userID: userId}})
     }
 
     const handleGetReservationIdOnCheckOut = (id) => {
 
-        navigate('/checkOut',{state:{id: id, userID: userId} } )
+        navigate('/checkOut', {state: {id: id, userID: userId}})
     }
     const fetchAndSetReservations = async () => {
         if (!userId) return;
@@ -202,7 +202,7 @@ function ViewUserInfo() {
                     <div key={reservation.id} className="yourReservationContainerAdmin">
                         <div className="leftContentAdmin">
                             <b className="carInfoTxtAdmin">{reservation.car?.name} {reservation.car?.model} {reservation.car?.year}</b>
-                            <b className="startDateTxtAdmin">Pickup Date: {reservation.pickupDate}</b>
+                            <b>Pickup Date: {reservation.pickupDate}</b>
                         </div>
                         <div className="rightContent">
                             <b className="priceAdmin">Price: ${reservation.car?.price}/day</b>
