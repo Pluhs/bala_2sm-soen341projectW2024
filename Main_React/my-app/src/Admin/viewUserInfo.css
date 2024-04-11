@@ -13,6 +13,225 @@
     height: 100rem;
     max-height: calc(100vh - 100px);
     overflow-y: auto;
+
+
+}
+
+.yourReservationContainerAdmin {
+    width: auto;
+    height: 100px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
+    background-color: rgba(225, 221, 221, 0.25);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.leftContentAdmin,
+.rightContentAdmin {
+    padding: 10px;
+    background-color: transparent;
+}
+
+.leftContentAdmin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25%;
+    gap: 31px;
+}
+
+.rightContentAdmin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25%;
+    gap: 40px;
+}
+
+.deleteReservation {
+    width: 150px;
+    height: 40px;
+    background: #A30021;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 15px;
+    color: #f5f5f5;
+    font-weight: 700;
+    float: right;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.deleteReservation:hover {
+    background: #8f021f;
+}
+
+
+.priceAdmin {
+    margin-bottom: auto;
+
+}
+
+.startDateTxtAdmin {
+
+}
+
+.endDateTxtAdmin {
+
+}
+
+.carInfoTxtAdmin {
+    font-size: 25px;
+    font-weight: 1000;
+}
+
+
+/*.yourReservationCarImg {*/
+/*    display: block;*/
+/*    max-width: 20%;*/
+/*    max-height: 90%;*/
+/*    width: auto;*/
+/*    height: auto;*/
+/*    position: relative;*/
+/*    float: left;*/
+/*    border-radius: 8px;*/
+/*    margin: 5px;*/
+/*    flex: 0 0 auto;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+.editBtn,
+.checkInOutBtn{
+    width: 150px;
+    height: 40px;
+    background: #052039;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 15px;
+    color: #f5f5f5;
+    font-weight: 700;
+    float: right;
+    margin-left: 20px;
+}
+
+.editBtn:hover {
+    background: #03172a;
+}
+
+.buttonsContainerReservation {
+    display: flex;
+    height: 60px;
+    width: 50%;
+    align-items: center;
+    justify-content: end;
+}
+
+.editReservationForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*gap: 20px;*/
+    padding: 20px;
+    background-color: rgba(225, 221, 221, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-top: 20px;
+
+}
+
+
+/*.editReservationForm label,*/
+/*.editReservationForm input[type="date"] {*/
+/*    margin-bottom: 5px;*/
+/*    color: #052038;*/
+/*    font-weight: bold;*/
+/*    border-radius: 4px;*/
+/*    padding: 10px;*/
+/*}*/
+
+
+.editReservationForm .checkInOutBtn,
+.editReservationForm .editBtn,
+.editReservationForm .cancelBtn {
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    width: 160px;
+    height: 50px;
+    font-size: 15px;
+    color: #f5f5f5;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.editBtn {
+    background: #052039;
+}
+
+.editBtn:hover {
+    background: #0b365e;
+}
+
+.checkInOutBtn {
+    background: #0b365e;
+
+}
+
+.checkInOutBtn:hover {
+    background: #052039;
+}
+
+.cancelBtn {
+    background: #A30021;
+}
+
+.cancelBtn:hover {
+    background: #8f021f;
+}
+
+.formButtonsContainerReservation {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    padding-right: 7px;
+}
+
+.editReservationForm .carSelect {
+    width: auto;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 2px solid #052038;
+    margin-bottom: 5px;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.ReservationAdmin {
+    background-color: #BBDCF2;
+    padding: 100px 20px;
+    height: 100rem;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 
 .yourReservationContainerAdmin {
@@ -114,7 +333,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    /*gap: 20px;*/
     padding: 20px;
     background-color: rgba(225, 221, 221, 0.25);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -123,14 +342,14 @@
 
 }
 
-.editReservationForm label,
-.editReservationForm input[type="date"] {
-    margin-bottom: 5px;
-    color: #052038;
-    font-weight: bold;
-    border-radius: 4px;
-    padding: 10px;
-}
+/*.editReservationForm label,*/
+/*.editReservationForm input[type="date"] {*/
+/*    margin-bottom: 5px;*/
+/*    color: #052038;*/
+/*    font-weight: bold;*/
+/*    border-radius: 4px;*/
+/*    padding: 10px;*/
+/*}*/
 
 .editReservationForm .checkInOutBtn,
 .editReservationForm .editBtn,
@@ -195,6 +414,74 @@
     border-color: #052039;
 }
 
-.carSelectText {
-    font-weight: bold;
+/*.carSelectText {*/
+/*    font-weight: bold;*/
+/*    background-color: white;*/
+/*    color: #052038;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+
+.editReservationForm .carSelect:focus {
+    border-color: #052039;
+}
+
+
+.plusSignUserInfoAdmin:hover{
+    cursor: pointer;
+}
+
+.InputViewUserInfo{
+    width: 130px;
+    height: 35px;
+    padding: 10px;
+    border: 1px solid #052038;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 10px;
+
+}
+
+.InputViewUserInfo:focus{
+    border-color: #937212;
+    outline: none;
+
+
+}
+
+.InputViewUserInfo::placeholder{
+    color: #052038;
+    opacity: 1;
+    font-style: normal;
+
+}
+
+.InputDropDownViewUserInfo:hover{
+    cursor: pointer;
+
+}
+
+.dateInputVUI {
+    width: 200px;
+    height: 35px;
+    /*background: transparent;*/
+    outline: none;
+    font-size: 16px;
+    color: #000000;
+    padding: 10px;
+    border: 1px solid #052038;
+    border-radius: 20px;
+    box-sizing: border-box;
+    /*margin-right: 5px;*/
+    /*margin-bottom: 5px;*/
+    margin: 10px;
+}
+.dateInputVUI::placeholder {
+    color: #052038;
+
+}
+
+.dateInputVUI:focus {
+    border: 2px solid #ad8c10;
+
 }
