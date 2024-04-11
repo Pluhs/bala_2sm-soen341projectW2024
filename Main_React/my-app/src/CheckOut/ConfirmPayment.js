@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "./ConfirmPayment.css";
 import { Link, useLocation } from "react-router-dom";
 import { fetchUserReservationById } from "../LogInForm/UserInfo";
 
