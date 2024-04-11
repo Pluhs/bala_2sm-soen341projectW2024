@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "./Payment.css"
-import {useLocation, useNavigate} from "react-router-dom";
+import "./Payment.css";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchUserById, fetchUserReservationById } from "../LogInForm/UserInfo";
 
 const Payment = () => {
@@ -8,7 +8,6 @@ const Payment = () => {
     const [rentalDetails, setRentalDetails] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const fetchReservationData = async () => {
@@ -54,6 +53,11 @@ const Payment = () => {
         fetchReservationData();
     }, [location]);
 
+    const handlePay = (event) => {
+        event.preventDefault();
+        navigate('/ConfirmPayment', { state: { rentalDetails: rentalDetails } });
+    };
+
     if (isLoading) {
         return <div className="centered-container">Loading...</div>;
     }
@@ -62,23 +66,11 @@ const Payment = () => {
         return <div className="centered-container">No rental details found :(</div>;
     }
 
-    const handlePay = async (event) => {
-        event.preventDefault();
-
-        navigate('/ConfirmPayment', {state: {rentalDetails: rentalDetails}})
-
-    }
-    if (isLoading) {
-        return <div className="centered-container">Loading...</div>;
-    }
-
-
     return (
         <div className="payment">
             <div className="paymentDiv">
                 <h2>Rental Details</h2>
                 <div className="rental-details">
-
                     <div className="userInfoDiv">
                         <p>----------------------</p>
                         <p><strong>User Information:</strong></p>
@@ -92,7 +84,6 @@ const Payment = () => {
 
                     <div className="rentalInfoDiv">
                         <p>-------------------------------</p>
-
                         <p><strong>Rental Information:</strong></p>
                         <p>-------------------------------</p>
 
@@ -106,35 +97,26 @@ const Payment = () => {
 
                     <div className="serInfoDiv">
                         <p>-------------------------------</p>
-
                         <p><strong>Rental Total Price:</strong></p>
                         <p>-------------------------------</p>
-
                         <p>Rental Price: ${rentalDetails.rentalPrice}</p>
                     </div>
 
                     <div className="serInfoDiv">
-
                         <p>-------------------------------</p>
-
                         <p><strong>Additional Charges:</strong></p>
                         <p>-------------------------------</p>
-
                         <p>Cleaning Fee: ${rentalDetails.cleaningFee}</p>
                         <p>Insurance Fee: ${rentalDetails.insuranceFee}</p>
                     </div>
 
                     <div className="totalAmountDiv">
                         <p>-------------------------------</p>
-
                         <p><strong>Total Amount Due:</strong></p>
                         <p><strong>${rentalDetails.totalAmount}</strong></p>
                         <p></p>
                     </div>
-
-
                 </div>
-
             </div>
 
             <div className="paymentDiv">
@@ -142,8 +124,7 @@ const Payment = () => {
                 <button className="proceedToPayment" onClick={handlePay}>Pay</button>
             </div>
         </div>
-
     );
-}
+};
 
 export default Payment;

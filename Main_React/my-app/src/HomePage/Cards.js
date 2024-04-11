@@ -1,8 +1,6 @@
 import React from 'react';
-import "./Cards.css"
-import "./CardItem.js"
+import "./Cards.css";
 import CardItem from "./CardItem";
-
 
 function Cards() {
     return (
@@ -43,7 +41,6 @@ function Cards() {
                             path='/login'
                         />
                     </ul>
-
                 </div>
             </div>
         </div>
