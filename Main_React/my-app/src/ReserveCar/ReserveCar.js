@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./ReserveCar.css"
-import { useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {fetchReservationsForUserById} from "../Admin/ReservationsInfo";
 
 const ReserveCarForm = () => {
-    // const [name, setName] = useState('');
     const [userAddress, setUserAddress] = useState('');
     const [phoneNumber, setPhone] = useState('');
     const [pickupDate, setPickupDate] = useState('');
@@ -23,7 +22,6 @@ const ReserveCarForm = () => {
 
     const handleAddressChange = (event) => {
         setUserAddress(event.target.value);
-        // console(userAddress.toString())
     };
     const handlePhoneChange = (event) => {
         setPhone(event.target.value);
@@ -47,24 +45,12 @@ const ReserveCarForm = () => {
         setReturnDate(event.target.value);
     };
 
-
-//     const sendConfirmationEmail = async (userId, reservationId) => {
-//     alert("email okkkkk")
-//     alert(reservationId)
-//
-//
-// }
-
     const findReservationByPickUpDate = async () => {
         const reservations = await fetchReservationsForUserById(userId);
-
-        // Convert pickupDate to match the format in reservations (assuming it's in YYYY-MM-DD format)
         const formattedPickupDate = new Date(pickupDate).toISOString().split('T')[0];
 
-        // Loop through reservations to find matching reservation
         for (const reservation of reservations) {
             if (reservation.pickupDate === formattedPickupDate && reservation.car.id === carId) {
-                // Matching reservation found, retrieve reservationId
                 const reservationId = reservation.id;
                 setReservationId(reservationId);
                 alert(reservationId);
@@ -95,22 +81,20 @@ const ReserveCarForm = () => {
     const handleSubmitReserveCar = async (e) => {
         e.preventDefault();
 
-        // Prompt confirmation dialog
-        const confirmed = window.confirm("Please verify the booking information.\nCar: " + carInfo.name + " " + carInfo.model + " " + carInfo.year +
+        const confirmed = window.confirm("Please verify your booking information before proceeding. " +
+            "If you find a mistake please go back and fix it.\nCar: " + carInfo.name + " " + carInfo.model + " " + carInfo.year +
             "\nColor: " + carInfo.color + "\nPrice: " + carInfo.price + "$/day\nMax Mileage Per Day: " + carInfo.milage +
             "\nCar Insurance Selected (for 70$/day): " + insurance + "\nCleaning Selected (for 35$/day): " + cleaning +
             "\n\nYour Info:\nAddress: " + userAddress + "\nPhone Number: " + phoneNumber + "\nDriver's License Number: " + driverLicense);
 
         if (!confirmed) {
-            return; // If user clicks cancel, do nothing
+            return;
         }
 
-        // Prompt for account number
-        const cardNum = prompt("Please enter your card number:");
+        const cardNum = prompt("Please enter your debit or credit card number: ");
         if (cardNum === null) {
-            return; // If user cancels the prompt, do nothing
-        }
-        else{
+            return;
+        } else {
             try {
                 const pickedUp = false
                 const returned = false
@@ -119,20 +103,29 @@ const ReserveCarForm = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({pickupDate, dropDate, car: {id: carId},userAddress, phoneNumber, driverLicense, insurance, cleaning,pickedUp,returned, cardNum}),
-                    // public Reservation(ObjectIdString driverLicense, boolean insurance, boolean cleaning, boolean pickedUp, boolean returned, String cardNum) {
+                    body: JSON.stringify({
+                        pickupDate,
+                        dropDate,
+                        car: {id: carId},
+                        userAddress,
+                        phoneNumber,
+                        driverLicense,
+                        insurance,
+                        cleaning,
+                        pickedUp,
+                        returned,
+                        cardNum
+                    }),
 
                 });
 
-
                 if (!response.ok) {
-
                     throw new Error('Failed to reserve the car');
                 }
                 const data = await response.json();
                 await findReservationByPickUpDate(userId)
 
-                    navigate('/myProfile');
+                navigate('/myProfile');
 
                 console.log('Car reserved successfully');
 
@@ -143,12 +136,11 @@ const ReserveCarForm = () => {
 
     };
 
-
     const displayCarInfo = async () => {
         const signInUrl = `http://localhost:8080/cars/${carId}`;
 
         try {
-            const response = await fetch(signInUrl, { method: "GET" });
+            const response = await fetch(signInUrl, {method: "GET"});
             const carsData = await response.json();
             setCarInfo(carsData);
         } catch (error) {
@@ -170,9 +162,6 @@ const ReserveCarForm = () => {
                 </div>
             </div>
             <div className="formWrapperDiv">
-                <div>
-                    <h3>{carInfo.info}</h3>
-                </div>
                 <form onSubmit={handleSubmitReserveCar} className="formWrapper">
                     <h1>Reserve This Car Now</h1>
                     <h2>This car's Pickup and Drop off branch is: <u>{carInfo.branch?.name}</u></h2>

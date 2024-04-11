@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {useState} from 'react';
 import "./registrationForm.css";
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 const RegisterForm = () => {
@@ -31,7 +30,7 @@ const RegisterForm = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name, email, password, role}),
+                body: JSON.stringify({name, email, password, role}),
             });
 
             const data = await response.json();
@@ -49,19 +48,23 @@ const RegisterForm = () => {
             <form className="wrapperRegister" onSubmit={handleSignUp}>
                 <h1>Register Form</h1>
                 <div className="inputBoxRegister">
-                    <input type="text" placeholder="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} required/>
+                    <input type="text" placeholder="Name" id="name" value={name}
+                           onChange={(e) => setName(e.target.value)} required/>
                     <i className="fa-solid fa-user"></i>
                 </div>
                 <div className="inputBoxRegister">
-                    <input type="email" placeholder="Email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="email" placeholder="Email" id="email" value={email}
+                           onChange={(e) => setEmail(e.target.value)} required/>
                     <i className="fa-solid fa-at"></i>
                 </div>
                 <div className="inputBoxRegister">
-                    <input type="password" placeholder="Password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                    <input type="password" placeholder="Password" id="password" value={password}
+                           onChange={(e) => setPassword(e.target.value)} required/>
                     <i className="fa-solid fa-lock"></i>
                 </div>
                 <div className="inputBoxRegister">
-                    <input type="password" placeholder="Confirm Password" id ="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                    <input type="password" placeholder="Confirm Password" id="confirmPassword" value={confirmPassword}
+                           onChange={(e) => setConfirmPassword(e.target.value)} required/>
                     <i className="fa-solid fa-lock"></i>
                 </div>
                 <button type="submit">Register</button>

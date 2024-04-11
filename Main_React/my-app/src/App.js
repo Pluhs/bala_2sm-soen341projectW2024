@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./Navbar/Navbar";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LogInForm from "./LogInForm/LogInForm.js";
 import HomePage from "./HomePage/HomePage.js";
 import RegistrationForm from "./registrationForm/registrationForm.js";
@@ -45,24 +45,24 @@ function App() {
             <div className="App">
                 <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
                 <Routes>
-                    <Route path="/" exact element={<HomePage />} />
-                    <Route path="/login" element={<LogInForm handleLogin={handleLogin}/>} />
-                    <Route path="/register" element={<RegistrationForm/>} />
-                    <Route path="/reserveCar" element={<ReserveCar/>} />
-                    <Route path="/browseVehicle" element={<BrowseVehicle/>} />
-                    <Route path="/myProfile" element={<MyProfile/>} />
-                    <Route path="/admin" element={<Admin/>} />
-                    <Route path="/vehicles" element={<Vehicles/>} />
-                    <Route path="/viewUser" element={<ViewUserInfo />} />
-                    <Route path="/users" element={<Users/>} />
-                    <Route path="/branch" element={<Branch/>} />
-                    <Route path="/CheckIn" element={<CheckIn/>} />
-                    <Route path="/CheckOut" element={<CheckOut/>} />
-                    <Route path="/branch/:id" element={<BranchDetails />} />
-                    <Route path="/RentalAgreement" element={<RentalAgreement />} />
-                    <Route path="/payment" element={<Payment />} />
-                    <Route path="/thankYou" element={<ThankYou />} />
-                    <Route path="/confirmPayment" element={<ConfirmPayment />} />
+                    <Route path="/" exact element={<HomePage/>}/>
+                    <Route path="/login" element={<LogInForm handleLogin={handleLogin}/>}/>
+                    <Route path="/register" element={<RegistrationForm/>}/>
+                    <Route path="/reserveCar" element={<ReserveCar/>}/>
+                    <Route path="/browseVehicle" element={<BrowseVehicle/>}/>
+                    <Route path="/myProfile" element={<MyProfile/>}/>
+                    <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/vehicles" element={<Vehicles/>}/>
+                    <Route path="/viewUser" element={<ViewUserInfo/>}/>
+                    <Route path="/users" element={<Users/>}/>
+                    <Route path="/branch" element={<Branch/>}/>
+                    <Route path="/CheckIn" element={<CheckIn/>}/>
+                    <Route path="/CheckOut" element={<CheckOut/>}/>
+                    <Route path="/branch/:id" element={<BranchDetails/>}/>
+                    <Route path="/RentalAgreement" element={<RentalAgreement/>}/>
+                    <Route path="/payment" element={<Payment/>}/>
+                    <Route path="/thankYou" element={<ThankYou/>}/>
+                    <Route path="/confirmPayment" element={<ConfirmPayment/>}/>
 
                 </Routes>
             </div>

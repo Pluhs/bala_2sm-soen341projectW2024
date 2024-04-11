@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {fetchAllUsers, deleteUser, createUser, updateUser} from '../LogInForm/UserInfo';
+import React, {useEffect, useState} from 'react';
+import {createUser, deleteUser, fetchAllUsers, updateUser} from '../LogInForm/UserInfo';
 import {useNavigate} from 'react-router-dom';
 import "./Users.css";
 
@@ -66,7 +66,7 @@ function Users() {
 
     return (
         <div className="usersContainer">
-            <h1>ALL REGISTERED USERS: <i className="fa fa-plus" onClick={toggleNewUsers} style={{
+            <h1>ALL REGISTERED USERS: <i className="fa fa-plus plusSignUsersAdmin" onClick={toggleNewUsers} style={{
                 transform: `rotate(${iconRotation}deg)`,
                 transition: 'transform 0.65s ease'
             }}></i></h1>

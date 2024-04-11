@@ -1,8 +1,8 @@
 import React from 'react';
-import './Footer.css';
 import { Link } from 'react-router-dom';
+import './Footer.css';
 
-function Footer() {
+const Footer = () => {
     return (
         <div className='footer-container'>
             <section>
@@ -46,8 +46,7 @@ function Footer() {
                     <div className='social-media-wrap'>
                         <div className='footer-logo'>
                             <Link to='/' className='social-logo'>
-                                <img src="/Images/FullLogoBright.png" alt="Royal Car Rental Logo"
-                                     style={{width: '90px', height: 'auto'}}/>
+                                <img src="/Images/FullLogoBright.png" alt="Royal Car Rental Logo" style={{width: '90px', height: 'auto'}} />
                             </Link>
                         </div>
                         <small className='website-rights'>Royal Car Rental © 2024</small>
@@ -72,7 +71,7 @@ function Footer() {
                 </section>
             </section>
         </div>
-            );
-            }
+    );
+}
 
-            export default Footer;
+export default Footer;

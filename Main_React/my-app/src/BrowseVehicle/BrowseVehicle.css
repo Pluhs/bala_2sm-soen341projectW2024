@@ -7,7 +7,6 @@ body {
     margin-bottom: 20px;
     max-height: calc(100vh - 100px);
     overflow-y: auto;
-
 }
 
 .filterOptionsContainer{
@@ -16,15 +15,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 95%;
-
-
 }
 
 .filterHeader{
     padding-left: 2%;
-
 }
-
 
 .filterInputGeneral{
     width: 130px;
@@ -34,25 +29,26 @@ body {
     box-sizing: border-box;
     margin-right: 5px;
     margin-bottom: 5px;
-
 }
-.filterInputGeneral:focus{
-     border-color: #ad881a;
-     outline: none;
 
+.filterInputGeneral:focus{
+    border-color: #937212;
+    outline: none;
 }
 
 .filterInputGeneral::placeholder{
     color: #052038;
     opacity: 1;
     font-style: normal;
+}
 
+.filterInputDropDown:hover{
+    cursor: pointer;
 }
 
 .numberInputFilter{
     max-width: 75px;
 }
-
 
 .vehicle-container {
     display: grid;
@@ -62,21 +58,25 @@ body {
     justify-items: start;
     gap: 25px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-
 }
 
 .vehicle {
     width: calc(100%);
     margin-bottom: 4%;
     padding: 20px;
-    /*border: 1px solid #ccc;*/
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    /*margin-bottom: 100px;*/
     max-width: 350px;
+    overflow: hidden;
+}
+
+.imgContainerBrowse{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+
 }
 
 .vehicle img {
@@ -86,10 +86,19 @@ body {
     border-radius: 8px;
 }
 
+.imgBrowseVehicles{
+    transition: all 0.3s ease-in-out;
+}
+
+.imgBrowseVehicles:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+
 .vehicle h3 {
-    margin-top: 10px;
-    margin-bottom: 5px;
     color: black;
+    margin: 10px 20px 5px 20px;
 }
 
 .priceBtnDiv{
@@ -101,18 +110,19 @@ body {
 .browseCarInfo {
     color: #444343;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .browseCarPrice{
     color: black;
     font-weight: bolder;
     font-size: large;
+    margin-left: 20px;
 }
 
 
 .vehicle button {
-    /*margin-left: 70%;*/
-    padding: 0.5rem 1rem;
+    /*padding: 0.5rem 1rem;*/
     white-space: nowrap;
     background-color: #052038;
     border: none;
@@ -122,6 +132,7 @@ body {
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
     transition: all 0.25s ease-in-out;
+    margin-right: 20px;
 
 }
 
@@ -130,12 +141,9 @@ body {
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
     transition: all 0.2s ease-in-out;
-
 }
 
-
 .reserveVehicleBtnBrowse {
-    /*margin-left: 70%;*/
     padding: 0.5rem 1rem;
     white-space: nowrap;
     background-color: #052038;
@@ -146,18 +154,13 @@ body {
     font-family: "Times New Roman", sans-serif ;
     border-radius: 10px;
     transition: all 0.25s ease-in-out;
-
 }
 
 .reserveVehicleBtnBrowse:hover {
-    /*background-color: #A30021;*/
-    /*cursor: pointer;*/
     background-color: #B28735;
     cursor: pointer;
     border-radius: 20px 5px 20px 5px;
-    /*border: 2px #6e5b12 solid ;*/
     transition: all 0.2s ease-in-out;
-
 }
 
 .centered-container {
@@ -169,13 +172,14 @@ body {
     text-align: center;
 }
 
-.imgBrowseVehicles{
-    transition: all 0.2s ease-in-out;
-}
+
 
 .imgBrowseVehicles:hover{
-    /*width: 120%;*/
-
-    /*transform: scale(110%);*/
     transition: all 0.2s ease-in-out;
 }
+
+.plusSignBrowse:hover{
+    cursor: pointer;
+}
+
+
