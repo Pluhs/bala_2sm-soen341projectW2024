@@ -16,7 +16,7 @@ public class Car {
 	@Id
 	@JsonSerialize(using= ToStringSerializer.class)
 	private ObjectId id;
-	private String name;
+	private String name;//
 	private String model;
 	private int year;
 	private String type;
