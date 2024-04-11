@@ -13,8 +13,6 @@
     height: 100rem;
     max-height: calc(100vh - 100px);
     overflow-y: auto;
-
-
 }
 
 .yourReservationContainerAdmin {
@@ -92,21 +90,6 @@
     font-weight: 1000;
 }
 
-
-/*.yourReservationCarImg {*/
-/*    display: block;*/
-/*    max-width: 20%;*/
-/*    max-height: 90%;*/
-/*    width: auto;*/
-/*    height: auto;*/
-/*    position: relative;*/
-/*    float: left;*/
-/*    border-radius: 8px;*/
-/*    margin: 5px;*/
-/*    flex: 0 0 auto;*/
-/*    margin-right: 10px;*/
-/*}*/
-
 .editBtn,
 .checkInOutBtn{
     width: 150px;
@@ -148,17 +131,6 @@
     margin-top: 20px;
 
 }
-
-
-/*.editReservationForm label,*/
-/*.editReservationForm input[type="date"] {*/
-/*    margin-bottom: 5px;*/
-/*    color: #052038;*/
-/*    font-weight: bold;*/
-/*    border-radius: 4px;*/
-/*    padding: 10px;*/
-/*}*/
-
 
 .editReservationForm .checkInOutBtn,
 .editReservationForm .editBtn,
@@ -234,18 +206,6 @@
     overflow-y: auto;
 }
 
-.yourReservationContainerAdmin {
-    width: auto;
-    height: 100px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.66);
-    background-color: rgba(225, 221, 221, 0.25);
-    border-radius: 8px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
 
 .leftContentAdmin,
 .rightContentAdmin {
@@ -269,23 +229,6 @@
     gap: 40px;
 }
 
-.deleteReservation {
-    width: 150px;
-    height: 40px;
-    background: #A30021;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 15px;
-    color: #f5f5f5;
-    font-weight: 700;
-    float: right;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
 .deleteReservation:hover {
     background: #8f021f;
 }
@@ -298,23 +241,6 @@
 .carInfoTxtAdmin {
     font-size: 25px;
     font-weight: 1000;
-}
-
-.editBtn,
-.checkInOutBtn{
-    width: 150px;
-    height: 40px;
-    background: #052039;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 15px;
-    color: #f5f5f5;
-    font-weight: 700;
-    float: right;
-    margin-left: 20px;
 }
 
 .editBtn:hover {
@@ -341,15 +267,6 @@
     margin-top: 20px;
 
 }
-
-/*.editReservationForm label,*/
-/*.editReservationForm input[type="date"] {*/
-/*    margin-bottom: 5px;*/
-/*    color: #052038;*/
-/*    font-weight: bold;*/
-/*    border-radius: 4px;*/
-/*    padding: 10px;*/
-/*}*/
 
 .editReservationForm .checkInOutBtn,
 .editReservationForm .editBtn,
@@ -413,14 +330,6 @@
 .editReservationForm .carSelect:focus {
     border-color: #052039;
 }
-
-/*.carSelectText {*/
-/*    font-weight: bold;*/
-/*    background-color: white;*/
-/*    color: #052038;*/
-/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
-/*}*/
-
 
 .editReservationForm .carSelect:focus {
     border-color: #052039;
@@ -499,6 +408,7 @@
     box-sizing: border-box;
     margin: 5px 10px 5px 2px;
 }
+
 .dateInputVUI::placeholder {
     color: #052038;
 
