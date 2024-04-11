@@ -184,7 +184,7 @@ function ViewUserInfo() {
             <form onSubmit={handleSubmitNewReservation} className="editReservationForm">
                 <p className="carSelectText">Car:</p>
                 <select
-                    className="carSelect"
+                    className="InputViewUserInfo InputDropDownViewUserInfo"
                     value={newReservation.car}
                     onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
                 >
@@ -193,18 +193,19 @@ function ViewUserInfo() {
                         <option key={car.id} value={car.id}> {car.color} {car.name} {car.model} {car.year} </option>
                     ))}
                 </select>
+
                 <div className="formInputContainer">
-                    <label>Pickup Date:</label>
+                    <label>Pickup Date: </label>
                     <input
-                        type="date"
+                        type="date" className="dateInputVUI"
                         value={newReservation.pickupDate}
                         onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
                     />
                 </div>
                 <div className="formInputContainer">
-                    <label>Drop Date:</label>
+                    <label>Drop Date: </label>
                     <input
-                        type="date"
+                        type="date" className="dateInputVUI"
                         value={newReservation.dropDate}
                         onChange={(e) => setNewReservation({...newReservation, dropDate: e.target.value})}
                     />
@@ -212,7 +213,7 @@ function ViewUserInfo() {
                 <div className="formInputContainer">
                     <label>Address:</label>
                     <input
-                        type="text"
+                        type="text" className="InputViewUserInfo"
                         value={newReservation.userAddress}
                         onChange={(e) => setNewReservation({...newReservation, userAddress: e.target.value})}
                     />
@@ -220,7 +221,7 @@ function ViewUserInfo() {
                 <div className="formInputContainer">
                     <label>Phone Number:</label>
                     <input
-                        type="text"
+                        type="text" className="InputViewUserInfo"
                         value={newReservation.phoneNumber}
                         onChange={(e) => setNewReservation({...newReservation, phoneNumber: e.target.value})}
                     />
@@ -228,7 +229,7 @@ function ViewUserInfo() {
                 <div className="formInputContainer">
                     <label>Driver's License:</label>
                     <input
-                        type="text"
+                        type="text" className="InputViewUserInfo"
                         value={newReservation.driverLicense}
                         onChange={(e) => setNewReservation({...newReservation, driverLicense: e.target.value})}
                     />
@@ -236,7 +237,7 @@ function ViewUserInfo() {
                 <div className="formInputContainer">
                     <label>Card Number:</label>
                     <input
-                        type="text"
+                        type="text" className="InputViewUserInfo"
                         value={newReservation.cardNumber}
                         onChange={(e) => setNewReservation({...newReservation, cardNumber: e.target.value})}
                     />
