@@ -10,14 +10,13 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.ArrayList;
-
 @Document(collection = "cars")
 public class Car {
 
 	@Id
 	@JsonSerialize(using= ToStringSerializer.class)
 	private ObjectId id;
-	private String name;//To be changed to make
+	private String name;
 	private String model;
 	private int year;
 	private String type;

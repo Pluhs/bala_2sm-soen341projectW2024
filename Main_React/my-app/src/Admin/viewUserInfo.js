@@ -18,6 +18,8 @@ function ViewUserInfo() {
     const [editingReservation, setEditingReservation] = useState(null);
     const [showCreateReservationForm, setShowCreateReservationForm] = useState(false);
     const [cars, setCars] = useState([]);
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+
     const [newReservation, setNewReservation] = useState({
         pickupDate: '',
         dropDate: '',
@@ -184,7 +186,7 @@ function ViewUserInfo() {
             <form onSubmit={handleSubmitNewReservation} className="editReservationForm">
                 <p className="carSelectText">Car:</p>
                 <select
-                    className="InputViewUserInfo InputDropDownViewUserInfo"
+                    className="InputDropDownViewUserInfo selectInputVUI"
                     value={newReservation.car}
                     onChange={(e) => setNewReservation({...newReservation, car: e.target.value})}
                 >
@@ -198,7 +200,7 @@ function ViewUserInfo() {
                     <label>Pickup Date: </label>
                     <input
                         type="date" className="dateInputVUI"
-                        value={newReservation.pickupDate}
+                        value={newReservation.pickupDate} min={currentDate}
                         onChange={(e) => setNewReservation({...newReservation, pickupDate: e.target.value})}
                     />
                 </div>
@@ -206,7 +208,7 @@ function ViewUserInfo() {
                     <label>Drop Date: </label>
                     <input
                         type="date" className="dateInputVUI"
-                        value={newReservation.dropDate}
+                        value={newReservation.dropDate} min={currentDate}
                         onChange={(e) => setNewReservation({...newReservation, dropDate: e.target.value})}
                     />
                 </div>
@@ -266,8 +268,6 @@ function ViewUserInfo() {
                 </div>
             </form>
         )}
-
-
             {
                 editingReservation && (
                     <form onSubmit={(e) => handleSaveEdit(e, editingReservation)} className="editReservationForm">
