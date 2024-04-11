@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import "./ConfirmPayment.css"
-import {Link, useLocation} from "react-router-dom";
-import {fetchUserById, fetchUserReservationById} from "../LogInForm/UserInfo";
+import "./ConfirmPayment.css";
+import { Link, useLocation } from "react-router-dom";
+import { fetchUserReservationById } from "../LogInForm/UserInfo";
 
 function ConfirmPayment() {
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(true);
-    const [reservationCardNumber, setReservationCardNumber] = useState('')
+    const [reservationCardNumber, setReservationCardNumber] = useState('');
 
     const userId = location?.state?.rentalDetails?.userInfo.id;
     const reservationId = location?.state?.rentalDetails?.reservationInfo.id;
@@ -14,19 +14,18 @@ function ConfirmPayment() {
     const paymentAmount = location?.state?.rentalDetails.totalAmount;
     const refundAmount = 500;
 
-
-
     useEffect(() => {
         const fetchReservationData = async () => {
             try {
                 const reservation = await fetchUserReservationById(userId, reservationId);
-                if(reservation){
-                   setReservationCardNumber(reservation.cardNum)
-               }
-
+                if (reservation) {
+                    setReservationCardNumber(reservation.cardNum);
+                }
             } catch (error) {
                 console.error('Error fetching agreement data', error);
                 alert('Error fetching agreement data');
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchReservationData();
@@ -94,10 +93,8 @@ function ConfirmPayment() {
                 throw new Error(`Failed to delete reservation: ${errorResponse}`);
             }
 
-            // Reservation successfully deleted
             const deletedReservation = await response.json();
             console.log('Deleted reservation:', JSON.stringify(deletedReservation));
-            // alert('deleted reservation: ' + deletedReservation)
             return deletedReservation;
         } catch (error) {
             console.error('Error deleting reservation:', error);
@@ -105,18 +102,15 @@ function ConfirmPayment() {
         }
     };
 
-
-
     useEffect(() => {
         const processPayment = async () => {
             await pay(paymentAmount);
             await refund(refundAmount);
-            setIsLoading(false);
             await deleteReservation(userId, reservationId);
         };
 
         processPayment();
-    }, [paymentAmount, refundAmount, userId, cardNumber]);
+    }, [paymentAmount, refundAmount, userId, cardNumber, reservationId]);
 
     if (isLoading) {
         return <div className="centered-container">Loading...</div>;
@@ -126,9 +120,9 @@ function ConfirmPayment() {
         <div className="ThankYou">
             <h1>Thank You for Checking Out!</h1>
             <br/>
-            <p>The final payment of ${paymentAmount} was successfully processed from your account ending with  ****{cardNumber.slice(-4)}. </p>
+            <p>The final payment of ${paymentAmount} was successfully processed from your account ending with ****{cardNumber.slice(-4)}.</p>
             <p>The $500 deposit was successfully refunded to the bank account used for reservation ending with ****{reservationCardNumber.slice(-4)}.</p>
-            <p>Reservation with booking id: {reservationId} will be erased from our systems</p>
+            <p>Reservation with booking id: {reservationId} will be erased from our systems.</p>
             <p>Thank you for using our services, hope to see you again soon!</p>
             <Link to={`/`}>
                 <button className="sorryBtn">Go Back To Home Page</button>
