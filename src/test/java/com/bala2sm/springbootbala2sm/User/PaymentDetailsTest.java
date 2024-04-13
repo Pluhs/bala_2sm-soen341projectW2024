@@ -1,4 +1,4 @@
-package com.bala2sm.springbootbala2sm.Reservation;
+package com.bala2sm.springbootbala2sm.User;
 
 import com.bala2sm.springbootbala2sm.User.PaymentDetails;
 import org.junit.jupiter.api.Test;
