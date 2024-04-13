@@ -1,9 +1,15 @@
 package com.bala2sm.springbootbala2sm.User;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.bala2sm.springbootbala2sm.Branch.Branch;
+import com.bala2sm.springbootbala2sm.Car.Car;
 import com.bala2sm.springbootbala2sm.Car.CarService;
 import com.bala2sm.springbootbala2sm.Reservation.Reservation;
-import com.bala2sm.springbootbala2sm.User.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,19 +20,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 @ExtendWith(MockitoExtension.class)
-public class AdminControllerTest {
+class AdminControllerTest {
 
     private MockMvc mockMvc;
 
@@ -38,6 +40,11 @@ public class AdminControllerTest {
 
     @InjectMocks
     private AdminController adminController;
+
+    @BeforeEach
+    public void setup() {
+        mockMvc = MockMvcBuilders.standaloneSetup(adminController).build();
+    }
     private User createBasicUser() {
         ObjectId id = new ObjectId();
         String name = "John Doe";
@@ -48,15 +55,6 @@ public class AdminControllerTest {
         PaymentDetails paymentDetails = new PaymentDetails();
 
         return new User(id, name, email, password, role, reservations, paymentDetails);
-    }
-//    private User createAdminUser() {
-//        User adminUser = createBasicUser();
-//        adminUser.setRole(Role.ADMIN);
-//        return adminUser;
-//    }
-    @BeforeEach
-    public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(adminController).build();
     }
     @Test
     public void testCreateUserSuccess() throws Exception {
@@ -91,16 +89,6 @@ public class AdminControllerTest {
         verify(userService, times(1)).getUserById(any(ObjectId.class));
     }
 
-//    @Test
-//    public void testGetUserNotFound() throws Exception {
-//        ObjectId id = new ObjectId();
-//        when(userService.getUserById(id)).thenReturn(Optional.empty());
-//
-//        mockMvc.perform(get("/admin/users/" + id.toHexString())
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isNotFound());
-//        verify(userService, times(1)).getUserById(id);
-//    }
     @Test
     public void testUpdateUser() throws Exception {
         User updatedUser = createBasicUser();
@@ -121,9 +109,49 @@ public class AdminControllerTest {
                 .andExpect(status().isOk());
         verify(userService, times(1)).deleteUser(any(ObjectId.class));
     }
+//    @Test
+//    public void testGetUserNotFound() throws Exception {
+//        ObjectId id = new ObjectId();
+//        when(userService.getUserById(id)).thenReturn(Optional.empty());
+//
+//        mockMvc.perform(get("/admin/users/" + id.toHexString())
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isNotFound());
+//        verify(userService, times(1)).getUserById(id);
+//    }
+    @Test
+    public void testGetAllCars() throws Exception {
+        List<Car> cars = Arrays.asList(new Car(), new Car());
+        when(carService.getAllCars()).thenReturn(cars);
+
+        mockMvc.perform(get("/admin/cars")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+        verify(carService, times(1)).getAllCars();
+    }
+
+    @Test
+    public void testCreateCar() throws Exception {
+        ObjectId carId = new ObjectId();
+        Car car = new Car(carId, "Tesla Model 3", "Model 3", 2021, "Sedan", "5YJ3E1EA7MF123456", "VIN123", "Blue", 50000.0, "Basic model", "https://example.com/image.jpg", true, new ArrayList<>(), 0, new Branch(new ObjectId(), "123 Main St", -34.9285, 138.6007));
+
+        when(carService.addCar(any(Car.class))).thenReturn(car);
+
+        mockMvc.perform(post("/admin/cars")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(car)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(car.getId().toHexString())));
+
+        verify(carService, times(1)).addCar(any(Car.class));
+    }
+
     private String asJsonString(final Object obj) {
         try {
-            return new ObjectMapper().writeValueAsString(obj);
+            return new ObjectMapper()
+                    .registerModule(new JavaTimeModule())
+                    .writeValueAsString(obj);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
