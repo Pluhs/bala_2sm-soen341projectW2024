@@ -13,10 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.bala2sm.springbootbala2sm.Car.Car;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -170,6 +168,35 @@ public class UserServiceTest {
         User result = userService.addReservation(userId, reservation);
 
         assertTrue(result.getReservations().contains(reservation));
+    }
+
+    @Test
+    public void testUpdateReservationSuccess() throws Exception {
+        ObjectId userId = new ObjectId();
+        ObjectId reservationId = new ObjectId();
+        User user = createBasicUser();
+        Reservation originalReservation = new Reservation();
+        originalReservation.setId(reservationId);
+        originalReservation.setPickupDate(LocalDate.now());
+        originalReservation.setDropDate(LocalDate.now().plusDays(5));
+        Car car = new Car();
+        originalReservation.setCar(car);
+
+        Reservation updatedReservation = new Reservation();
+        updatedReservation.setCar(car);
+        updatedReservation.setPickupDate(LocalDate.now().plusDays(1));
+        updatedReservation.setDropDate(LocalDate.now().plusDays(6));
+        updatedReservation.setId(reservationId);
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+        when(reservationRepository.findById(reservationId)).thenReturn(Optional.of(originalReservation));
+        when(reservationRepository.save(any(Reservation.class))).thenReturn(updatedReservation);
+        when(carService.getCarById(any())).thenReturn(Optional.of(car));
+
+        Reservation result = userService.updateReservation(userId, reservationId, updatedReservation);
+
+        assertEquals(LocalDate.now().plusDays(1), result.getPickupDate());
+        assertEquals(LocalDate.now().plusDays(6), result.getDropDate());
     }
 
 
