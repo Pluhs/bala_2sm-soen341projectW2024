@@ -1,13 +1,13 @@
 .payment {
     overflow-y: auto;
     max-height: calc(100vh - 50px);
-    display: flex; /* Use Flexbox layout */
-    justify-content: space-between; /* Space items evenly, pushing the "paymentAction" div to the right */
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
 }
-.paymentDiv {
 
-    flex: 1; /* Allow the "paymentDiv" to grow and take available space */
+.paymentDiv {
+    flex: 1;
     margin-right: 20px;
     max-width: 600px;
     margin: 0 auto;
@@ -16,21 +16,12 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-
-    /*margin: 20px auto;*/
-    /*padding: 20px;*/
-    /*width: 80%;*/
-    /*max-width: 600px;*/
-    /*background-color: #fff;*/
-    /*border: 1px solid #ccc;*/
-    /*border-radius: 8px;*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .paymentDiv h3 {
     margin-bottom: 20px;
-    /*margin-left: ;*/
 }
 
 .userInfoDiv,
@@ -56,7 +47,6 @@
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-left: 50%;
     display: block;
     margin: 0 auto;
 }
@@ -68,4 +58,3 @@
 .centered-container {
     text-align: center;
 }
-

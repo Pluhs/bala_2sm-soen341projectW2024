@@ -11,6 +11,13 @@
     z-index: 1;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 .wrapperRegister {
     width: 25rem;
     height: 28rem;
@@ -44,7 +51,8 @@
     border-radius: 40px;
     font-size: 16px;
     color: #f5f5f5;
-    padding: 10px 3px 5px 5px;
+    padding: 5px 3px 5px 10px;
+
 }
 
 .inputBoxRegister input::placeholder {
@@ -77,8 +85,8 @@
     background-color: antiquewhite;
 }
 
-.wrapperRegister .registerLink {
-    font-size: 14.5px;
+.wrapperRegister .registerLink{
+    font-size: 15px;
     text-align: center;
     margin: 20px 0 15px;
 }
@@ -93,7 +101,7 @@
     text-decoration: underline;
 }
 
-.RegisterError {
+.RegisterError{
     text-align: center;
     color: #A30021;
     font-size: 16px;
